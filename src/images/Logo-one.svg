@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="38" viewBox="0 0 224 68">
+  <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(16)" fill="none" stroke="#f699cd" stroke-width="8">
+    <circle cx="34" cy="34" r="34" stroke="none"/>
+    <circle cx="34" cy="34" r="30" fill="none"/>
+  </g>
+  <g id="Ellipse_13" data-name="Ellipse 13" fill="none" stroke="#ffba01" stroke-width="8">
+    <circle cx="34" cy="34" r="34" stroke="none"/>
+    <circle cx="34" cy="34" r="30" fill="none"/>
+  </g>
+  <text id="M" transform="translate(84 52)" fill="#8f8f8f" font-size="44" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">M</tspan></text>
+  <text id="faang" transform="translate(122 50)" fill="#8f8f8f" font-size="37" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">faang</tspan></text>
+</svg>

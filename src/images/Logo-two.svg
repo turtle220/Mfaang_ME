@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="208" height="105" viewBox="0 0 208 105">
+  <text id="M" transform="translate(22 84)" fill="#f8f8f8" font-size="69" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">M</tspan></text>
+  <g id="Path_11" data-name="Path 11" transform="translate(14.49)" fill="none">
+    <path d="M0,0H91.911V91.911H0Z" stroke="none"/>
+    <path d="M 8 8 L 8 83.9107666015625 L 83.9107666015625 83.9107666015625 L 83.9107666015625 8 L 8 8 M 0 0 L 91.9107666015625 0 L 91.9107666015625 91.9107666015625 L 0 91.9107666015625 L 0 0 Z" stroke="none" fill="#f699cd"/>
+  </g>
+  <text id="faang" transform="translate(95 85)" fill="#f8f8f8" font-size="41" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">faang</tspan></text>
+  <g id="Path_12" data-name="Path 12" transform="translate(0 14)" fill="none">
+    <path d="M0,0H92V91H0Z" stroke="none"/>
+    <path d="M 8 7.999992370605469 L 8 82.99999237060547 L 84 82.99999237060547 L 84 18.56249237060547 L 84 7.999992370605469 L 8 7.999992370605469 M 92 -0.303192138671875 L 92 -7.62939453125e-06 C 92 -0.2275009155273438 92 -0.303192138671875 92 -0.303192138671875 Z M 0 -7.62939453125e-06 L 92 -7.62939453125e-06 C 92 1.008056640625 92 4.994972229003906 92 18.56249237060547 C 92 41.3124885559082 92 90.99999237060547 92 90.99999237060547 L 0 90.99999237060547 L 0 -7.62939453125e-06 Z" stroke="none" fill="#ffba01"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+.app {
+  background-color: #fafafa;
+  max-width: 100%;
+  display: block;
+  position: absolute;
+  height: 75%;
+  width: 100%;
+}
+
+.footer-etc {
+  background-color: black;
+  display: flex;
+  margin-top: -5px;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-bar {
+  cursor: pointer;
+  display: flex;
+  color: #f8f8f8;
+  position: fixed;
+  z-index: 1;
+  top: 5%;
+  left: 10%;
+  width: 6%;
+  justify-content: space-between;
+}

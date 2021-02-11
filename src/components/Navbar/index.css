@@ -1,0 +1,22 @@
+.app_header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 0px;
+  height: 69px;
+  border-bottom: 1px solid lightgray;
+  object-fit: contain;
+  display: flex;
+  justify-content: space-between;
+}
+
+.app_logincontainer {
+  display: flex;
+  align-items: center;
+  padding-right:10%;
+}
+
+.signup_button {
+  padding-left:5%;
+}
