@@ -1,65 +1,146 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// import Modal from '@material-ui/core/Modal';
 import { Avatar, Button } from '@material-ui/core';
 
 import './index.css';
+import { db, auth, storage } from '../../firebase';
 import LogoOne from '../../images/Logo-one.svg';
 import HeaderConsoleCode from '../../images/Header-consolecode.svg';
+import DropDown from '../DropDown/index';
 
 export default function Navbar() {
+  const [emailVerified, setEmailVerified] = useState('');
+  const [userName, setUsername] = useState('');
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    const authUser = auth.currentUser;
+    if (authUser !== null) {
+      setEmailVerified(authUser.emailVerified);
+    }
+  }, [emailVerified]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        //user logged in
+        // const authUser = auth.currentUser;
+        // if (authUser !== null) {
+        setEmailVerified(authUser.emailVerified);
+        setUser(authUser);
+
+        if (authUser.email) {
+          //   storage
+          //     .ref(`avatars/${authUser.email}-avatar.png`)
+          //     .getDownloadURL()
+          //     .then((url) => {
+          //       setImage(url);
+          //     });
+          // console.log(authUser.email, '-------------authUserEmail:');
+          db.collection('UserProfile')
+            .doc(authUser.email)
+            .get()
+            .then((doc) => {
+              setUsername(doc.data()['username']);
+              // console.log('----------userName:', doc.data());
+              // setCountry(doc.data()['country']);
+            })
+            .catch((err) => {
+              console.log('getting username error!', err.message);
+            });
+        }
+      } else {
+        // user logged out
+        setEmailVerified(false);
+        setUser(null);
+      }
+      // db.collection('UserProfile')
+      //   .orderBy('timestamp', 'desc')
+      //   .onSnapshot((snapshot) => {
+      //     //every time a new post is added, it fires up onSnapshot
+      //     setPosts(
+      //       snapshot.docs.map((doc) => ({
+      //         id: doc.id,
+      //         post: doc.data(),
+      //       }))
+      //     );
+      //   });
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [emailVerified]);
+
   return (
     <div className='app_header'>
-      <img src={LogoOne} alt='' style={{ paddingLeft: '10%', height:'50px', paddingTop:'9px' }} />
-      <img src={HeaderConsoleCode} alt=''style={{marginLeft:'-20%'}} />
-
-      <div className='app_logincontainer'>
-        <div className='login_button'>
-          <Button
-            variant='contained'
-            color='secondary'
-            size='medium'
-            style={{
-              backgroundColor: '#F699CD',
-              minWidth: '100px',
-              maxWidth: '120px',
-            }}
-            // onClick={() => setOpenSignIn(true)}
-            >
-            Log In
-          </Button>
-          {/* <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+      <img
+        src={LogoOne}
+        alt=''
+        style={{ paddingLeft: '10%', height: '50px', paddingTop: '9px' }}
+      />
+      <img src={HeaderConsoleCode} alt='' style={{ marginLeft: '-20%' }} />
+      {emailVerified ? (
+        <div className='info_avatar'>
+          <Avatar
+            alt=''
+            // onClick={showFileInput}
+          />
+          <div className="dropdown_menu">
+            <p style={{fontFamily: 'system-ui', color:'#8F8F8F', fontSize:'16px'}}>{userName}</p>
+            <DropDown onLogOut={()=>{setEmailVerified(false); auth.signOut(); setUsername(null); setUser(null)}} />
+          </div>
+        </div>
+      ) : (
+        <div className='app_logincontainer'>
+          <div className='login_button'>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='medium'
+              style={{
+                backgroundColor: '#F699CD',
+                minWidth: '100px',
+                maxWidth: '120px',
+              }}
+              href='/login'>
+              Log In
+            </Button>
+            {/* <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
             <Login
               openSignup={() => {
                 setOpenSignIn(false);
-                setOpen(true);
+                setOpenSignUp(true);
               }}
             />
           </Modal> */}
-        </div>
-        <div className='signup_button'>
-
-          <Button
-            variant='contained'
-            color='secondary'
-            size='medium'
-            style={{
-              backgroundColor: '#F699CD',
-              minWidth: '100px',
-              maxWidth: '120px',
-            }}
-            // onClick={() => setOpen(true)}
+          </div>
+          <div className='signup_button'>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='medium'
+              style={{
+                backgroundColor: '#F699CD',
+                minWidth: '100px',
+                maxWidth: '120px',
+              }}
+              href='/signup'
+              // onClick={() => setOpenSignUp(true)}
             >
-            Sign Up
-          </Button>
-          {/* <Modal open={open} onClose={() => setOpen(false)}>
+              Sign Up
+            </Button>
+            {/* <Modal open={openSignUp} onClose={() => setOpenSignUp(false)}>
             <SignUp
               openLogin={() => {
-                setOpen(false);
+                setOpenSignUp(false);
                 setOpenSignIn(true);
               }}
             />
           </Modal> */}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

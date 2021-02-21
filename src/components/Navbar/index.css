@@ -14,9 +14,32 @@
 .app_logincontainer {
   display: flex;
   align-items: center;
-  padding-right:10%;
+  padding-right: 10%;
 }
 
 .signup_button {
-  padding-left:5%;
+  padding-left: 5%;
+}
+
+.info_avatar {
+  /* left: -16%;
+  top: 19%; */
+  display: flex;
+  padding-top: 1%;
+  padding-right: 13%;
+  z-index: 999;
+}
+.dropdown_menu {
+  display: flex;
+  /* height: 50%; */
+  background-color: #dbdbdb;
+  /* margin-top: 6%; */
+  /* width: 100%; */
+  border-radius: 8px;
+  position: absolute;
+  z-index: -1;
+  padding-left: 3%;
+  /* padding-top: 0%; */
+  margin-left: 1%;
+  margin-top: 0.5%;
 }

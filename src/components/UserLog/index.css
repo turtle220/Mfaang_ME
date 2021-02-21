@@ -2,7 +2,9 @@
   --color: rebeccapurple;
   --disabled: #959495;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 .terms {
@@ -13,8 +15,7 @@
   grid-template-columns: min-content auto;
   grid-gap: 0.5em;
   font-size: 14px;
-  /* color: var(--color); */
-  color: #8F8F8F;
+  color: #8f8f8f;
   padding-top: 2%;
   padding-bottom: 3%;
 }
@@ -25,6 +26,7 @@
   display: inline-grid;
   width: 1em;
   height: 1em;
+  margin-top: 3px;
   border-radius: 0.25em;
   border: 0.1em solid currentColor;
 }
@@ -35,7 +37,6 @@
 }
 .checkbox__input {
   display: grid;
-  /* grid-template-areas: "checkbox"; */
 }
 .checkbox__input > * {
   grid-area: checkbox;
@@ -63,5 +64,114 @@
   line-height: 1;
 } */
 .user_name input:hover {
- color: #FF9100;
+  color: #ff9100;
+}
+
+.login {
+  background-color: #ff9100;
+}
+.app_headerhome {
+  width: 75px;
+}
+
+.card {
+  border-radius: 6px;
+  background-color: #fafafa;
+  display: inline-block;
+  margin: 0;
+  position: sticky;
+  height: auto;
+  width: 50%;
+  height: 480px;
+  left: 25%;
+  z-index: 1;
+  bottom: 17px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.signup_card {
+  border-radius: 6px;
+  background-color: #fafafa;
+  display: inline-block;
+  margin: 0;
+  /* position: absolute; */
+  height: auto;
+  /* width: 50%; */
+  /* height: 480px; */
+  /* left: 25%; */
+  /* top: 8%;
+  left: 13%; */
+  z-index: 1;
+  /* bottom: 17px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  /* height: 940px; */
+}
+.signup_card_form {
+  border-radius: 6px;
+  background-color: #fafafa;
+  display: inline-block;
+  margin: 0;
+  /* position: relative; */
+  /* height: auto; */
+  width: 40%;
+  height: 435px;
+  left: -5%;
+  top: 5%;
+  z-index: 1;
+  margin-top: 5%;
+  /* bottom: 17px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.login_card_form {
+  border-radius: 6px;
+  background-color: #fafafa;
+  display: inline-block;
+  margin: 0;
+  /* position: relative; */
+  /* height: auto; */
+  width: 40%;
+  height: 310px;
+  left: -5%;
+  top: 5%;
+  z-index: 1;
+  margin-top: 5%;
+  /* bottom: 17px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.login_card {
+  border-radius: 6px;
+  background-color: #fafafa;
+  display: inline-block;
+  margin: 0;
+  /* position: absolute; */
+  height: auto;
+  /* width: 50%; */
+  /* height: 480px; */
+  /* left: 25%; */
+  /* top: 8%;
+  left: 13%; */
+  z-index: 1;
+  /* bottom: 17px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  /* height: 940px; */
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.login_card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.signup_card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.card:active {
+  border: none;
+}
+.login:active {
+  border: none;
 }

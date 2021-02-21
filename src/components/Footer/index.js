@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 const FooterEx = () => (
-  <div style={{ maxWidth: 700, margin: 'auto', textAlign: 'center' }}>
-    <Grid container justify={'center'} spacing={2}>
+  <div style={{ margin: 'auto', textAlign: 'left', backgroundColor:'#F8F8F8', paddingLeft:'10%', paddingTop:'4%', marginTop:'5%' }}>
+    <Grid container justify={'left'} spacing={5}>
       <Grid item xs={12} sm={6} md={3}>
-        <Typography align={'center'} gutterBottom color={'textSecondary'} style={{fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter'}}>
+        <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>
           About
         </Typography>
         <div style={{ display: 'block' }}>
@@ -24,7 +24,7 @@ const FooterEx = () => (
         </div>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <Typography align={'center'} gutterBottom color={'textSecondary'} style={{fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter'}}>
+        <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>
           Support
         </Typography>
         <div>
@@ -39,7 +39,7 @@ const FooterEx = () => (
         </div>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <Typography align={'center'} gutterBottom color={'textSecondary'} style={{fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter'}}>
+        <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>
           Legal
         </Typography>
         <div>
@@ -54,7 +54,7 @@ const FooterEx = () => (
         </bid>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <Typography align={'center'} gutterBottom color={'textSecondary'} style={{fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter'}}>
+        <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>
           Price
         </Typography>
         <div>
@@ -71,8 +71,8 @@ const FooterEx = () => (
         </div>
       </Grid>
     </Grid>
-    <Divider style={{ margin: '24px auto', width: 60 }} />
-    <Typography variant='caption' align={'center'} style={{fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter'}}>
+    <Divider style={{ margin: '24px auto', width: 100 }} />
+    <Typography variant='caption' align={'center'} style={{color:'#8F8F8F', fontSize:'23px', fontFamily:'system-ui', fontWeight:'100',  paddingLeft:'35%'}}>
       @ 2021 Mfaang.com All rights reserved
     </Typography>
   </div>

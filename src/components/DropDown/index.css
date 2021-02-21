@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  color: hsl(217 °, 94%, 23%);
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 1rem;
+}
+.container {
+  /* border: 1px dashed black; */
+  position: relative;
+  display: inline-block;
+}
+.button {
+  padding: 0;
+  width: 50px;
+  border: 0;
+  background-color: transparent;
+  color: #707070;
+  cursor: pointer;
+  outline: 0;
+  padding: 0px;
+  font-size: 19px;
+}
+.dropdown-wrapper {
+  position: absolute;
+  top: 100%;
+  left: -70px;
+  width: 165px;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+}
+.dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dropdown-menu__item {
+  padding: 8px 12px;
+}
+.dropdown-menu__item:hover {
+  background-color: rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+}

@@ -1,20 +1,39 @@
-import React from 'react';
-import Container from '../../components/Container/index';
+import React, { useState, useEffect } from 'react';
+
 import './index.css';
+import ImageGallery from '../../components/Gallery/index';
+import MembersFrom from '../../images/Home/MembersFrom.svg';
+import MainCode from '../../images/Home/Main-Code.svg';
+import UseMffang from '../../images/Home/UseMfaang.svg';
 
 function Home() {
+
   return (
-      <Container >
-          <div>sdfsfsdf</div>
-          <div>sdfsfsdf</div>
-          <div>sdfsfsdf</div>
-          <div>sdfsfsdf</div>
-          </Container>
-    // <div className='app_container'>
-    //     <div>sdfdsf</div>
-    //     <div>sdfdsf</div>
-    //     <div>sdfdsf</div>
-    // </div>
+    <div>
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '5%' }}>
+        <div><span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Members from</span></div>
+        <img src={MembersFrom} alt="" style={{paddingTop:'2%', width:'90%'}}/>
+      </div>
+
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '5%', paddingBottom:'3%' }}>
+        <div>
+          <span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Say Hello to your tech fellows </span>
+          <span style={{fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>  {'{'} requires company email to sign up {'}'}</span>
+        </div>
+        <ImageGallery style={{maxWidth:'95%'}} />
+      </div>
+
+      <img src={MainCode} style={{width:'100%', height:'600px', backgroundColor:'black'}} alt="" />
+      
+      <button  style={{position:'absolute', zIndex: 9999, top: '170%', left: '85%', width: 100, height:40}}><a href="/login" style={{textDecoration:'none'}}> Deploy </a> </button>
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:390, paddingTop:'3%' }}>
+        <div>
+          <span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Why use Mfaang</span>
+        </div>
+        <img src={UseMffang} alt="" style={{width:'90%', paddingTop:'2%'}} />
+      </div>
+
+    </div>
   );
 }
 

@@ -1,0 +1,16 @@
+.photos {
+  border: 2px dashed;
+  border-color: #8f8f8f;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  padding-top: 3%;
+}
+
+.introduction{
+  outline: none;
+  width: 100%;
+  height: 325px;
+  border-radius: 5px;
+  border-color: #8F8F8F;
+}

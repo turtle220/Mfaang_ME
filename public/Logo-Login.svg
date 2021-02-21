@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="208" height="105" viewBox="0 0 208 105">
+  <text id="M" transform="translate(22 84)" fill="#8f8f8f" font-size="69" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">M</tspan></text>
+  <g id="Path_11" data-name="Path 11" transform="translate(14.49)" fill="none">
+    <path d="M0,0H91.911V91.911H0Z" stroke="none"/>
+    <path d="M 8 8 L 8 83.9107666015625 L 83.9107666015625 83.9107666015625 L 83.9107666015625 8 L 8 8 M 0 0 L 91.9107666015625 0 L 91.9107666015625 91.9107666015625 L 0 91.9107666015625 L 0 0 Z" stroke="none" fill="#f699cd"/>
+  </g>
+  <text id="faang" transform="translate(95 85)" fill="#8f8f8f" font-size="41" font-family="SegoeUI-BoldItalic, Segoe UI" font-weight="700" font-style="italic"><tspan x="0" y="0">faang</tspan></text>
+  <g id="Rectangle_21" data-name="Rectangle 21" transform="translate(0 14)" fill="none" stroke="#ffba01" stroke-width="8">
+    <rect width="92" height="91" stroke="none"/>
+    <rect x="4" y="4" width="84" height="83" fill="none"/>
+  </g>
+</svg>
