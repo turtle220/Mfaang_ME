@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Provider, useSelector } from 'react-redux';
-import { createStore } from 'redux';
+import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Provider, useSelector } from 'react-redux'
+import { createStore } from 'redux'
 
-import { db, auth, storage } from './firebase';
-import rootReducer from './reducer';
-import * as serviceWorker from './serviceWorker';
+import { db, auth, storage } from './firebase'
+import rootReducer from './reducer'
+import * as serviceWorker from './serviceWorker'
 
-import './index.css';
-import About from './View/About/index';
-import Help from './View/Help/index';
-import Terms from './View/Terms/index';
-import Contact from './View/Contact/index';
-import Trust from './View/Trust/index';
-import Cancellation from './View/Cancellation/index';
-import App from './View/App.js';
-import Admin from './View/Admin/index';
-import Meet from './View/Meet/index';
-import LogIn from './components/UserLog/LogIn';
-import SignUp from './components/UserLog/SignUp';
+import './index.css'
+import About from './View/About/index'
+import Help from './View/Help/index'
+import Terms from './View/Terms/index'
+import Contact from './View/Contact/index'
+import Trust from './View/Trust/index'
+import Cancellation from './View/Cancellation/index'
+import App from './View/App.js'
+import Admin from './View/Admin/index'
+import Meet from './View/Meet/index'
+import LogIn from './components/UserLog/LogIn'
+import SignUp from './components/UserLog/SignUp'
+import SingleItem from './View/SingleItem/index'
+import WhoLikesYou from './View/WhoLikesYou/index'
+import AllMessages from './View/AllMessages/index'
 
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-window.store = store;
+)
+window.store = store
 
 function Routing() {
-  const [posts, setPosts] = useState([]);
-  console.log('--posts:', posts);
+  const [posts, setPosts] = useState([])
+  const [userProfile, setUserProfile] = useState(null)
+
   useEffect(() => {
     if (!posts.length) {
       db.collection('post')
@@ -39,12 +43,12 @@ function Routing() {
           setPosts(
             snapshot.docs.map((doc) => ({
               id: doc.id,
-              post: doc.data(),
+              post: doc.data()
             }))
-          );
-        });
+          )
+        })
     }
-  }, [posts]);
+  })
 
   return (
     <Router>
@@ -61,43 +65,70 @@ function Routing() {
           <Route path='/contact' component={Contact} />
           <Route path='/trust' component={Trust} />
           <Route path='/cancellation' component={Cancellation} />
+          <Route path='/wholikesyou' component={WhoLikesYou} />
+          <Route path='/allmessages' component={AllMessages} />
 
-          {/* <Route
-            path='/:id'
+          <Route
+            path='/singleitem/:id'
             component={({ match }) => {
-              const postsArray = [];
+              const postsArray = []
 
               posts.forEach((element) => {
                 if (element.id === match.params.id) {
                   postsArray.push({
-                    username: element.post.username,
-                    caption: element.post.caption,
+                    // username: element.post.username,
+                    // caption: element.post.caption,
                     imageUrl: element.post.imageUrl,
-                    imageName: element.post.imagename,
-                    email: element.post.useremail,
-                    count: element.post.count ? element.post.count : 0
-                  });
+                    imageName: element.post.imageName,
+                    email: element.post.userEmail
+                    // count: element.post.count ? element.post.count : 0
+                  })
                 }
-              });
+              })
 
               return (
-                <Post
+                <SingleItem
+                  posts={posts}
                   key={match.params.id}
-                  postId={match.params.id}
-                  count={postsArray[0] && postsArray[0].count}
-                  username={postsArray[0] && postsArray[0].username}
-                  caption={postsArray[0] && postsArray[0].caption}
-                  imageUrl={postsArray[0] && postsArray[0].imageUrl}
                   imageName={postsArray[0] && postsArray[0].imageName}
+                  imageUrl={postsArray[0] && postsArray[0].imageUrl}
                   email={postsArray[0] && postsArray[0].email}
+                  postId={match.params.id}
                 />
-              );
+              )
             }}
-          /> */}
+          />
+
+          <Route
+            path='/allmessages/:id'
+            component={
+              // const likeUsersArray = []
+              // userProfile.forEach((element) => {
+              //   if (element.id === match.params.id) {
+              //     likeUsersArray.push({
+              //       firstName: element.userProfile.firstName,
+              //       gender: element.userProfile.yourGender,
+              //       age: element.userProfile.years,
+              //       city: element.userProfile.city,
+              //       state: element.userProfile.state,
+              //       country: element.userProfile.country,
+              //       email: element.userProfile.emailAddress
+              //       // username: element.post.username,
+              //       // caption: element.post.caption,
+              //       // imageUrl: element.post.imageUrl,
+              //       // imageName: element.post.imageName,
+              //       // email: element.post.userEmail
+              //       // count: element.post.count ? element.post.count : 0
+              //     })
+              //   }
+              // })
+              AllMessages
+            }
+          />
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
 ReactDOM.render(
@@ -107,9 +138,9 @@ ReactDOM.render(
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
-);
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.unregister()

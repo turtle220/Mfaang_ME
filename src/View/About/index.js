@@ -15,7 +15,7 @@ function About() {
       
       <div style={{display:'flex',}}>
         <span className="nav-bar">
-          <img src={ButtonBack} alt="" /> <p style={{fontSize:23, fontWeight:'bold', marginTop:'18px'}}>Back</p>
+          <img src={ButtonBack} alt="" /> <p style={{fontSize:23, fontWeight:'bold', marginTop:'-3px'}}>Back</p>
         </span>
         <img src={LogoTwo} alt="" style={{position:'fixed', top:'5%', left:'80%'}}/>
       </div>

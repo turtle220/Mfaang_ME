@@ -7,6 +7,7 @@ import firebase from 'firebase';
 
 import { db, auth, storage } from '../../firebase';
 import Photos from './Photos.js';
+import Pagination from '../../components/Pagination/index';
 
 function Account({ user }) {
   // const dispatch = useDispatch();
@@ -160,7 +161,7 @@ function Account({ user }) {
             <div style={{ display: 'flex', paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={firstName}
                 // onChange={(e) => setFirstName(e.target.value)}
                 placeholder='First Name'
@@ -177,7 +178,7 @@ function Account({ user }) {
               <span style={{ width: '5%' }}>{'   '}</span>
               <input
                 required
-                autofocus
+                autoFocus
                 placeholder='Middle'
                 className='middle'
                 // value={middle}
@@ -194,7 +195,7 @@ function Account({ user }) {
               <span style={{ width: '5%' }}>{'   '}</span>
               <input
                 required
-                autofocus
+                autoFocus
                 placeholder='Last Name'
                 className='last_name'
                 // value={lastName}
@@ -224,7 +225,7 @@ function Account({ user }) {
             <div style={{ display: 'flex', paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 placeholder='Choose'
                 className='yourgender'
                 list='yourgender'
@@ -259,7 +260,7 @@ function Account({ user }) {
               <span style={{ width: '3%' }}></span>
               <input
                 required
-                autofocus
+                autoFocus
                 placeholder='Choose'
                 className='gender'
                 list='genders'
@@ -294,7 +295,7 @@ function Account({ user }) {
             <div style={{ display: 'flex', paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={months}
                 // onChange={(e) => setMonths(e.target.value)}
                 placeholder='Month'
@@ -326,7 +327,7 @@ function Account({ user }) {
               <span style={{ width: '3%' }}></span>
               <input
                 required
-                autofocus
+                autoFocus
                 placeholder='Day'
                 className='day'
                 // value={days}
@@ -376,7 +377,7 @@ function Account({ user }) {
               <span style={{ width: '3%' }}></span>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={years}
                 // onChange={(e) => setYears(e.target.value)}
                 placeholder='Year *'
@@ -421,7 +422,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={emailAddress}
                 // onChange={(e) => setEmailAddress(e.target.value)}
                 placeholder='Email from back end when user signing up'
@@ -451,7 +452,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={phone}
                 // onChange={(e) => setPhone(e.target.value)}
                 placeholder='phone'
@@ -481,7 +482,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={address1}
                 // onChange={(e) => setAddress1(e.target.value)}
                 placeholder='Address 1'
@@ -499,7 +500,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={address2}
                 // onChange={(e) => setAddress2(e.target.value)}
                 placeholder='Address 2'
@@ -517,7 +518,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={city}
                 // onChange={(e) => setCity(e.target.value)}
                 placeholder='City *'
@@ -534,7 +535,7 @@ function Account({ user }) {
               <span style={{ width: '3%' }}> </span>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={state}
                 // onChange={(e) => setState(e.target.value)}
                 placeholder='State *'
@@ -552,7 +553,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={country}
                 // onChange={(e) => setCountry(e.target.value)}
                 placeholder='Country *'
@@ -569,7 +570,7 @@ function Account({ user }) {
               <span style={{ width: '3%' }}> </span>
               <input
                 required
-                autofocus
+                autoFocus
                 // value={zipCode}
                 // onChange={(e) => setZipCode(e.target.value)}
                 placeholder='Zip Code *'
@@ -616,7 +617,7 @@ function Account({ user }) {
             <div>
               <textarea
                 required
-                autofocus
+                autoFocus
                 // value={introduction}
                 // onChange={(e) => setIntroduction(e.target.value)}
                 className='introduction'></textarea>
@@ -661,6 +662,7 @@ function Account({ user }) {
           </div>
         </div>
       </div>
+      <Pagination />
     </div>
   );
 }

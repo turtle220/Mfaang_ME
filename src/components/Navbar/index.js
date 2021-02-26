@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 // import Modal from '@material-ui/core/Modal';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core'
+import $ from 'jquery'
 
-import './index.css';
-import { db, auth, storage } from '../../firebase';
-import LogoOne from '../../images/Logo-one.svg';
-import HeaderConsoleCode from '../../images/Header-consolecode.svg';
-import DropDown from '../DropDown/index';
+import './index.css'
+import { db, auth, storage } from '../../firebase'
+import LogoOne from '../../images/Logo-one.svg'
+import HeaderConsoleCode from '../../images/Header-consolecode.svg'
+import DropDown from '../DropDown/index'
 
 export default function Navbar() {
-  const [emailVerified, setEmailVerified] = useState('');
-  const [userName, setUsername] = useState('');
-  const [user, setUser] = useState('');
+  const [emailVerified, setEmailVerified] = useState('')
+  const [userName, setUsername] = useState('')
+  const [user, setUser] = useState('')
+  const [image, setImage] = useState('')
 
   useEffect(() => {
-    const authUser = auth.currentUser;
+    const authUser = auth.currentUser
     if (authUser !== null) {
-      setEmailVerified(authUser.emailVerified);
+      setEmailVerified(authUser.emailVerified)
     }
-  }, [emailVerified]);
+  }, [emailVerified])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -26,33 +28,34 @@ export default function Navbar() {
         //user logged in
         // const authUser = auth.currentUser;
         // if (authUser !== null) {
-        setEmailVerified(authUser.emailVerified);
-        setUser(authUser);
+        setEmailVerified(authUser.emailVerified)
+        setUser(authUser)
 
         if (authUser.email) {
-          //   storage
-          //     .ref(`avatars/${authUser.email}-avatar.png`)
-          //     .getDownloadURL()
-          //     .then((url) => {
-          //       setImage(url);
-          //     });
-          // console.log(authUser.email, '-------------authUserEmail:');
+          storage
+            .ref(`avatars/${authUser.email}-avatar.png`)
+            .getDownloadURL()
+            .then((url) => {
+              setImage(url)
+            })
+            .catch(function (error) {
+              console.error('There is not existing the avatar! ', error)
+            })
+
           db.collection('UserProfile')
             .doc(authUser.email)
             .get()
             .then((doc) => {
-              setUsername(doc.data()['username']);
-              // console.log('----------userName:', doc.data());
-              // setCountry(doc.data()['country']);
+              setUsername(doc.data()['firstName'])
             })
             .catch((err) => {
-              console.log('getting username error!', err.message);
-            });
+              console.log('getting username error!', err.message)
+            })
         }
       } else {
         // user logged out
-        setEmailVerified(false);
-        setUser(null);
+        setEmailVerified(false)
+        setUser(null)
       }
       // db.collection('UserProfile')
       //   .orderBy('timestamp', 'desc')
@@ -65,12 +68,45 @@ export default function Navbar() {
       //       }))
       //     );
       //   });
-    });
+    })
 
     return () => {
-      unsubscribe();
-    };
-  }, [emailVerified]);
+      unsubscribe()
+    }
+  }, [emailVerified])
+
+  const showFileInput = () => {
+    $('#avatar_files').trigger('click')
+  }
+  const handleChangeAvatar = (e) => {
+    if (e.target.files.length) {
+      const files = e.target.files
+      photoUpload(files)
+    }
+  }
+  const photoUpload = (image) => {
+    const uploadTask = storage
+      .ref(`avatars/${user.email}-avatar.png`)
+      .put(image[0])
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        storage
+          .ref(`avatars/${user.email}-avatar.png`)
+          .getDownloadURL()
+          .then((url) => {
+            setImage(url)
+          })
+          .catch(function (error) {
+            console.error('There is not existing the avatar! ', error)
+          })
+      }
+    )
+  }
 
   return (
     <div className='app_header'>
@@ -82,13 +118,36 @@ export default function Navbar() {
       <img src={HeaderConsoleCode} alt='' style={{ marginLeft: '-20%' }} />
       {emailVerified ? (
         <div className='info_avatar'>
-          <Avatar
-            alt=''
-            // onClick={showFileInput}
+            <Avatar
+              alt=''
+              src={image ? image : null}
+              onClick={showFileInput}
+              style={{ cursor: 'pointer' }}
+            />
+          <input
+            type='file'
+            id='avatar_files'
+            style={{ display: 'none' }}
+            onChange={handleChangeAvatar}
           />
-          <div className="dropdown_menu">
-            <p style={{fontFamily: 'system-ui', color:'#8F8F8F', fontSize:'16px'}}>{userName}</p>
-            <DropDown onLogOut={()=>{setEmailVerified(false); auth.signOut(); setUsername(null); setUser(null)}} />
+
+          <div className='dropdown_menu'>
+            <p
+              style={{
+                fontFamily: 'system-ui',
+                color: '#8F8F8F',
+                fontSize: '16px'
+              }}>
+              {userName}
+            </p>
+            <DropDown
+              onLogOut={() => {
+                setEmailVerified(false)
+                auth.signOut()
+                setUsername(null)
+                setUser(null)
+              }}
+            />
           </div>
         </div>
       ) : (
@@ -101,7 +160,7 @@ export default function Navbar() {
               style={{
                 backgroundColor: '#F699CD',
                 minWidth: '100px',
-                maxWidth: '120px',
+                maxWidth: '120px'
               }}
               href='/login'>
               Log In
@@ -123,7 +182,7 @@ export default function Navbar() {
               style={{
                 backgroundColor: '#F699CD',
                 minWidth: '100px',
-                maxWidth: '120px',
+                maxWidth: '120px'
               }}
               href='/signup'
               // onClick={() => setOpenSignUp(true)}
@@ -142,5 +201,5 @@ export default function Navbar() {
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -1,8 +1,10 @@
 export default function Dropdown(state = { value: [] }, action) {
+  
   switch (action.type) {
-    case 'DROPDOWN':
+    case 'Message':
       break;
-    case 'DROPDOWN_START':
+      case 'MESSAGE_START':
+      console.log(action.email, '-----reducer')
       return { ...state, value: action.email };
 
     default:

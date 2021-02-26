@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-import Dropdown from "./Dropdown.js";
-import Post from "./Post";
+import MessageChannel from "./MessageChannel.js";
 
 const rootReducer = combineReducers({
-  Dropdown,
-  Post,
+  MessageChannel,
+  
 });
 
 export default rootReducer;

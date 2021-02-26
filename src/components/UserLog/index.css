@@ -55,14 +55,7 @@
 .checkbox__input input:disabled + .checkbox__control {
   color: var(--disabled);
 }
-/* body {
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  grid-gap: 2rem;
-  padding: 1rem;
-  line-height: 1;
-} */
+
 .user_name input:hover {
   color: #ff9100;
 }
@@ -94,33 +87,22 @@
   background-color: #fafafa;
   display: inline-block;
   margin: 0;
-  /* position: absolute; */
   height: auto;
-  /* width: 50%; */
-  /* height: 480px; */
-  /* left: 25%; */
-  /* top: 8%;
-  left: 13%; */
   z-index: 1;
-  /* bottom: 17px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  /* height: 940px; */
 }
 .signup_card_form {
   border-radius: 6px;
   background-color: #fafafa;
   display: inline-block;
   margin: 0;
-  /* position: relative; */
-  /* height: auto; */
   width: 40%;
   height: 435px;
   left: -5%;
   top: 5%;
   z-index: 1;
   margin-top: 5%;
-  /* bottom: 17px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
@@ -129,15 +111,12 @@
   background-color: #fafafa;
   display: inline-block;
   margin: 0;
-  /* position: relative; */
-  /* height: auto; */
   width: 40%;
   height: 310px;
   left: -5%;
   top: 5%;
   z-index: 1;
   margin-top: 5%;
-  /* bottom: 17px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
@@ -146,18 +125,10 @@
   background-color: #fafafa;
   display: inline-block;
   margin: 0;
-  /* position: absolute; */
   height: auto;
-  /* width: 50%; */
-  /* height: 480px; */
-  /* left: 25%; */
-  /* top: 8%;
-  left: 13%; */
   z-index: 1;
-  /* bottom: 17px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  /* height: 940px; */
 }
 
 .card-1:hover {

@@ -20,7 +20,7 @@ function Terms() {
       <div style={{ display: 'flex' }}>
         <a className='nav-bar' href='/'>
           <img src={ButtonBack} alt='' />{' '}
-          <p style={{ fontSize: 23, fontWeight: 'bold', marginTop: '18px' }}>
+          <p style={{ fontSize: 23, fontWeight: 'bold', marginTop: '-3px' }}>
             Back
           </p>
         </a>

@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 
 const FooterEx = () => (
   <div style={{ margin: 'auto', textAlign: 'left', backgroundColor:'#F8F8F8', paddingLeft:'10%', paddingTop:'4%', marginTop:'5%' }}>
-    <Grid container justify={'left'} spacing={5}>
+    <Grid container style={{justify:'left', spacing:5}} >
       <Grid item xs={12} sm={6} md={3}>
         <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>
           About
@@ -47,11 +47,11 @@ const FooterEx = () => (
             Terms
           </a>
         </div>
-        <bid>
+        <div>
           <a href='/terms' style={{ textDecoration: 'none', color: '#8F8F8F', fontSize:'23px', fontFamily:'system-ui', fontWeight:'lighter' }}>
             Privacy
           </a>
-        </bid>
+        </div>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'23px', fontFamily:'system-ui', fontWeight:'bold'}}>

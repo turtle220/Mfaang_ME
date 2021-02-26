@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, { useState, useEffect, useRef } from 'react'
+import 'react-perfect-scrollbar/dist/css/styles.css'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
-import './index.css';
-import { db, auth, storage } from '../../firebase';
-import Footer from '../../components/Footer/index';
-import Navbar from '../../components/Navbar/index';
-import MembersFrom from '../../images/Home/MembersFrom.svg';
-import imageTest1 from '../../images/test(1).jpg';
-import Post from './post';
+import './index.css'
+import { db, auth, storage } from '../../firebase'
+import Footer from '../../components/Footer/index'
+import Navbar from '../../components/Navbar/index'
+import MembersFrom from '../../images/Home/MembersFrom.svg'
+import imageTest1 from '../../images/test(1).jpg'
+import Post from './post'
 
 function Meet() {
-  const ps = useRef();
-  const [posts, setPosts] = useState([]);
-  const [userProfile, setUserProfile] = useState([]);
+  const ps = useRef()
+  const [posts, setPosts] = useState([])
+  const [userProfile, setUserProfile] = useState([])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -25,17 +25,17 @@ function Meet() {
             setPosts(
               snapshot.docs.map((doc) => ({
                 id: doc.id,
-                post: doc.data(),
+                post: doc.data()
               }))
-            );
-          });
+            )
+          })
       }
-    });
+    })
     // console.log('----posts:', posts);
     return () => {
-      unsubscribe();
-    };
-  }, [posts]);
+      unsubscribe()
+    }
+  }, [posts])
 
   return (
     <div>
@@ -46,7 +46,7 @@ function Meet() {
             backgroundColor: 'white',
             paddingLeft: '10%',
             display: 'block',
-            paddingTop: '5%',
+            paddingTop: '5%'
           }}>
           <div>
             <span
@@ -54,7 +54,7 @@ function Meet() {
                 fontSize: '30px',
                 fontFamily: 'system-ui',
                 fontWeight: '500',
-                color: '#0000008a',
+                color: '#0000008a'
               }}>
               Members from
             </span>
@@ -76,14 +76,12 @@ function Meet() {
             paddingBottom: '3%',
             width: '96%',
             height: '720px',
-            overflowY: 'auto',
+            overflowY: 'auto'
           }}>
           <PerfectScrollbar containerRef={(el) => (ps.current = el)}>
             {posts.length
               ? posts.map(({ id, post }) => {
-                  return (
-                    <Post id={id} post={post} />
-                  );
+                  return <Post key={id} id={id} post={post} />
                 })
               : null}
           </PerfectScrollbar>
@@ -91,7 +89,7 @@ function Meet() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default Meet;
+export default Meet

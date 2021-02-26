@@ -23,18 +23,18 @@ export default function DropDownMenu({onLogOut}) {
   });
 
   return (
-    <div className='container' ref={container}>
-      <button type='button' class='button' onClick={() => setOpen(!open)}>
+    <div className='container' ref={container} style={{margin:0}}>
+      <button type='button' className='button' onClick={() => setOpen(!open)}>
         ☰
       </button>
       {open && (
-        <div class='dropdown-wrapper'>
-          <ul class='dropdown-menu'>
-            <li class='dropdown-menu__item' ><a href='/admin' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Account</a></li>
-            <li class='dropdown-menu__item' ><a href='/message' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Message</a></li>
-            <li class='dropdown-menu__item' ><a href='/wholikeyou' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Who likes you</a></li>
-            <li class='dropdown-menu__item' ><a href='/meet' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Meet others</a></li>
-            <li class='dropdown-menu__item' ><a href='/' style={{textDecoration:'none', fontFamily: 'system-ui',color:'#8F8F8F'}} onClick={()=>{onLogOut();auth.signOut();}}>Log out</a></li>
+        <div className='dropdown-wrapper'>
+          <ul className='dropdown-menu'>
+            <li className='dropdown-menu__item' ><a href='/admin' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Account</a></li>
+            <li className='dropdown-menu__item' ><a href='/allmessages' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Message</a></li>
+            <li className='dropdown-menu__item' ><a href='/wholikesyou' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Who likes you</a></li>
+            <li className='dropdown-menu__item' ><a href='/meet' style={{textDecoration:'none', fontFamily: 'system-ui', color:'#8F8F8F'}}>Meet others</a></li>
+            <li className='dropdown-menu__item' ><a href='/' style={{textDecoration:'none', fontFamily: 'system-ui',color:'#8F8F8F'}} onClick={()=>{onLogOut();auth.signOut();}}>Log out</a></li>
           </ul>
         </div>
       )}

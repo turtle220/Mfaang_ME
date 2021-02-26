@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import Modal from '@material-ui/core/Modal';
-import { Avatar, Button } from '@material-ui/core';
-import $ from 'jquery';
-import firebase from 'firebase';
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import Modal from '@material-ui/core/Modal'
+import { Avatar, Button } from '@material-ui/core'
+import $ from 'jquery'
+import firebase from 'firebase'
 
-import { db, auth, storage } from '../../firebase';
-import RedHeartButton from '../../images/Button-RedHeart.svg';
-import HeartButton from '../../images/Button-Heart.svg';
+import { db, auth, storage } from '../../firebase'
+import RedHeartButton from '../../images/Button-RedHeart.svg'
+import HeartButton from '../../images/Button-Heart.svg'
 
 function Post({ id, post }) {
   // const dispatch = useDispatch();
   // const [emailVerified, setEmailVerified] = useState('');
-  const [userProfile, setUserProfile] = useState(null);
-  const [age, setAge] = useState('');
-  const [isToggle, setIsToggle] = useState(false);
+  const [userProfile, setUserProfile] = useState(null)
+  const [age, setAge] = useState('')
+  const [isToggle, setIsToggle] = useState(false)
 
   useEffect(() => {
     if (post.userEmail && !post.length) {
@@ -23,30 +23,21 @@ function Post({ id, post }) {
           .doc(post.userEmail)
           .get()
           .then((doc) => {
-            setUserProfile(doc.data());
+            setUserProfile(doc.data())
           })
           .catch((err) => {
-            console.log('getting username error!', err.message);
-          });
+            console.log('getting username error!', err.message)
+          })
       }
-
-      // db.collection('UserProfile')
-      //   .doc(post.userEmail)
-      //   .onSnapshot((snapshot) => {
-      //     console.log('-----post data:', snapshot.docs);
-      //     // setComments(snapshot.docs.map((doc) => doc.data()));
-      //   });
     }
-    // const getYear = () =>  setDate(new Date().getFullYear());
     if (userProfile) {
-      // setAge(new Date().getFullYear()-userProfile.years)
-      const currentYear = new Date().getFullYear();
-      const currentAge = currentYear - userProfile.years;
+      const currentYear = new Date().getFullYear()
+      const currentAge = currentYear - userProfile.years
       if (!age) {
-        setAge(currentAge);
+        setAge(currentAge)
       }
     }
-  }, [userProfile, age]);
+  }, [userProfile, age])
 
   return (
     <div className='gallery'>
@@ -54,7 +45,7 @@ function Post({ id, post }) {
         style={{
           height: 200,
           width: '100%',
-          background: '#EEE',
+          background: '#EEE'
         }}>
         <a style={{ color: '#8F8F8F' }} href={`/singleitem/${id}`}>
           <img
@@ -69,10 +60,14 @@ function Post({ id, post }) {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-between'
           }}>
-          <p style={{ color: '#8F8F8F' }}>{userProfile ? userProfile.username : null}</p>
-          <p style={{ color: '#8F8F8F' }}>{userProfile ? userProfile.gender : null}</p>
+          <p style={{ color: '#8F8F8F', whiteSpace: 'nowrap' }}>
+            {userProfile ? userProfile.username : null}
+          </p>
+          <p style={{ color: '#8F8F8F' }}>
+            {userProfile ? userProfile.gender : null}
+          </p>
         </div>
         <div style={{ display: 'flex' }}>
           <div style={{ display: 'block', width: '70%' }}>
@@ -80,24 +75,28 @@ function Post({ id, post }) {
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: '70%',
+                width: '100%'
               }}>
-              <div style={{ float: 'left' }}>
-                <span style={{ color: '#8F8F8F' }}>{userProfile ? userProfile.country : null}</span>
+              <div style={{ float: 'left', whiteSpace: 'nowrap' }}>
+                <span style={{ color: '#8F8F8F' }}>
+                  {userProfile ? userProfile.country : null}
+                </span>
               </div>
-              <div style={{ float: 'right', color: '#8F8F8F' }}>{userProfile ? age : null}</div>
+              <div style={{ float: 'right', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
+                {userProfile ? age : null}
+              </div>
             </div>
             <div
               style={{
                 color: '#8F8F8F',
                 display: 'flex',
-                width: '70%',
-                justifyContent: 'space-between',
+                width: '100%',
+                justifyContent: 'space-between'
               }}>
-              <div style={{ float: 'left', color: '#8F8F8F' }}>
+              <div style={{ float: 'left', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
                 <span>{userProfile ? userProfile.city : null}</span>
               </div>
-              <div style={{ float: 'right', color: '#8F8F8F' }}>
+              <div style={{ float: 'right', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
                 <span>{userProfile ? userProfile.state : null}</span>
               </div>
             </div>
@@ -109,7 +108,7 @@ function Post({ id, post }) {
                 cursor: 'pointer',
                 outline: 'none',
                 border: 'none',
-                backgroundColor: 'transparent',
+                backgroundColor: 'transparent'
               }}>
               {isToggle ? (
                 <img
@@ -129,7 +128,7 @@ function Post({ id, post }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Post;
+export default Post

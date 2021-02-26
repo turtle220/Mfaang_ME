@@ -1,22 +1,22 @@
-import { Checkbox } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
-import { db, auth, storage } from '../../firebase';
-import { Link, useHistory, useParams, useLocation } from 'react-router-dom';
-import $ from 'jquery';
-import { Avatar, Button, Input } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { db, auth, storage } from '../../firebase'
+import { Link, useHistory, useParams, useLocation } from 'react-router-dom'
+import $ from 'jquery'
+import { Avatar, Button, Input } from '@material-ui/core'
 
-import './index.css';
-import LogoLogin from '../../images/Logo-Login.svg';
-import LogoPictures from '../../images/Logo-Pictures.svg';
+import './index.css'
+import LogoLogin from '../../images/Logo-Login.svg'
+import LogoPictures from '../../images/Logo-Pictures.svg'
 
 export default function SignUp({ openLogin }) {
-  const [activeWelcome, setActiveWelcome] = useState(true);
+  const [activeWelcome, setActiveWelcome] = useState(true)
 
   const onSignUp = (evt) => {
-    const username = $('.user_name').val();
-    const emails = $('input[type="text"]').val();
-    const email = $('.email_address_name').val() + '@' + emails;
-    const password = $('.signup_password').val();
+    const username = $('.user_name').val()
+    const emails = $('input[type="text"]').val()
+    const email = $('.email_address_name').val() + '@' + emails
+    const password = $('.signup_password').val()
 
     if (username && email && password) {
       auth
@@ -24,8 +24,8 @@ export default function SignUp({ openLogin }) {
         .then(async () => {
           await auth.currentUser.sendEmailVerification().then(function () {
             //Email sent
-            console.log('-----email sent:');
-          });
+            // console.log('-----email sent:');
+          })
           await db.collection('UserProfile').doc(email.toLowerCase()).set({
             username,
             email,
@@ -33,46 +33,19 @@ export default function SignUp({ openLogin }) {
             city: '',
             country: ''
           })
-          setActiveWelcome(false);
+          setActiveWelcome(false)
         })
-        // history.push('/welcome');
 
-        // .then(async () => {
-        //   await db.collection('UserProfile').doc(email).set({
-        //     username,
-        //     email,
-        //     address: '',
-        //     city: '',
-        //     country: '',
-        //   });
-        //   history.push('/welcome');
-        // })
         .catch(async function (error) {
-          console.log('SignUp error', error);
+          console.log('SignUp error', error)
           alert(
             'This email address is already in username, please provide a different one or log in'
-          );
-        });
+          )
+        })
     } else {
-      alert('Please fillout all forms! ');
+      alert('Please fillout all forms! ')
     }
-
-    // const user = auth.currentUser;
-
-    // if(user !== null) {
-    //   const emailVerified = user.emailVerified;
-    //   if(emailVerified) {
-    //     db.collection('UserProfile').doc(email).set({
-    //       username,
-    //       email,
-    //       address: '',
-    //       city: '',
-    //       country: ''
-    //     })
-    //     history.push('/welcome');
-    //   }
-    // }
-  };
+  }
 
   return (
     <div style={{ backgroundColor: 'white', display: 'block' }}>
@@ -80,7 +53,7 @@ export default function SignUp({ openLogin }) {
         style={{
           display: 'flex',
           backgroundColor: '#F8F8F8',
-          height: '580px',
+          height: '580px'
         }}>
         <div style={{ display: 'block', padding: '7%', width: '52.5%' }}>
           <p
@@ -88,7 +61,7 @@ export default function SignUp({ openLogin }) {
               fontSize: '28px',
               fontFamily: 'system-ui',
               fontWeight: '500',
-              color: '#0000008a',
+              color: '#0000008a'
             }}>
             SEE HOW YOU CAN MEET AND SHARE
           </p>
@@ -97,7 +70,7 @@ export default function SignUp({ openLogin }) {
               fontSize: '30px',
               fontFamily: 'system-ui',
               fontWeight: '500',
-              color: '#0000008a',
+              color: '#0000008a'
             }}>
             Meet your fellow tech singles share stories, interests and laughs,
             enjoy life together
@@ -106,7 +79,7 @@ export default function SignUp({ openLogin }) {
         <div
           className='signup_card_form signup_card-1'
           onKeyDown={(e) => {
-            if (e.key === 'Enter') onSignUp();
+            if (e.key === 'Enter') onSignUp()
           }}>
           <div style={{ padding: '3%' }}>
             <img
@@ -121,7 +94,7 @@ export default function SignUp({ openLogin }) {
                     fontSize: '15px',
                     color: '#8F8F8F',
                     width: '100%',
-                    fontFamily: 'system-ui',
+                    fontFamily: 'system-ui'
                   }}>
                   SIGN UP A FREE ACCOUNT AND GET STARTED
                 </p>
@@ -130,7 +103,7 @@ export default function SignUp({ openLogin }) {
                     paddingTop: '3%',
                     height: '48px',
                     width: '100%',
-                    margin: '0, auto',
+                    margin: '0, auto'
                   }}>
                   <input
                     placeholder='User Name'
@@ -142,7 +115,7 @@ export default function SignUp({ openLogin }) {
                       paddingLeft: '4%',
                       width: '100%',
                       margin: '0, auto',
-                      outline: '#FF9100',
+                      outline: '#FF9100'
                     }}></input>
                   <br></br>
                   <div style={{ display: 'flex', height: '67px' }}>
@@ -158,14 +131,14 @@ export default function SignUp({ openLogin }) {
                         marginBottom: '5%',
                         width: '95%',
                         margin: '0, auto',
-                        outline: 'none',
+                        outline: 'none'
                       }}></input>
                     <span
                       style={{
                         paddingTop: '6%',
                         paddingLeft: '2%',
                         paddingRight: '2%',
-                        color: '#DBDBDB',
+                        color: '#DBDBDB'
                       }}>
                       @
                     </span>
@@ -183,7 +156,7 @@ export default function SignUp({ openLogin }) {
                         marginBottom: '5%',
                         width: '100%',
                         margin: '0, auto',
-                        outline: 'none',
+                        outline: 'none'
                       }}></input>
                     <datalist id='emails'>
                       <option value='google.com'>Google.com</option>
@@ -205,7 +178,7 @@ export default function SignUp({ openLogin }) {
                       paddingLeft: '4%',
                       width: '100%',
                       margin: '0, auto',
-                      outline: 'none',
+                      outline: 'none'
                     }}></input>
 
                   <label className='checkbox'>
@@ -232,7 +205,7 @@ export default function SignUp({ openLogin }) {
                         fontSize: '15px',
                         color: '#8F8F8F',
                         width: '100%',
-                        fontFamily: 'system-ui',
+                        fontFamily: 'system-ui'
                       }}>
                       I have accepted the{' '}
                       <a
@@ -250,7 +223,7 @@ export default function SignUp({ openLogin }) {
                       backgroundColor: '#F699CD',
                       minWidth: '100px',
                       maxWidth: '100%',
-                      width: '100%',
+                      width: '100%'
                     }}
                     type='submit'
                     onClick={onSignUp}>
@@ -288,7 +261,7 @@ export default function SignUp({ openLogin }) {
                       fontSize: '20px',
                       fontFamily: 'system-ui',
                       fontWeight: '500',
-                      color: '#0000008a',
+                      color: '#0000008a'
                     }}>
                     WELCOME!
                   </p>
@@ -298,7 +271,7 @@ export default function SignUp({ openLogin }) {
                       fontFamily: 'system-ui',
                       fontWeight: '500',
                       color: '#0000008a',
-                      paddingTop: '3%',
+                      paddingTop: '3%'
                     }}>
                     Thanks for signing up! We just need you to verify your email
                     address to complete setting up your account, please check
@@ -313,7 +286,7 @@ export default function SignUp({ openLogin }) {
                     backgroundColor: '#F699CD',
                     minWidth: '100px',
                     maxWidth: '100%',
-                    width: '100%',
+                    width: '100%'
                   }}
                   href='/login'>
                   LOG IN
@@ -331,5 +304,5 @@ export default function SignUp({ openLogin }) {
         />
       </div>
     </div>
-  );
+  )
 }
