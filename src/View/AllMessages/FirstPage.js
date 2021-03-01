@@ -20,8 +20,10 @@ import ChatRoomChannel from './ChatRoomChannel'
 import LikeUser from './LikeUser'
 // import { nodeName } from 'jquery'
 
-function AllMessages(id) {
+function FirstPage() {
+  console.log(window.location.href, '-----match:')
   // console.log(id, '-----id:')
+  const id = '';
   // const [likeUserProfile, setLikeUserProfile] = useState(null)
   const [likePersons, setLikePersons] = useState([])
 
@@ -118,12 +120,25 @@ function AllMessages(id) {
                     const currentAge = currentYear - person.years
 
                     return (
-                      <a key={id} href={`/allmessages/${person.emailAddress}`} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
-                        <div style={{paddingLeft:'3%', paddingTop:'3%'}}>
+                      <a
+                        key={id}
+                        href={`/allmessages/${person.emailAddress}`}
+                        style={{
+                          textDecoration: 'none',
+                          display: 'flex',
+                          backgroundColor: '#DBDBDB',
+                          marginTop: '5%',
+                          borderRadius: '7px',
+                          height: '60px',
+                          cursor: 'pointer'
+                        }}>
+                        <div style={{ paddingLeft: '3%', paddingTop: '3%' }}>
                           <LikeUser email={person.emailAddress} />
                         </div>
-                        <div style={{ display: 'block', paddingLeft:'3%' }}>
-                          <div style={{fontWeight:'bold', color:'#707070'}}>{person.firstName}</div>
+                        <div style={{ display: 'block', paddingLeft: '3%' }}>
+                          <div style={{ fontWeight: 'bold', color: '#707070' }}>
+                            {person.firstName}
+                          </div>
                           <div style={{ display: 'flex', color: '#707070' }}>
                             {person.yourGender}, {currentAge}, {person.city},{' '}
                             {person.state}, {person.country}
@@ -176,4 +191,4 @@ function AllMessages(id) {
   )
 }
 
-export default AllMessages
+export default FirstPage

@@ -23,6 +23,7 @@ import SignUp from './components/UserLog/SignUp'
 import SingleItem from './View/SingleItem/index'
 import WhoLikesYou from './View/WhoLikesYou/index'
 import AllMessages from './View/AllMessages/index'
+import FirstPage from './View/AllMessages/FirstPage'
 
 const store = createStore(
   rootReducer,
@@ -66,7 +67,7 @@ function Routing() {
           <Route path='/trust' component={Trust} />
           <Route path='/cancellation' component={Cancellation} />
           <Route path='/wholikesyou' component={WhoLikesYou} />
-          <Route path='/allmessages' component={AllMessages} />
+          <Route path='/all' component={FirstPage} />
 
           <Route
             path='/singleitem/:id'
@@ -76,11 +77,11 @@ function Routing() {
               posts.forEach((element) => {
                 if (element.id === match.params.id) {
                   postsArray.push({
-                    // username: element.post.username,
-                    // caption: element.post.caption,
                     imageUrl: element.post.imageUrl,
                     imageName: element.post.imageName,
                     email: element.post.userEmail
+                    // username: element.post.username,
+                    // caption: element.post.caption,
                     // count: element.post.count ? element.post.count : 0
                   })
                 }
@@ -101,29 +102,10 @@ function Routing() {
 
           <Route
             path='/allmessages/:id'
-            component={
-              // const likeUsersArray = []
-              // userProfile.forEach((element) => {
-              //   if (element.id === match.params.id) {
-              //     likeUsersArray.push({
-              //       firstName: element.userProfile.firstName,
-              //       gender: element.userProfile.yourGender,
-              //       age: element.userProfile.years,
-              //       city: element.userProfile.city,
-              //       state: element.userProfile.state,
-              //       country: element.userProfile.country,
-              //       email: element.userProfile.emailAddress
-              //       // username: element.post.username,
-              //       // caption: element.post.caption,
-              //       // imageUrl: element.post.imageUrl,
-              //       // imageName: element.post.imageName,
-              //       // email: element.post.userEmail
-              //       // count: element.post.count ? element.post.count : 0
-              //     })
-              //   }
-              // })
-              AllMessages
-            }
+            component={({ match }) => {
+              // console.log(match.params.id, match, '----match')
+              return <AllMessages id={match.params.id} />
+            }}
           />
         </Switch>
       </div>

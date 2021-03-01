@@ -17,7 +17,6 @@ import { SortOutlined } from '@material-ui/icons'
 function LikeUser({ email }) {
   // const [likePersons, setLikePersons] = useState([])
   const [image, setImage] = useState('')
-console.log(email, '---email:');
 
   useEffect(() => {
     if (image == '') {
@@ -33,25 +32,28 @@ console.log(email, '---email:');
   return (
     <>
       {image ? (
-        <img
+        <Avatar
           src={image}
           alt={image}
-          style={{
-            width: '100px',
-            height: '100px',
-            color: '#8f8f8f',
-            borderRadius: '10px'
-          }}
+          // style={{
+          //   width: '100px',
+          //   height: '100px',
+          //   color: '#8f8f8f',
+          //   borderRadius: '10px'
+          // }}
         />
       ) : (
-        <div
-          style={{
-            width: '100px',
-            height: '100px',
-            color: '#8f8f8f',
-            borderRadius: '10px',
-            backgroundColor: '#bfbfbf'
-          }}></div>
+        // <div
+        //   style={{
+        //     width: '100px',
+        //     height: '100px',
+        //     color: '#8f8f8f',
+        //     borderRadius: '10px',
+        //     backgroundColor: '#bfbfbf'
+        //   }}>
+
+        //   </div>
+        <Avatar />
       )}
     </>
   )

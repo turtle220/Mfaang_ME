@@ -40,19 +40,19 @@ function SingleItem({ posts, imageName, email, postId }) {
 
   useEffect(() => {
     if (imageUrl === '') {
-      if(email){
+      if (email) {
         storage
           .ref(`avatars/${email}-avatar.png`)
           .getDownloadURL()
           .then((url) => {
-            setImageUrl(url);
+            setImageUrl(url)
           })
           .catch(function (error) {
             console.error('There is not existing the avatar! ', error)
           })
       }
     }
-  });
+  })
 
   useEffect(() => {
     if (!userProfile && email) {
@@ -67,7 +67,7 @@ function SingleItem({ posts, imageName, email, postId }) {
         })
     }
   })
-console.log(userProfile, '--------userProfile:');
+
   const isLiked = async () => {
     const likeUserArray = []
     if (auth.currentUser.emailVerified && auth.currentUser && email) {
@@ -100,6 +100,26 @@ console.log(userProfile, '--------userProfile:');
             .catch((err) => {
               console.log(err)
             })
+
+          db.collection('UserProfile')
+            .doc(auth.currentUser.email)
+            .collection('wholikesyou')
+            .add({
+              likeUserEmail: email
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        } else {
+          // db.collection('UserProfile')
+          //   .doc(auth.currentUser.email)
+          //   .collection('wholikesyou')
+          //   .add({
+          //     likeUserEmail: auth.currentUser.email
+          //   })
+          //   .catch((err) => {
+          //     console.log(err)
+          //   })
         }
         console.log('----Updated')
       }
@@ -113,6 +133,17 @@ console.log(userProfile, '--------userProfile:');
           .catch((err) => {
             console.log(err)
           })
+
+        db.collection('UserProfile')
+          .doc(auth.currentUser.email)
+          .collection('wholikesyou')
+          .add({
+            likeUserEmail: email
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
         console.log('---------created')
       }
     }
@@ -206,7 +237,7 @@ console.log(userProfile, '--------userProfile:');
           <hr></hr>
         </div>
         <div style={{ color: '#8F8F8F', paddingLeft: '10%', width: '90%' }}>
-          {userProfile? userProfile.introduction: ''}
+          {userProfile ? userProfile.introduction : ''}
           {/* Item Introduction from owner: Lorem ipsum dolor sit amet, consetetur
           sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam

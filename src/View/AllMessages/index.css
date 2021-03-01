@@ -9,7 +9,7 @@
 }
 
 .post_button {
-  height: 46px;
+  height: 45px;
   width: 10%;
   outline: none;
   background-color: white;
@@ -17,3 +17,43 @@
   border-top: solid 1px lightgray;
   cursor: pointer;
 }
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+/* style={{display:'flex', justifyContent:'space-between'}} */
+.sent .messagecontent {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1%;
+  width: 100%;
+}
+.sent p {
+  color: white;
+  background: #8f8f8f;
+  align-self: flex-end;
+  justify-content: space-between;
+  border-radius: 6px;
+}
+.received p {
+  /* background: #e5e5ea; */
+  color: #8f8f8f;
+  justify-content: space-between;
+
+  /* float: left;
+  padding-left: 3%; */
+}
+
+.received .messagecontent {
+  /* padding-left:2% !important; */
+  /* justify-content: none !important; */
+  float: left;
+  display: flex;
+  padding-top: 1%;
+  width: 100%;
+}
+
+/* .sent .messagecontent .receivedtext {
+  padding-right: 2%;
+} */

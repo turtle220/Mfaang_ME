@@ -46,7 +46,11 @@ export default function Navbar() {
             .doc(authUser.email)
             .get()
             .then((doc) => {
-              setUsername(doc.data()['firstName'])
+              if(doc.data()['firstName']) {
+                setUsername(doc.data()['firstName'])
+              } else {
+                setUsername(doc.data()['username'])
+              }
             })
             .catch((err) => {
               console.log('getting username error!', err.message)

@@ -19,13 +19,8 @@ import AllMEessage from '../AllMessages/index'
 
 function WhoLikesYou() {
   const dispatch = useDispatch()
+
   const [likePersons, setLikePersons] = useState([])
-  // const [image, setImage] = useState('')
-  // const [posts, setPosts] = useState([])
-  // const [listData, setListData] = useState([])
-  // const [listDataArray, setListDataArray] = useState([])
-  // const history = useHistory()
-  // const [postId, setPostId] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -133,13 +128,6 @@ function WhoLikesYou() {
                 } catch (error) {
                   console.log(error)
                 }
-
-                // setTimeout(()=>{return window.location.reload}, 10000)
-                // for (let i = 0; i < likePersons.length; i++) {
-                //   if (i == likePersons.length) {
-                //     window.location.reload()
-                //   }
-                // }
               }
 
               return (
