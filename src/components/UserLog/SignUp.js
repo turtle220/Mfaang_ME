@@ -8,6 +8,7 @@ import { Avatar, Button, Input } from '@material-ui/core'
 import './index.css'
 import LogoLogin from '../../images/Logo-Login.svg'
 import LogoPictures from '../../images/Logo-Pictures.svg'
+import BackButton from '../../images/button-boldback.svg'
 
 export default function SignUp({ openLogin }) {
   const [activeWelcome, setActiveWelcome] = useState(true)
@@ -22,10 +23,12 @@ export default function SignUp({ openLogin }) {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
-          await auth.currentUser.sendEmailVerification({url: 'http://localhost:3000'}).then(function () {
-            //Email sent
-            // console.log('-----email sent:');
-          })
+          await auth.currentUser
+            .sendEmailVerification({ url: 'http://localhost:3000' })
+            .then(function () {
+              //Email sent
+              // console.log('-----email sent:');
+            })
           await db.collection('UserProfile').doc(email.toLowerCase()).set({
             username,
             email,
@@ -56,25 +59,52 @@ export default function SignUp({ openLogin }) {
           height: '580px'
         }}>
         <div style={{ display: 'block', padding: '7%', width: '52.5%' }}>
-          <p
-            style={{
-              fontSize: '28px',
-              fontFamily: 'system-ui',
-              fontWeight: '500',
-              color: '#0000008a'
-            }}>
-            SEE HOW YOU CAN MEET AND SHARE
-          </p>
-          <p
-            style={{
-              fontSize: '30px',
-              fontFamily: 'system-ui',
-              fontWeight: '500',
-              color: '#0000008a'
-            }}>
-            Meet your fellow tech singles share stories, interests and laughs,
-            enjoy life together
-          </p>
+          <div style={{ display: 'flex' }}>
+            <a
+              href='/'
+              style={{
+                display: 'flex',
+                width: '50%',
+                textDecoration: 'none',
+                paddingTop: '0.7%'
+              }}>
+              <img
+                src={BackButton}
+                style={{ color: '#8F8F8F', height: '22px' }}
+                alt=''
+              />
+              <p
+                style={{
+                  paddingLeft: '2%',
+                  fontWeight: 'bold',
+                  fontFamily: 'system-ui',
+                  color: '#8F8F8F'
+                }}>
+                BACK
+              </p>
+            </a>
+          </div>
+          <div style={{ paddingTop: '5%', paddingLeft: '1%' }}>
+            <p
+              style={{
+                fontSize: '28px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#0000008a'
+              }}>
+              SEE HOW YOU CAN MEET AND SHARE
+            </p>
+            <p
+              style={{
+                fontSize: '30px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#0000008a'
+              }}>
+              Meet your fellow tech singles share stories, interests and laughs,
+              enjoy life together
+            </p>
+          </div>
         </div>
         <div
           className='signup_card_form signup_card-1'

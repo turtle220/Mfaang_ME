@@ -1,34 +1,39 @@
-import { Checkbox } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
-import { db, auth, storage } from '../../firebase';
-import { Link, useHistory, useParams, useLocation } from 'react-router-dom';
-import $ from 'jquery';
-import { Avatar, Button, Input } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { db, auth, storage } from '../../firebase'
+import { Link, useHistory, useParams, useLocation } from 'react-router-dom'
+import $ from 'jquery'
+import { Avatar, Button, Input } from '@material-ui/core'
 
-import './index.css';
-import LogoLogin from '../../images/Logo-Login.svg';
-import LogoPictures from '../../images/Logo-Pictures.svg';
+import './index.css'
+import LogoLogin from '../../images/Logo-Login.svg'
+import LogoPictures from '../../images/Logo-Pictures.svg'
+import BackButton from '../../images/button-boldback.svg'
 
 export default function SignUp({ openLogin }) {
-  const history = useHistory();
+  const history = useHistory()
 
   const onLogin = (evt) => {
-    const email = $('.email_address').val();
-    const password = $('.login_password').val();
+    const email = $('.email_address').val()
+    const password = $('.login_password').val()
 
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
         // const authUser = auth.currentUser;
         // authUser.emailVerified
-        console.log('logged in!', auth.currentUser.email, auth.currentUser.emailVerified);
-        history.push('/');
+        console.log(
+          'logged in!',
+          auth.currentUser.email,
+          auth.currentUser.emailVerified
+        )
+        history.push('/')
       })
       .catch((error) => {
-        console.log('login error--', error);
-        alert('Incorrect username or password');
-      });
-  };
+        console.log('login error--', error)
+        alert('Incorrect username or password')
+      })
+  }
 
   return (
     <div style={{ backgroundColor: 'white', display: 'block' }}>
@@ -36,33 +41,60 @@ export default function SignUp({ openLogin }) {
         style={{
           display: 'flex',
           backgroundColor: '#F8F8F8',
-          height: '580px',
+          height: '580px'
         }}>
-        <div style={{ display: 'block', padding: '7%', width: '52.5%' }}>
-          <p
-            style={{
-              fontSize: '26px',
-              fontFamily: 'system-ui',
-              fontWeight: '500',
-              color: '#0000008a',
-            }}>
-            WHY WAIT AND SWIPE ALL DAY
-          </p>
-          <p
-            style={{
-              fontSize: '30px',
-              fontFamily: 'system-ui',
-              fontWeight: '500',
-              color: '#0000008a',
-            }}>
-            Put yourself out there and see who you can meet and have a wonderful
-            time together
-          </p>
+        <div style={{ display: 'block', padding: '5%', width: '52.5%' }}>
+          <div style={{ display: 'flex' }}>
+            <a
+              href='/'
+              style={{
+                display: 'flex',
+                width: '50%',
+                textDecoration: 'none',
+                paddingTop: '0.7%'
+              }}>
+              <img
+                src={BackButton}
+                style={{ color: '#8F8F8F', height: '22px' }}
+                alt=''
+              />
+              <p
+                style={{
+                  paddingLeft: '2%',
+                  fontWeight: 'bold',
+                  fontFamily: 'system-ui',
+                  color: '#8F8F8F'
+                }}>
+                BACK
+              </p>
+            </a>
+          </div>
+          <div style={{ paddingTop: '5%', paddingLeft: '1%' }}>
+            <p
+              style={{
+                fontSize: '26px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#0000008a'
+              }}>
+              WHY WAIT AND SWIPE ALL DAY
+            </p>
+            <p
+              style={{
+                fontSize: '30px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#0000008a'
+              }}>
+              Put yourself out there and see who you can meet and have a
+              wonderful time together
+            </p>
+          </div>
         </div>
         <div
           className='login_card_form login_card-1'
           onKeyDown={(e) => {
-            if (e.key === 'Enter') onLogin();
+            if (e.key === 'Enter') onLogin()
           }}>
           <div style={{ padding: '3%' }}>
             <img
@@ -75,7 +107,7 @@ export default function SignUp({ openLogin }) {
                 fontSize: '15px',
                 color: '#8F8F8F',
                 width: '100%',
-                fontFamily: 'system-ui',
+                fontFamily: 'system-ui'
               }}>
               LOG IN HERE AND ENJOY
             </p>
@@ -84,7 +116,7 @@ export default function SignUp({ openLogin }) {
                 paddingTop: '3%',
                 height: '48px',
                 width: '100%',
-                margin: '0, auto',
+                margin: '0, auto'
               }}>
               <input
                 placeholder='Email Address'
@@ -96,7 +128,7 @@ export default function SignUp({ openLogin }) {
                   paddingLeft: '4%',
                   width: '100%',
                   margin: '0, auto',
-                  outline: '#FF9100',
+                  outline: '#FF9100'
                 }}></input>
               <br></br>
               <br></br>
@@ -111,7 +143,7 @@ export default function SignUp({ openLogin }) {
                   paddingLeft: '4%',
                   width: '100%',
                   margin: '0, auto',
-                  outline: 'none',
+                  outline: 'none'
                 }}></input>
               <br></br>
               <br></br>
@@ -122,7 +154,7 @@ export default function SignUp({ openLogin }) {
                   backgroundColor: '#F699CD',
                   minWidth: '100px',
                   maxWidth: '100%',
-                  width: '100%',
+                  width: '100%'
                 }}
                 type='submit'
                 onClick={onLogin}>
@@ -135,7 +167,7 @@ export default function SignUp({ openLogin }) {
                     fontSize: '15px',
                     color: '#8F8F8F',
                     width: '100%',
-                    fontFamily: 'system-ui',
+                    fontFamily: 'system-ui'
                   }}>
                   Don't have an account?
                   <a
@@ -143,7 +175,7 @@ export default function SignUp({ openLogin }) {
                     style={{
                       width: '50%',
                       color: '#F699CD',
-                      cursor: 'pointer',
+                      cursor: 'pointer'
                     }}
                     href='/signup'>
                     {' '}
@@ -157,7 +189,7 @@ export default function SignUp({ openLogin }) {
                     color: '#8F8F8F',
                     fontSize: '15px',
                     cursor: 'pointer',
-                    fontFamily: 'system-ui',
+                    fontFamily: 'system-ui'
                   }}
                   href='/signup'>
                   {' '}
@@ -176,5 +208,5 @@ export default function SignUp({ openLogin }) {
         />
       </div>
     </div>
-  );
+  )
 }
