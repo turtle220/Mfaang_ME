@@ -11,12 +11,20 @@ import MembersFrom from '../../images/Home/MembersFrom.svg'
 import Post from '../Meet/post'
 import Pagination from '../../components/Pagination/index'
 
-function SingleItem({ posts, imageName, email, postId }) {
+//email: postUser email
+function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
   const ps = useRef()
   const [imageUrl, setImageUrl] = useState('')
   const [userProfile, setUserProfile] = useState(null)
   const [likeUserEmail, setLikeUserEmail] = useState('')
-  console.log(email, postId, posts, '-----singleItem:')
+  console.log(postImages, '-----singleItem:')
+
+  // useEffect(() => {
+  //   db.collection('post')
+  //   .doc(email)
+  //   .get()
+
+  // })
   useEffect(() => {
     if (imageUrl === '') {
       if (email) {
@@ -46,7 +54,7 @@ function SingleItem({ posts, imageName, email, postId }) {
         })
     }
   })
-  console.log(userProfile, '---------UserProfileSingleItem:')
+  // console.log(userProfile, '---------UserProfileSingleItem:')
   const isLiked = async () => {
     const likeUserArray = []
     if (auth.currentUser.emailVerified && auth.currentUser && email) {
@@ -140,7 +148,13 @@ function SingleItem({ posts, imageName, email, postId }) {
             paddingTop: '2%'
           }}>
           <div>
-            <p style={{ color: '#8F8F8F', paddingTop: '1%', fontSize: '20px', fontWeight:'bold' }}>
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%',
+                fontSize: '20px',
+                fontWeight: 'bold'
+              }}>
               {userProfile && userProfile.firstName}
             </p>
             {/* <span
@@ -172,7 +186,10 @@ function SingleItem({ posts, imageName, email, postId }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              Company Name: {userProfile && userProfile.emailAddress.split('@')[1]}
+              Company Name:{' '}
+              {userProfile &&
+                userProfile.emailAddress &&
+                userProfile.emailAddress.split('@')[1]}
             </p>
             {/* <span
               style={{
@@ -297,11 +314,21 @@ function SingleItem({ posts, imageName, email, postId }) {
             width: '90%',
             justifyContent: 'space-between'
           }}>
+          {/* {postImages.length &&
+            postImages.map((postImage) => (
+              <img
+                src={postImage.postUserImage}
+                alt=''
+                style={{ width: '250px', height: '220px' }}
+              />
+            ))} */}
+
           {/* first postUser Image */}
-          {posts.length && posts[0] ? (
+                 
+          {postImages.length && postImages[0] ? (
             // <div style={{ display: 'flex' }}>
             <img
-              src={posts[0].post.imageUrl}
+              src={postImages[0].postUserImage}
               alt=''
               style={{ width: '250px', height: '220px' }}
             />
@@ -313,30 +340,30 @@ function SingleItem({ posts, imageName, email, postId }) {
           // })
           null}
           {/* second postUser Image */}
-          {posts.length && posts[1] ? (
+          {postImages.length && postImages[1] ? (
             // <div style={{ display: 'flex' }}>
             <img
-              src={posts[1].post.imageUrl}
+              src={postImages[1].postUserImage}
               alt=''
               style={{ width: '250px', height: '220px' }}
             />
           ) : // </div>
           null}
           {/* third postUser Image */}
-          {posts.length && posts[2] ? (
+          {postImages.length && postImages[2] ? (
             // <div style={{ display: 'flex' }}>
             <img
-              src={posts[2].post.imageUrl}
+              src={postImages[2].postUserImage}
               alt=''
               style={{ width: '250px', height: '220px' }}
             />
           ) : // </div>
           null}
           {/* forth postUser Image */}
-          {posts.length && posts[3] ? (
+          {postImages.length && postImages[3] ? (
             // <div style={{ display: 'flex' }}>
             <img
-              src={posts[3].post.imageUrl}
+              src={postImages[3].postUserImage}
               alt=''
               style={{ width: '250px', height: '220px' }}
             />
@@ -355,7 +382,12 @@ function SingleItem({ posts, imageName, email, postId }) {
           <div style={{ display: 'flex', width: '50%' }}>
             <Avatar src={imageUrl} alt='' />
             <p
-              style={{ color: '#8F8F8F', paddingTop: '1%', paddingLeft: '2%' }}>
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%',
+                paddingLeft: '2%',
+                fontWeight: 'bold'
+              }}>
               {' '}
               Here is something about myself{' '}
             </p>
@@ -396,7 +428,7 @@ function SingleItem({ posts, imageName, email, postId }) {
           amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
           diam nonumy eirmod tempor */}
         </div>
-        <Pagination location={`/admin`}/>
+        <Pagination location={`/admin`} />
       </div>
       <Footer />
     </div>

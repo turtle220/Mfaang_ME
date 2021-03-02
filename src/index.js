@@ -74,6 +74,7 @@ function Routing() {
             path='/singleitem/:id'
             component={({ match }) => {
               const postsArray = []
+              const postUserImages = []
 
               posts.forEach((element) => {
                 if (element.id === match.params.id) {
@@ -87,15 +88,24 @@ function Routing() {
                   })
                 }
               })
-
+              posts.forEach((element) => {
+                if (
+                  postsArray[0] &&
+                  postsArray[0].email === element.post.userEmail
+                ) {
+                  postUserImages.push({ postUserImage: element.post.imageUrl })
+                }
+              })
+              console.log(postsArray[0] && postsArray[0].email, postUserImages, '------src postUSerImgeas')
               return (
                 <SingleItem
                   posts={posts}
                   key={match.params.id}
                   imageName={postsArray[0] && postsArray[0].imageName}
-                  imageUrl={postsArray[0] && postsArray[0].imageUrl}
+                  imgUrl={postsArray[0] && postsArray[0].imageUrl}
                   email={postsArray[0] && postsArray[0].email}
                   postId={match.params.id}
+                  postImages={postUserImages && postUserImages}
                 />
               )
             }}
