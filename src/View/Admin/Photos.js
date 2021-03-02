@@ -121,7 +121,7 @@ export default function Photos({ user }) {
         }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           {/* section 1 */}
-          {posts.length && user.email === posts[0].post.userEmail? (
+          {posts.length && posts[0] && user.email === posts[0].post.userEmail? (
             <img
               src={posts[0].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
@@ -161,7 +161,7 @@ export default function Photos({ user }) {
             paddingBottom: '3%',
           }}>
           {/* section 3 */}
-          {posts.length && posts[3] && user.email === posts[2].post.userEmail ? (
+          {posts.length && posts[2] && user.email === posts[2].post.userEmail ? (
             <img
               src={posts[2].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
@@ -177,7 +177,7 @@ export default function Photos({ user }) {
               }}></div>
           )}
           {/* section 4 */}
-          {posts.length && posts[4] && user.email === posts[3].post.userEmail ? (
+          {posts.length && posts[3] && user.email === posts[3].post.userEmail ? (
             <img
               src={posts[3].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
