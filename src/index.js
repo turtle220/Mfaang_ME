@@ -66,6 +66,7 @@ function Routing() {
           <Route path='/contact' component={Contact} />
           <Route path='/trust' component={Trust} />
           <Route path='/cancellation' component={Cancellation} />
+          <Route path='/membership' component={Cancellation} />
           <Route path='/wholikesyou' component={WhoLikesYou} />
           <Route path='/all' component={FirstPage} />
 
