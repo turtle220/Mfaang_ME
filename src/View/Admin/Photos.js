@@ -62,12 +62,14 @@ export default function Photos({ user }) {
       .addEventListener('change', handleChangeImage, false);
     document.getElementById('image_files').click();
   };
+
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
       const files = e.target.files;
       imageUpload(files[0]);
     }
   };
+
   const imageUpload = (image) => {
     if (image) {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -99,11 +101,6 @@ export default function Photos({ user }) {
                   userEmail: user.email,
                   imageName: image.name,
                   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                  // caption: $('.caption_input').val(),
-                  // username: username ? username : '',
-                  // useremail: user.email,
-                  // imagename: image.name,
-                  // country: country,
                 });
             });
         }
@@ -113,7 +110,6 @@ export default function Photos({ user }) {
     }
   };
 
-  console.log(posts, '------posts in admin page:')
   return (
     <div className='photos'>
       <div
@@ -143,7 +139,7 @@ export default function Photos({ user }) {
           {/* section 2 */}
           {posts.length && posts[1] && user.email === posts[1].post.userEmail ? (
             <img
-              src={posts[1]?.post.imageUrl}
+              src={posts[1].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
               alt=''
             />
@@ -167,7 +163,7 @@ export default function Photos({ user }) {
           {/* section 3 */}
           {posts.length && posts[3] && user.email === posts[2].post.userEmail ? (
             <img
-              src={posts[2]?.post.imageUrl}
+              src={posts[2].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
               alt=''
             />
@@ -183,7 +179,7 @@ export default function Photos({ user }) {
           {/* section 4 */}
           {posts.length && posts[4] && user.email === posts[3].post.userEmail ? (
             <img
-              src={posts[3]?.post.imageUrl}
+              src={posts[3].post.imageUrl}
               style={{ width: '150px', height:'100px' }}
               alt=''
             />

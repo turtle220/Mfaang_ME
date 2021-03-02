@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, Button } from '@material-ui/core';
 import BackButton from '../../images/button-boldback.svg';
 
-export default function Pagination() {
+export default function Pagination({location}) {
   return (
     <div
       style={{
@@ -39,6 +39,7 @@ export default function Pagination() {
         variant='contained'
         color='secondary'
         size='medium'
+        href={location}
         style={{
           backgroundColor: '#F699CD',
           minWidth: '200px',

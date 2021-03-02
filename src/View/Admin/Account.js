@@ -678,7 +678,7 @@ function Account({ user }) {
           </div>
         </div>
       </div>
-      <Pagination />
+      <Pagination location={`/wholikesyou`}/>
     </div>
   );
 }

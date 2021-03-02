@@ -196,7 +196,7 @@ function WhoLikesYou() {
           <></>
         )}
 
-        <Pagination />
+        <Pagination location={`/all`} />
       </div>
       <Footer />
     </div>

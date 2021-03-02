@@ -10,34 +10,13 @@ import Navbar from '../../components/Navbar/index'
 import MembersFrom from '../../images/Home/MembersFrom.svg'
 import Post from '../Meet/post'
 import Pagination from '../../components/Pagination/index'
-// import imageTest1 from '../../images/test(1).jpg';
-// import BackButton from '../../images/button-boldback.svg';
 
 function SingleItem({ posts, imageName, email, postId }) {
   const ps = useRef()
   const [imageUrl, setImageUrl] = useState('')
   const [userProfile, setUserProfile] = useState(null)
   const [likeUserEmail, setLikeUserEmail] = useState('')
-  // const [posts, setPosts] = useState([])
-  // const [user, setUser] = useState(null)
-  // const [userProfile, setUserProfile] = useState([])
-
-  // useEffect(() => {
-  //   if (!posts.length) {
-  //     db.collection('post')
-  //       .orderBy('timestamp', 'desc')
-  //       .onSnapshot((snapshot) => {
-  //         //every time a new post is added, it fires up onSnapshot
-  //         setPosts(
-  //           snapshot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             post: doc.data()
-  //           }))
-  //         )
-  //       })
-  //   }
-  // })
-
+  console.log(email, postId, posts, '-----singleItem:')
   useEffect(() => {
     if (imageUrl === '') {
       if (email) {
@@ -67,7 +46,7 @@ function SingleItem({ posts, imageName, email, postId }) {
         })
     }
   })
-
+  console.log(userProfile, '---------UserProfileSingleItem:')
   const isLiked = async () => {
     const likeUserArray = []
     if (auth.currentUser.emailVerified && auth.currentUser && email) {
@@ -158,27 +137,121 @@ function SingleItem({ posts, imageName, email, postId }) {
             backgroundColor: 'white',
             paddingLeft: '10%',
             display: 'block',
-            paddingTop: '5%'
+            paddingTop: '2%'
           }}>
           <div>
-            <span
+            <p style={{ color: '#8F8F8F', paddingTop: '1%', fontSize: '20px', fontWeight:'bold' }}>
+              {userProfile && userProfile.firstName}
+            </p>
+            {/* <span
               style={{
-                fontSize: '30px',
+                fontSize: '26px',
                 fontFamily: 'system-ui',
                 fontWeight: '500',
-                color: '#0000008a'
+                color: '#8f8f8f'
               }}>
-              Members from
-            </span>
+            </span> */}
           </div>
-          <img
-            src={MembersFrom}
-            alt=''
-            style={{ paddingTop: '2%', width: '90%' }}
-          />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '40%'
+            }}>
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            {/* </span> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.emailAddress.split('@')[1]}
+            </p>
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.gender}
+            </p>
+            {/* </span> */}
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.years}
+            </p>
+            {/* </span> */}
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                // fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.city}
+            </p>
+            {/* </span> */}
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.state}
+            </p>
+            {/* </span> */}
+            {/* <span
+              style={{
+                fontSize: '24px',
+                fontFamily: 'system-ui',
+                fontWeight: '500',
+                color: '#8f8f8f'
+              }}> */}
+            <p
+              style={{
+                color: '#8F8F8F',
+                paddingTop: '1%'
+              }}>
+              {userProfile && userProfile.country}
+            </p>
+            {/* </span> */}
+          </div>
         </div>
 
-        <div
+        {/* <div
           id='meets'
           style={{
             backgroundColor: 'white',
@@ -197,11 +270,77 @@ function SingleItem({ posts, imageName, email, postId }) {
                 })
               : null}
           </PerfectScrollbar>
+        </div> */}
+        {/* <div
+          style={{
+            backgroundColor: 'white',
+            paddingLeft: '10%',
+            display: 'block',
+            paddingTop: '5%',
+            paddingBottom: '3%',
+            width: '96%',
+            height: '440px',
+            overflowY: 'auto'
+          }}> */}
+        <div
+          style={{
+            display: 'flex',
+            paddingLeft: '10%',
+            paddingTop: '2%',
+            width: '90%',
+            justifyContent: 'space-between'
+          }}>
+          {/* first postUser Image */}
+          {posts.length && posts[0] ? (
+            // <div style={{ display: 'flex' }}>
+            <img
+              src={posts[0].post.imageUrl}
+              alt=''
+              style={{ width: '250px', height: '220px' }}
+            />
+          ) : // </div>
+          // posts[0].post.imageUrl
+          // posts.map(({ id, post }) => {
+          // console.log(posts.length,'-----postLength:')
+          // return <Post key={id} id={id} post={post} />
+          // })
+          null}
+          {/* second postUser Image */}
+          {posts.length && posts[1] ? (
+            // <div style={{ display: 'flex' }}>
+            <img
+              src={posts[1].post.imageUrl}
+              alt=''
+              style={{ width: '250px', height: '220px' }}
+            />
+          ) : // </div>
+          null}
+          {/* third postUser Image */}
+          {posts.length && posts[2] ? (
+            // <div style={{ display: 'flex' }}>
+            <img
+              src={posts[2].post.imageUrl}
+              alt=''
+              style={{ width: '250px', height: '220px' }}
+            />
+          ) : // </div>
+          null}
+          {/* forth postUser Image */}
+          {posts.length && posts[3] ? (
+            // <div style={{ display: 'flex' }}>
+            <img
+              src={posts[3].post.imageUrl}
+              alt=''
+              style={{ width: '250px', height: '220px' }}
+            />
+          ) : // </div>
+          null}
         </div>
+        {/* </div> */}
         <div
           style={{
             paddingLeft: '10%',
-            paddingTop: '1%',
+            paddingTop: '2%',
             display: 'flex',
             justifyContent: 'space-between',
             width: '90%'
@@ -250,7 +389,7 @@ function SingleItem({ posts, imageName, email, postId }) {
           amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
           diam nonumy eirmod tempor */}
         </div>
-        <Pagination />
+        <Pagination location={`/admin`}/>
       </div>
       <Footer />
     </div>

@@ -30,13 +30,6 @@ function Post({ id, post }) {
           })
       }
     }
-    // if (userProfile) {
-    //   const currentYear = new Date().getFullYear()
-    //   const currentAge = currentYear - userProfile.years
-    //   if (!age) {
-    //     setAge(currentAge)
-    //   }
-    // }
   }, [userProfile])
 
   return (
@@ -63,10 +56,10 @@ function Post({ id, post }) {
             justifyContent: 'space-between'
           }}>
           <p style={{ color: '#8F8F8F', whiteSpace: 'nowrap' }}>
-            {userProfile ? userProfile.username : null}
+            {userProfile ? userProfile.firstName : ''}
           </p>
           <p style={{ color: '#8F8F8F' }}>
-            {userProfile ? userProfile.gender : null}
+            {userProfile ? userProfile.gender : ''}
           </p>
         </div>
         <div style={{ display: 'flex' }}>
@@ -82,7 +75,12 @@ function Post({ id, post }) {
                   {userProfile ? userProfile.country : null}
                 </span>
               </div>
-              <div style={{ float: 'right', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
+              <div
+                style={{
+                  float: 'right',
+                  color: '#8F8F8F',
+                  whiteSpace: 'nowrap'
+                }}>
                 {userProfile ? userProfile.years : null}
               </div>
             </div>
@@ -93,10 +91,20 @@ function Post({ id, post }) {
                 width: '100%',
                 justifyContent: 'space-between'
               }}>
-              <div style={{ float: 'left', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
+              <div
+                style={{
+                  float: 'left',
+                  color: '#8F8F8F',
+                  whiteSpace: 'nowrap'
+                }}>
                 <span>{userProfile ? userProfile.city : null}</span>
               </div>
-              <div style={{ float: 'right', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
+              <div
+                style={{
+                  float: 'right',
+                  color: '#8F8F8F',
+                  whiteSpace: 'nowrap'
+                }}>
                 <span>{userProfile ? userProfile.state : null}</span>
               </div>
             </div>
