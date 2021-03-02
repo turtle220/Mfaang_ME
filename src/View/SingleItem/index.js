@@ -156,7 +156,7 @@ function SingleItem({ posts, imageName, email, postId }) {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
-              width: '40%'
+              width: '50%'
             }}>
             {/* <span
               style={{
@@ -169,9 +169,10 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
               }}>
-              {userProfile && userProfile.emailAddress.split('@')[1]}
+              Company Name: {userProfile && userProfile.emailAddress.split('@')[1]}
             </p>
             {/* <span
               style={{
@@ -183,9 +184,10 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
               }}>
-              {userProfile && userProfile.gender}
+              Gender: {userProfile && userProfile.gender}
             </p>
             {/* </span> */}
             {/* <span
@@ -198,9 +200,10 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
               }}>
-              {userProfile && userProfile.years}
+              Age: {userProfile && userProfile.years}
             </p>
             {/* </span> */}
             {/* <span
@@ -213,9 +216,10 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
               }}>
-              {userProfile && userProfile.city}
+              City: {userProfile && userProfile.city}
             </p>
             {/* </span> */}
             {/* <span
@@ -228,9 +232,10 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
               }}>
-              {userProfile && userProfile.state}
+              State: {userProfile && userProfile.state}
             </p>
             {/* </span> */}
             {/* <span
@@ -243,9 +248,11 @@ function SingleItem({ posts, imageName, email, postId }) {
             <p
               style={{
                 color: '#8F8F8F',
-                paddingTop: '1%'
+                paddingTop: '1%',
+                whiteSpace: 'nowrap'
+                // diplay: 'flex'
               }}>
-              {userProfile && userProfile.country}
+              Country: {userProfile && userProfile.country}
             </p>
             {/* </span> */}
           </div>
