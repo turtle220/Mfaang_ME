@@ -35,8 +35,8 @@ function Account({ user }) {
     const lastName = $('.last_name').val();
     const yourGender = $('.yourgender').val();
     const gender = $('.gender').val();
-    const months = $('.month').val();
-    const days = $('.day').val();
+    // const months = $('.month').val();
+    // const days = $('.day').val();
     const years = $('.year').val();
     const emailAddress = $('.email_address').val();
     const phone = $('.phone').val();
@@ -54,8 +54,8 @@ function Account({ user }) {
       middle &&
       lastName &&
       yourGender &&
-      months &&
-      days &&
+      // months &&
+      // days &&
       years &&
       emailAddress &&
       phone &&
@@ -76,8 +76,8 @@ function Account({ user }) {
           lastName,
           yourGender,
           gender,
-          months,
-          days,
+          // months,
+          // days,
           years,
           emailAddress,
           phone,
@@ -102,8 +102,8 @@ function Account({ user }) {
               lastName,
               yourGender,
               gender,
-              months,
-              days,
+              // months,
+              // days,
               years,
               emailAddress,
               phone,
@@ -292,7 +292,23 @@ function Account({ user }) {
                 Date of birth
               </span>
             </div>
-            <div style={{ display: 'flex', paddingBottom: '2%' }}>
+            <div style={{paddingBottom: '2%'}}>
+              <input
+                  required
+                  autoFocus
+                  placeholder='Age *'
+                  className='year'
+                  style={{
+                    borderRadius: '5px',
+                    borderColor: 'rgba(0, 0, 0, 0.26)',
+                    height: '35px',
+                    paddingLeft: '4%',
+                    width: '35.5%',
+                    margin: '0, auto',
+                    outline: '#FF9100',
+                  }}></input>
+            </div>
+            {/* <div style={{ display: 'flex', paddingBottom: '2%' }}>
               <input
                 required
                 autoFocus
@@ -406,7 +422,7 @@ function Account({ user }) {
                 <option>2021</option>
                 <option>2022</option>
               </datalist>
-            </div>
+            </div> */}
             {/* Email Address */}
             <div style={{ paddingBottom: '2%' }}>
               <span

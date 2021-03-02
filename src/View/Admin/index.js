@@ -11,7 +11,6 @@ import Navbar from '../../components/Navbar/index';
 import Account from './Account';
 
 function Admin() {
-  // const dispatch = useDispatch();
   const [emailVerified, setEmailVerified] = useState('');
   const [user, setUser] = useState('');
 
@@ -28,7 +27,6 @@ function Admin() {
         setUser(null);
       }
     });
-// console.log('--------amdin:')
     return () => {
       unsubscribe();
     };

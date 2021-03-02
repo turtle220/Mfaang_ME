@@ -6,7 +6,6 @@ import { db, auth, storage } from '../../firebase';
 import './index.css';
 
 export default function Photos({ user }) {
-  // const [image, setImage] = useState({ preview: '', raw: '' });
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -114,28 +113,7 @@ export default function Photos({ user }) {
     }
   };
 
-  // const handleChange = (e) => {
-  //   if (e.target.files.length) {
-  //     setImage({
-  //       preview: URL.createObjectURL(e.target.files[0]),
-  //       raw: e.target.files[0],
-  //     });
-  //   }
-  // };
-
-  // const handleUpload = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('image', image.raw);
-
-  //   await fetch('YOUR_URL', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //     body: formData,
-  //   });
-  // };
+  console.log(posts, '------posts in admin page:')
   return (
     <div className='photos'>
       <div
@@ -163,7 +141,7 @@ export default function Photos({ user }) {
               }}></div>
           )}
           {/* section 2 */}
-          {posts.length && user.email === posts[1].post.userEmail ? (
+          {posts.length && posts[1] && user.email === posts[1].post.userEmail ? (
             <img
               src={posts[1]?.post.imageUrl}
               style={{ width: '150px', height:'100px' }}
@@ -187,7 +165,7 @@ export default function Photos({ user }) {
             paddingBottom: '3%',
           }}>
           {/* section 3 */}
-          {posts.length && user.email === posts[2].post.userEmail ? (
+          {posts.length && posts[3] && user.email === posts[2].post.userEmail ? (
             <img
               src={posts[2]?.post.imageUrl}
               style={{ width: '150px', height:'100px' }}
@@ -203,7 +181,7 @@ export default function Photos({ user }) {
               }}></div>
           )}
           {/* section 4 */}
-          {posts.length && user.email === posts[3].post.userEmail ? (
+          {posts.length && posts[4] && user.email === posts[3].post.userEmail ? (
             <img
               src={posts[3]?.post.imageUrl}
               style={{ width: '150px', height:'100px' }}

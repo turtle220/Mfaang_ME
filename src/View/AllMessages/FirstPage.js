@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { Avatar, Button } from '@material-ui/core'
-import firebase from 'firebase'
-import { Provider, useSelector } from 'react-redux'
+// import { Avatar, Button } from '@material-ui/core'
+// import firebase from 'firebase'
+// import { Provider, useSelector } from 'react-redux'
 
 import './index.css'
 import { db, auth, storage } from '../../firebase'
@@ -11,19 +11,19 @@ import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import Pagination from '../../components/Pagination/index'
 import ChatRoomChannel from './ChatRoomChannel'
+import LikeUser from './LikeUser'
 // import MembersFrom from '../../images/Home/MembersFrom.svg'
 // import imageTest1 from '../../images/test(1).jpg';
 // import Post from '../Meet/post'
 // import BackButton from '../../images/button-boldback.svg';
 // import AutoScroll from './AutoScroll'
 // import NewChatMessage from './NewChatMessage'
-import LikeUser from './LikeUser'
 // import { nodeName } from 'jquery'
 
 function FirstPage() {
   console.log(window.location.href, '-----match:')
-  // console.log(id, '-----id:')
   const id = '';
+  // console.log(id, '-----id:')
   // const [likeUserProfile, setLikeUserProfile] = useState(null)
   const [likePersons, setLikePersons] = useState([])
 
@@ -116,8 +116,8 @@ function FirstPage() {
               {likePersons.length ? (
                 likePersons.map((person, id) => {
                   if (person) {
-                    const currentYear = new Date().getFullYear()
-                    const currentAge = currentYear - person.years
+                    // const currentYear = new Date().getFullYear()
+                    // const currentAge = currentYear - person.years
 
                     return (
                       <a
@@ -140,7 +140,7 @@ function FirstPage() {
                             {person.firstName}
                           </div>
                           <div style={{ display: 'flex', color: '#707070' }}>
-                            {person.yourGender}, {currentAge}, {person.city},{' '}
+                            {person.yourGender}, {person.years}, {person.city},{' '}
                             {person.state}, {person.country}
                           </div>
                         </div>

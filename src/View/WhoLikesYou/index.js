@@ -85,8 +85,8 @@ function WhoLikesYou() {
         {likePersons.length ? (
           likePersons.map((person, id) => {
             if (person) {
-              const currentYear = new Date().getFullYear()
-              const currentAge = currentYear - person.years
+              // const currentYear = new Date().getFullYear()
+              // const currentAge = currentYear - person.years
 
               // const toMessageChannel = () => {
               //   dispatch({
@@ -152,7 +152,7 @@ function WhoLikesYou() {
                       }}>
                       <p>
                         {' '}
-                        {person.firstName}, {person.yourGender}, {currentAge},{' '}
+                        {person.firstName}, {person.yourGender}, {person.years},{' '}
                         {person.city}, {person.state}, {person.country}{' '}
                       </p>
                     </div>

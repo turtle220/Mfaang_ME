@@ -30,14 +30,14 @@ function Post({ id, post }) {
           })
       }
     }
-    if (userProfile) {
-      const currentYear = new Date().getFullYear()
-      const currentAge = currentYear - userProfile.years
-      if (!age) {
-        setAge(currentAge)
-      }
-    }
-  }, [userProfile, age])
+    // if (userProfile) {
+    //   const currentYear = new Date().getFullYear()
+    //   const currentAge = currentYear - userProfile.years
+    //   if (!age) {
+    //     setAge(currentAge)
+    //   }
+    // }
+  }, [userProfile])
 
   return (
     <div className='gallery'>
@@ -83,7 +83,7 @@ function Post({ id, post }) {
                 </span>
               </div>
               <div style={{ float: 'right', color: '#8F8F8F', whiteSpace: 'nowrap' }}>
-                {userProfile ? age : null}
+                {userProfile ? userProfile.years : null}
               </div>
             </div>
             <div

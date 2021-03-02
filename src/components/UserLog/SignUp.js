@@ -22,7 +22,7 @@ export default function SignUp({ openLogin }) {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
-          await auth.currentUser.sendEmailVerification().then(function () {
+          await auth.currentUser.sendEmailVerification({url: 'http://localhost:3000'}).then(function () {
             //Email sent
             // console.log('-----email sent:');
           })

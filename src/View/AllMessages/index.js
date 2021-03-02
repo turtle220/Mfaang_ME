@@ -114,8 +114,8 @@ function AllMessages(id) {
               {likePersons.length ? (
                 likePersons.map((person, id) => {
                   if (person) {
-                    const currentYear = new Date().getFullYear()
-                    const currentAge = currentYear - person.years
+                    // const currentYear = new Date().getFullYear()
+                    // const currentAge = currentYear - person.years
 
                     return (
                       <a key={id} href={`/allmessages/${person.emailAddress}`} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
@@ -125,7 +125,7 @@ function AllMessages(id) {
                         <div style={{ display: 'block', paddingLeft:'3%' }}>
                           <div style={{fontWeight:'bold', color:'#707070'}}>{person.firstName}</div>
                           <div style={{ display: 'flex', color: '#707070' }}>
-                            {person.yourGender}, {currentAge}, {person.city},{' '}
+                            {person.yourGender}, {person.years}, {person.city},{' '}
                             {person.state}, {person.country}
                           </div>
                         </div>
