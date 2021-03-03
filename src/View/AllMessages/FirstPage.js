@@ -99,7 +99,7 @@ function FirstPage() {
         <div
           style={{
             display: 'flex',
-            height: '300px'
+            height: '400px'
           }}>
           <div
             style={{
@@ -109,8 +109,11 @@ function FirstPage() {
               // paddingTop: '2%',
               paddingBottom: '3%',
               width: '40%',
-              height: '280px',
-              overflowY: 'auto'
+              height: '430px',
+              overflowY: 'auto',
+              borderRight: 'solid',
+              borderRightColor: '#DBDBDB',
+              paddingRight: '1%'
             }}>
             <PerfectScrollbar>
               {likePersons.length ? (
@@ -184,7 +187,7 @@ function FirstPage() {
         </div>
       </div>
       <div>
-        <Pagination />
+        <Pagination location='/wholikesyou'/>
       </div>
       <Footer />
     </div>

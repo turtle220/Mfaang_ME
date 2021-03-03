@@ -84,113 +84,97 @@ function WhoLikesYou() {
         </div>
         {likePersons.length ? (
           likePersons.map((person, id) => {
-            if (person) {
-              // const currentYear = new Date().getFullYear()
-              // const currentAge = currentYear - person.years
+            // if (person) {
+              console.log(person, likePersons, '----person:')
+            const onDelete = () => {
+              alert('Are you sure you want to delete this user?')
+              db.collection('UserProfile')
+                .doc(auth.currentUser.email)
+                .collection('wholikesyou')
+                .get()
+                .then((snapshot) => {
+                  snapshot.docs.map((doc) =>
+                    db
+                      .collection('UserProfile')
+                      .doc(auth.currentUser.email)
+                      .collection('wholikesyou')
+                      .doc(doc.id)
+                      .get()
+                      .then((doc) => {
+                        if (person.email === doc.data().likeUserEmail) {
+                          db.collection('UserProfile')
+                            .doc(auth.currentUser.email)
+                            .collection('wholikesyou')
+                            .doc(doc.id)
+                            .delete()
+                        }
+                      })
+                  )
+                })
+              setTimeout(window.location.reload(), 90000)
+            }
 
-              // const toMessageChannel = () => {
-              //   dispatch({
-              //     type: 'MESSAGE_START',
-              //     email: person.emailAddress
-              //   })
-              // }
-              // setLikePersons(person.emailAddress)
-              const onDelete = () => {
-                // console.log(person, 'person:')
-                alert('Are you sure you want to delete this user?')
-                try {
-                  db.collection('UserProfile')
-                    .doc(auth.currentUser.email)
-                    .collection('wholikesyou')
-                    .get()
-                    .then((snapshot) => {
-                      snapshot.docs.map((doc) =>
-                        db
-                          .collection('UserProfile')
-                          .doc(auth.currentUser.email)
-                          .collection('wholikesyou')
-                          .doc(doc.id)
-                          .get()
-                          .then((doc) => {
-                            // setPostId(doc.id)
-                            if (
-                              person.emailAddress === doc.data().likeUserEmail
-                            ) {
-                              db.collection('UserProfile')
-                                .doc(auth.currentUser.email)
-                                .collection('wholikesyou')
-                                .doc(doc.id)
-                                .delete()
-                            }
-                          })
-                      )
-                    })
-                } catch (error) {
-                  console.log(error)
-                }
-              }
-
-              return (
-                <div
-                  key={id}
-                  style={{
-                    display: 'flex',
-                    paddingLeft: '10%',
-                    width: '90%',
-                    height: 40,
-                    paddingTop: '3%',
-                    paddingBottom: '5%'
-                  }}>
-                  <div style={{ width: '75%', display: 'flex' }}>
-                    <LikeUser email={person.emailAddress} />
-                    <div
-                      style={{
-                        paddingTop: '5%',
-                        paddingLeft: '3%',
-                        color: '#8f8f8f',
-                        display: 'flex'
-                      }}>
-                      <p>
-                        {' '}
-                        {person.firstName}, {person.yourGender}, {person.years},{' '}
-                        {person.city}, {person.state}, {person.country}{' '}
-                      </p>
-                    </div>
-                  </div>
+            return (
+              <div
+                key={id}
+                style={{
+                  display: 'flex',
+                  paddingLeft: '10%',
+                  width: '90%',
+                  height: 40,
+                  paddingTop: '3%',
+                  paddingBottom: '5%'
+                }}>
+                <div style={{ width: '75%', display: 'flex' }}>
+                  <LikeUser email={person.email} />
                   <div
                     style={{
-                      justifyContent: 'space-between',
-                      width: '25%',
-                      display: 'flex',
-                      paddingTop: '3%'
+                      paddingTop: '5%',
+                      paddingLeft: '3%',
+                      color: '#8f8f8f',
+                      display: 'flex'
                     }}>
-                    <Button
-                      variant='contained'
-                      color='secondary'
-                      size='medium'
-                      href={`/allmessages/${person.emailAddress}`}
-                      // onClick={toMessageChannel}
-                      style={{
-                        backgroundColor: '#F699CD',
-                        minWidth: '200px',
-                        maxWidth: '200px',
-                        height: '40px'
-                      }}>
-                      {/* <AllMEessage/> */}
-                      MESSAGE
-                    </Button>
-                    <div style={{ paddingTop: '1%' }}>
-                      <a
-                        href='/wholikesyou'
-                        style={{ cursor: 'pointer' }}
-                        onClick={onDelete}>
-                        <img src={Delete} alt='' style={{ height: 40 }} />
-                      </a>
-                    </div>
+                    <p>
+                      {' '}
+                      {person.firstName}, {person.yourGender}, {person.years},{' '}
+                      {person.city}, {person.state}, {person.country}{' '}
+                    </p>
                   </div>
                 </div>
-              )
-            }
+                <div
+                  style={{
+                    justifyContent: 'space-between',
+                    width: '25%',
+                    display: 'flex',
+                    paddingTop: '3%'
+                  }}>
+                  <Button
+                    variant='contained'
+                    color='secondary'
+                    size='medium'
+                    href={`/allmessages/${person.email}`}
+                    // onClick={toMessageChannel}
+                    style={{
+                      backgroundColor: '#F699CD',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      height: '40px'
+                    }}>
+                    {/* <AllMEessage/> */}
+                    MESSAGE
+                  </Button>
+                  <div style={{ paddingTop: '1%' }}>
+                    <a
+                      // href='/wholikesyou'
+                      style={{ cursor: 'pointer' }}
+                      onClick={onDelete}>
+                      <img src={Delete} alt='' style={{ height: 40 }} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )
+            // }
           })
         ) : (
           <></>

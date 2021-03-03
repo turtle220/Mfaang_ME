@@ -23,7 +23,7 @@ function ChatRoomChannel(email) {
   return (
     <div
       className='App'
-      style={{ paddingLeft: '5%', paddingTop: '2%', width: '100%' }}>
+      style={{ paddingTop: '2%', width: '100%' }}>
       <section>
         {/* <PerfectScrollbar> */}
         <ChatRoom email={email} />
@@ -37,14 +37,13 @@ function ChatRoom(email) {
   // const dummy = useRef()
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt')
-  
+
   const [messages] = useCollectionData(query, { idField: 'id' })
 
   const [formValue, setFormValue] = useState('')
   const [messagesId, setMessagesId] = useState([])
   const [sendChattingUser, setSendChattingUser] = useState(null)
-  const [getChattingUser, setGetChattingUser] = useState(null)
-console.log(email.email, '--------Email:');
+  const [getChattingUser, setGetChattingUser] = useState(false)
 
   const sendMessage = async (e) => {
     e.preventDefault()
@@ -90,87 +89,90 @@ console.log(email.email, '--------Email:');
   //       })
   //   }
   // }, )
-console.log(messages, '----messages:')
   // send chattingUser
-  useEffect(() => {
-    if (!sendChattingUser && messages) {
-      messages.map((message) => {
-        if (
-          message.id &&
-          message.to &&
-          message.to.email
-        ) {
-          if (email.email.email === message.to.email) {
-            db.collection('messages')
-              .doc(message.id)
-              .get()
-              .then((doc) => {
-                // console.log(doc.data(), 'sendChattingUserDOCDATA:')
-                setSendChattingUser(doc.data())
-              })
-          }
-        }
-      })
-    }
-  })
+  // useEffect(() => {
+  //   if (!sendChattingUser && messages) {
+  //     messages.map((message) => {
+  //       if (message.id && message.to && message.to.email) {
+  //         if (email.email.email === message.to.email) {
+  //           // db.collection('messages')
+  //           //   .doc(message.id)
+  //           //   .get()
+  //           //   .then((doc) => {
+  //           //     // console.log(doc.data(), 'sendChattingUserDOCDATA:')
+  //           //     setSendChattingUser(doc.data())
+  //           //   })
+  //         }
+  //       }
+  //     })
+  //   }
+  // })
 
-  // get ChattingUser
-  useEffect(() => {
-    if (!getChattingUser && messages) {
-      messages.map((message) => {
-        if (
-          message.id &&
-          message.to &&
-          message.to.email &&
-          message.from
-        ) {
+  // // get ChattingUser
+  // useEffect(() => {
+  //   if (!getChattingUser && messages) {
+  //     messages.map((message) => {
+  //       if (message.id && message.to && message.to.email && message.from) {
+  //         console.log(
+  //           email.email.email,
+  //           message.to.email,
+  //           message.from,
+  //           auth.currentUser.email,
+  //           '----messages:'
+  //         )
 
-          if (email.email.email === message.from) {
-            db.collection('messages')
-              .doc(message.id)
-              // .orderBy('timestamp', 'desc')
-              .get()
-              .then((doc) => {
-                // if (
-                //   // auth.currentUser.email === messageId.message.from.email &&
-                //   messageId.message.from.email !== email.email.email
-                // ) {
-                // console.log(doc.data(), 'sendChattingUserDOCDATA:')
-                setGetChattingUser(doc.data())
-                // }
-              })
-          }
-        }
-      })
-    }
-  })
+  //         if (
+  //           email.email.email === message.to.email &&
+  //           message.from === auth.currentUser.email
+  //         ) {
+  //           db.collection('messages')
+  //             .doc(message.id)
+  //             // .orderBy('timestamp', 'desc')
+  //             .get()
+  //             .then((doc) => {
+  //               // if (
+  //               //   // auth.currentUser.email === messageId.message.from.email &&
+  //               //   messageId.message.from.email !== email.email.email
+  //               // ) {
+  //               // console.log(doc.data(), 'sendChattingUserDOCDATA:')
+  //               // }
+  //             })
+  //           setGetChattingUser(true)
+  //         }
+  //       }
+  //     })
+  //   }
+  // })
 
-  if (getChattingUser)
-    console.log(
-      email.email.email,
-      // sendChattingUser,
-      getChattingUser,
-      '----getChattingUseremail:'
-    )
+  // if (getChattingUser)
+  //   console.log(
+  //     email.email.email,
+  //     // sendChattingUser,
+  //     getChattingUser,
+  //     '----getChattingUseremail:'
+  //   )
 
   return (
     <>
-      {sendChattingUser || getChattingUser ? (
+      {
         <main>
-          <div style={{ overflowY: 'auto', height: '240px' }}>
+          <div style={{ overflowY: 'auto', height: '355px', paddingLeft:'1%' }}>
             <PerfectScrollbar>
               {messages &&
-                messages.map((msg) => (
-                  // console.log(msg, '---------msg')
-                  <ChatMessage key={msg.id} message={msg} />
-                ))}
-              {/* <span ref={dummy}></span> */}
+                messages.map((msg) => {
+                  if (
+                    (email.email.email === msg.to.email &&
+                      msg.from === auth.currentUser.email) ||
+                    (msg.from === email.email.email &&
+                      msg.to.email === auth.currentUser.email)
+                  ) {
+                    return <ChatMessage key={msg.id} message={msg} />
+                  }
+                })}
             </PerfectScrollbar>
           </div>
         </main>
-      ) : (
-        ''
-      )}
+      }
 
       <form onSubmit={sendMessage}>
         <input

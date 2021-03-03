@@ -96,7 +96,7 @@ function Routing() {
                   postUserImages.push({ postUserImage: element.post.imageUrl })
                 }
               })
-              console.log(postsArray[0] && postsArray[0].email, postUserImages, '------src postUSerImgeas')
+              // console.log(postsArray[0] && postsArray[0].email, postUserImages, '------src postUSerImgeas')
               return (
                 <SingleItem
                   posts={posts}

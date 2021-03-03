@@ -97,7 +97,7 @@ function AllMessages(id) {
         <div
           style={{
             display: 'flex',
-            height: '300px'
+            height: '400px'
           }}>
           <div
             style={{
@@ -107,8 +107,11 @@ function AllMessages(id) {
               // paddingTop: '2%',
               paddingBottom: '3%',
               width: '40%',
-              height: '280px',
-              overflowY: 'auto'
+              height: '430px',
+              overflowY: 'auto',
+              borderRight: 'solid',
+              borderRightColor: '#DBDBDB',
+              paddingRight: '1%'
             }}>
             <PerfectScrollbar>
               {likePersons.length ? (
@@ -118,9 +121,9 @@ function AllMessages(id) {
                     // const currentAge = currentYear - person.years
 
                     return (
-                      <a key={id} href={`/allmessages/${person.emailAddress}`} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
+                      <a key={id} href={`/allmessages/${person.email}`} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
                         <div style={{paddingLeft:'3%', paddingTop:'3%'}}>
-                          <LikeUser email={person.emailAddress} />
+                          <LikeUser email={person.email} />
                         </div>
                         <div style={{ display: 'block', paddingLeft:'3%' }}>
                           <div style={{fontWeight:'bold', color:'#707070'}}>{person.firstName}</div>
@@ -169,7 +172,7 @@ function AllMessages(id) {
         </div>
       </div>
       <div>
-        <Pagination />
+        <Pagination location='/wholikesyou'/>
       </div>
       <Footer />
     </div>
