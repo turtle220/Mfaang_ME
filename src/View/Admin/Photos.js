@@ -121,7 +121,7 @@ export default function Photos({ user }) {
         }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           {/* section 1 */}
-          {posts.length && posts[0] && user.email === posts[0].post.userEmail? (
+          {posts.length && posts[0] && user.email === posts[0].post.userEmail ? (
             <img
               src={posts[0].post.imageUrl}
               style={{ width: '150px', height:'100px' }}

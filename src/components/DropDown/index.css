@@ -28,6 +28,7 @@
   font-size: 19px;
 }
 .dropdown-wrapper {
+  background-color:white;
   position: absolute;
   top: 100%;
   left: -70px;

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import ContactTop from '../../images/Contact/Contact-Top.svg';
-import ContactLeftCode from '../../images/Contact/Contact-LeftCode.svg';
-import ContactRightCode from '../../images/Contact/Contact-RightCode.svg';
-import ButtonBack from '../../images/button-back.svg';
-import LogoTwo from '../../images/Logo-two.svg';
+import ContactTop from '../../images/Contact/Contact-Top.svg'
+import ContactLeftCode from '../../images/Contact/Contact-LeftCode.svg'
+import ContactRightCode from '../../images/Contact/Contact-RightCode.svg'
+import ButtonBack from '../../images/button-back.svg'
+import LogoTwo from '../../images/Logo-two.svg'
 
-import './index.css';
+import './index.css'
 
 function Contact() {
   return (
@@ -46,7 +46,7 @@ function Contact() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Contact;
+export default Contact
