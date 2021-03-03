@@ -75,15 +75,15 @@ function Meet() {
             paddingTop: '5%',
             paddingBottom: '3%',
             width: '96%',
-            height: '720px',
-            overflowY: 'auto'
+            height: '100%'
+            // overflowY: 'auto'
           }}>
           <PerfectScrollbar containerRef={(el) => (ps.current = el)}>
-            {posts.length
-              ? posts.map(({ id, post }) => {
-                  return <Post key={id} id={id} post={post} />
-                })
-              : null}
+          {posts.length
+            ? posts.map(({ id, post }) => {
+                return <Post key={id} id={id} post={post} />
+              })
+            : null}
           </PerfectScrollbar>
         </div>
       </div>

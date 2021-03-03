@@ -124,14 +124,13 @@ export default function SignUp({ openLogin }) {
                 style={{
                   borderRadius: '5px',
                   borderColor: 'rgba(0, 0, 0, 0.26)',
-                  height: '100%',
+                  height: '130%',
                   paddingLeft: '4%',
                   width: '100%',
                   margin: '0, auto',
                   outline: '#FF9100'
                 }}></input>
-              <br></br>
-              <br></br>
+              <div style={{height:'10px'}}></div>              
               <input
                 placeholder='Password'
                 className='login_password'
@@ -139,14 +138,13 @@ export default function SignUp({ openLogin }) {
                 style={{
                   borderRadius: '5px',
                   borderColor: 'rgba(0, 0, 0, 0.26)',
-                  height: '100%',
+                  height: '130%',
                   paddingLeft: '4%',
                   width: '100%',
                   margin: '0, auto',
                   outline: 'none'
                 }}></input>
-              <br></br>
-              <br></br>
+                <div style={{height:'10px'}}></div>              
               <Button
                 variant='contained'
                 color='secondary'

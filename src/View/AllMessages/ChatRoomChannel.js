@@ -124,7 +124,6 @@ console.log(messages, '----messages:')
           message.to.email &&
           message.from
         ) {
-          // console.log(auth.currentUser.email, messageId.message.from.email, '--------compare:')
 
           if (email.email.email === message.from) {
             db.collection('messages')

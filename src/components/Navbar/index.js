@@ -114,11 +114,13 @@ export default function Navbar() {
 
   return (
     <div className='app_header'>
-      <img
-        src={LogoOne}
-        alt=''
-        style={{ paddingLeft: '10%', height: '50px', paddingTop: '9px' }}
-      />
+      <a href='/' style={{ paddingLeft: '10%', height: '50px', paddingTop: '9px' }}>
+        <img
+          src={LogoOne}
+          alt=''
+          
+        />
+      </a>
       <img src={HeaderConsoleCode} alt='' style={{ marginLeft: '-20%' }} />
       {emailVerified ? (
         <div className='info_avatar'>

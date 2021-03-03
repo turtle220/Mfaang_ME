@@ -25,7 +25,9 @@ function Home() {
 
       <img src={MainCode} style={{width:'100%', height:'600px', backgroundColor:'black'}} alt="" />
       
-      <button  style={{position:'absolute', zIndex: 9999, top: '170%', left: '85%', width: 100, height:40}}><a href="/login" style={{textDecoration:'none'}}> Deploy </a> </button>
+      <div>
+        <button  style={{position:'absolute', zIndex: 9999, width: 100, height:40, left:'89%', marginTop:'-8%'}}><a href="/login" style={{textDecoration:'none'}}> Deploy </a> </button>
+      </div>
       <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:390, paddingTop:'3%' }}>
         <div>
           <span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Why use Mfaang</span>

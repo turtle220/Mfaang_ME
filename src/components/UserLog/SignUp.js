@@ -141,33 +141,32 @@ export default function SignUp({ openLogin }) {
                     style={{
                       borderRadius: '5px',
                       borderColor: 'rgba(0, 0, 0, 0.26)',
-                      height: '100%',
+                      height: '130%',
                       paddingLeft: '4%',
                       width: '100%',
                       margin: '0, auto',
                       outline: '#FF9100'
                     }}></input>
-                  <br></br>
-                  <div style={{ display: 'flex', height: '67px' }}>
+                  {/* <br></br> */}
+                  <div style={{height:'10px'}}></div>
+                  <div style={{ display: 'flex', height:'130%' }}>
                     <input
                       placeholder='Email Address'
                       className='email_address_name'
                       style={{
                         borderRadius: '5px',
                         borderColor: 'rgba(0, 0, 0, 0.26)',
-                        height: '32px',
+                        height: '100%',
                         paddingLeft: '4%',
-                        marginTop: '5%',
-                        marginBottom: '5%',
                         width: '95%',
                         margin: '0, auto',
                         outline: 'none'
                       }}></input>
                     <span
                       style={{
-                        paddingTop: '6%',
                         paddingLeft: '2%',
                         paddingRight: '2%',
+                        paddingTop: '2%',
                         color: '#DBDBDB'
                       }}>
                       @
@@ -180,10 +179,8 @@ export default function SignUp({ openLogin }) {
                       style={{
                         borderRadius: '5px',
                         borderColor: 'rgba(0, 0, 0, 0.26)',
-                        height: '32px',
+                        height: '100%',
                         paddingLeft: '4%',
-                        marginTop: '5%',
-                        marginBottom: '5%',
                         width: '100%',
                         margin: '0, auto',
                         outline: 'none'
@@ -196,7 +193,7 @@ export default function SignUp({ openLogin }) {
                       <option value='netflix.com'>Netflix.com</option>
                     </datalist>
                   </div>
-                  <br></br>
+                  <div style={{height:'10px'}}></div>
                   <input
                     placeholder='Password'
                     className='signup_password'
@@ -204,7 +201,7 @@ export default function SignUp({ openLogin }) {
                     style={{
                       borderRadius: '5px',
                       borderColor: 'rgba(0, 0, 0, 0.26)',
-                      height: '100%',
+                      height: '130%',
                       paddingLeft: '4%',
                       width: '100%',
                       margin: '0, auto',

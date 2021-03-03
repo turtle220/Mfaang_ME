@@ -49,7 +49,7 @@ function Post({ id, post }) {
           />
         </a>
       </div>
-      <div className='desc'>
+      <div className='desc' style={{height:'93px'}}>
         <div
           style={{
             display: 'flex',
