@@ -40,7 +40,8 @@ function WhoLikesYou() {
                   .doc(doc.data().likeUserEmail)
                   .get()
                   .then((doc) => {
-                    userLikeArray.push(doc.data())
+                    console.log(doc, '----wholikesyou:')
+                    userLikeArray.push({person: doc.data(), id: doc.id})
                   })
               }
 
@@ -83,7 +84,7 @@ function WhoLikesYou() {
           <hr style={{ color: '#8f8f8f' }}></hr>
         </div>
         {likePersons.length ? (
-          likePersons.map((person, id) => {
+          likePersons.map(({person, id}) => {
             // if (person) {
               console.log(person, likePersons, '----person:')
             const onDelete = () => {
@@ -126,7 +127,7 @@ function WhoLikesYou() {
                   paddingBottom: '5%'
                 }}>
                 <div style={{ width: '75%', display: 'flex' }}>
-                  <LikeUser email={person.email} />
+                  <LikeUser email={person.email} id={id}/>
                   <div
                     style={{
                       paddingTop: '5%',

@@ -77,7 +77,7 @@ function Routing() {
               const postUserImages = []
 
               posts.forEach((element) => {
-                if (element.id === match.params.id) {
+                if (element.id === match.params.id || element.post.userEmail === match.params.id) {
                   postsArray.push({
                     imageUrl: element.post.imageUrl,
                     imageName: element.post.imageName,

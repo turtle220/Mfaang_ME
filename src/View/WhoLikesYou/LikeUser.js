@@ -12,12 +12,14 @@ import Pagination from '../../components/Pagination/index'
 import Delete from '../../images/button-delete.svg'
 // import BackButton from '../../images/button-boldback.svg';
 import imageTest1 from '../../images/test(1).jpg'
-import { SortOutlined } from '@material-ui/icons'
+import { Dns, SortOutlined } from '@material-ui/icons'
 
-function LikeUser({ email }) {
+function LikeUser({ email, id }) {
   // const [likePersons, setLikePersons] = useState([])
+
   const [image, setImage] = useState('')
-console.log(email, '---email:');
+  const [postId, setPostId] = useState('')
+  console.log(email, '---email:')
 
   useEffect(() => {
     if (image == '') {
@@ -33,16 +35,18 @@ console.log(email, '---email:');
   return (
     <>
       {image ? (
-        <img
-          src={image}
-          alt={image}
-          style={{
-            width: '100px',
-            height: '100px',
-            color: '#8f8f8f',
-            borderRadius: '10px'
-          }}
-        />
+        <a href={`/singleitem/${id}`}>
+          <img
+            src={image}
+            alt={image}
+            style={{
+              width: '100px',
+              height: '100px',
+              color: '#8f8f8f',
+              borderRadius: '10px'
+            }}
+          />
+        </a>
       ) : (
         <div
           style={{
