@@ -32,6 +32,87 @@ function Post({ id, post }) {
     }
   }, [userProfile])
 
+  const isLiked = async () => {
+    const likeUserArray = []
+    if (auth.currentUser.emailVerified && auth.currentUser && post.userEmail) {
+      // email: post user email
+      const snapshot = await db
+        .collection('UserProfile')
+        .doc(post.userEmail)
+        .collection('wholikesyou')
+        .get()
+
+      for (let i = 0; i < snapshot.docs.length; i++) {
+        const doc = snapshot.docs[i]
+        likeUserArray.push(doc.data())
+      }
+      let flag = false
+
+      if (likeUserArray) {
+        likeUserArray.forEach((element) => {
+          if (element.likeUserEmail === auth.currentUser.email) {
+            flag = true
+          }
+        })
+        if (!flag) {
+          db.collection('UserProfile')
+            .doc(post.userEmail)
+            .collection('wholikesyou')
+            .add({
+              likeUserEmail: auth.currentUser.email
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+
+          db.collection('UserProfile')
+            .doc(auth.currentUser.email)
+            .collection('wholikesyou')
+            .add({
+              likeUserEmail: post.userEmail
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        } else {
+          // db.collection('UserProfile')
+          //   .doc(auth.currentUser.email)
+          //   .collection('wholikesyou')
+          //   .add({
+          //     likeUserEmail: auth.currentUser.email
+          //   })
+          //   .catch((err) => {
+          //     console.log(err)
+          //   })
+        }
+        console.log('----Updated')
+      }
+      if (!likeUserArray) {
+        db.collection('UserProfile')
+          .doc(post.userEmail)
+          .collection('wholikesyou')
+          .add({
+            likeUserEmail: auth.currentUser.email
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        db.collection('UserProfile')
+          .doc(auth.currentUser.email)
+          .collection('wholikesyou')
+          .add({
+            likeUserEmail: post.userEmail
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        console.log('---------created')
+      }
+    }
+  }
+
   return (
     <div className='gallery'>
       <div
@@ -111,7 +192,7 @@ function Post({ id, post }) {
           </div>
           <div style={{ paddingLeft: '3%', display: 'flex', width: '30%' }}>
             <button
-              onClick={() => setIsToggle(!isToggle)}
+              onClick={() => {setIsToggle(!isToggle); isLiked()}}
               style={{
                 cursor: 'pointer',
                 outline: 'none',

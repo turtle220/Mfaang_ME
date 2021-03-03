@@ -9,7 +9,7 @@ export default function Pagination({location}) {
         display: 'flex',
         justifyContent: 'space-between',
         paddingLeft: '10%',
-        width: '91%',
+        width: '90%',
         paddingTop: '5%',
       }}>
       <a
