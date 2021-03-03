@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 import './index.css'
 import { db, auth, storage } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import MembersFrom from '../../images/Home/MembersFrom.svg'
-import imageTest1 from '../../images/test(1).jpg'
 import Post from './post'
+// import imageTest1 from '../../images/test(1).jpg'
 
 function Meet() {
   const ps = useRef()
   const [posts, setPosts] = useState([])
   const [userProfile, setUserProfile] = useState([])
+  const [uniqueUser, setUniqueUser] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -36,6 +37,26 @@ function Meet() {
       unsubscribe()
     }
   }, [posts])
+
+  //Unique Function
+  useEffect(() => {
+    if (!uniqueUser.length) {
+      if (posts.length) {
+        const postEmailArray = []
+        const uniqueUserArray = []
+        for (let i = 0; i < posts.length; i++) {
+          const element = posts[i]
+          if (!postEmailArray.includes(element.post.userEmail)) {
+            postEmailArray.push(element.post.userEmail)
+            uniqueUserArray.push(element)
+          }
+        }
+        console.log(uniqueUserArray, postEmailArray, '--------UniqueFunction:')
+        setUniqueUser(uniqueUserArray)
+      }
+    }
+  })
+  // if(uniqueUser && posts)console.log(posts, uniqueUser, '------------------uniquUser:')
 
   return (
     <div>
@@ -79,11 +100,30 @@ function Meet() {
             // overflowY: 'auto'
           }}>
           <PerfectScrollbar containerRef={(el) => (ps.current = el)}>
-          {posts.length
+            {uniqueUser.length ? (
+              uniqueUser.map(({ id, post }) => {
+                return <Post key={id} id={id} post={post} />
+              })
+            ) : (
+              <></>
+            )}
+            {/* {posts.length
+              ? posts.map(({ id, post }) => {
+                  const postArray = []
+                  for (i = 0; i < posts.length; i++) {
+                    const element = posts[i]
+                    if (!postArray.includes(element.post.userEmail)) {
+                      postArray.push(element)
+                    }
+                  }
+                  return <Post key={id} id={id} post={post} />
+                })
+              : null} */}
+            {/* {posts.length
             ? posts.map(({ id, post }) => {
                 return <Post key={id} id={id} post={post} />
               })
-            : null}
+            : null} */}
           </PerfectScrollbar>
         </div>
       </div>

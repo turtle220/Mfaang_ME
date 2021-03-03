@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 const FooterEx = () => (
-  <div style={{ margin: 'auto', textAlign: 'left', backgroundColor:'#F8F8F8', paddingLeft:'10%', paddingTop:'0.5%', marginTop:'5%', position:'relative' }}>
+  <div style={{ margin: 'auto', textAlign: 'left', backgroundColor:'#F8F8F8', paddingLeft:'10%', paddingTop:'0.5%', marginTop:'3%', position:'relative' }}>
     <Grid container style={{justify:'left', spacing:5}} >
       <Grid item xs={12} sm={6} md={3}>
         <Typography align={'left'} gutterBottom color={'textSecondary'} style={{color:'#0000008a', fontSize:'16px', fontFamily:'system-ui', fontWeight:'bold'}}>
