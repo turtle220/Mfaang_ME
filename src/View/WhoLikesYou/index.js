@@ -115,15 +115,18 @@ function WhoLikesYou() {
                             .delete()
                         }
                         // remove the auth user email on likeuser profile
+                        const likeUser = doc.data().likeUserEmail;
+
                         db.collection('UserProfile')
-                          .doc(doc.data().likeUserEmail)
-                          .collection('wholikesyou')
-                          .get()
-                          .then((snapshot) => {
-                            snapshot.docs.map((doc) => {
+                        .doc(likeUser)
+                        .collection('wholikesyou')
+                        .get()
+                        .then((snapshot) => {
+                          snapshot.docs.map((doc) => {
+                              // console.log(doc.data().likeUserEmail, auth.currentUser.email,'----ondelete')
                               if(auth.currentUser.email === doc.data().likeUserEmail) {
                                 db.collection('UserProfile')
-                                .doc(doc.data().likeUserEmail)
+                                .doc(likeUser)
                                 .collection('wholikesyou')
                                 .doc(doc.id)
                                 .delete()
@@ -136,7 +139,7 @@ function WhoLikesYou() {
 
               setTimeout(() => {
                 window.location.reload()
-              }, 2000)
+              }, 5000)
             }
 
             return (

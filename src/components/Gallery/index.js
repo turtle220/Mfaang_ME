@@ -12,6 +12,25 @@ export default () => {
   const chevronWidth = 20
   const [posts, setPosts] = useState([])
   const [userProfile, setUserProfile] = useState([])
+  const [uniqueUser, setUniqueUser] = useState('')
+
+  //Unique Function
+  useEffect(() => {
+    if (!uniqueUser.length) {
+      if (posts.length) {
+        const postEmailArray = []
+        const uniqueUserArray = []
+        for (let i = 0; i < posts.length; i++) {
+          const element = posts[i]
+          if (!postEmailArray.includes(element.post.userEmail)) {
+            postEmailArray.push(element.post.userEmail)
+            uniqueUserArray.push(element)
+          }
+        }
+        setUniqueUser(uniqueUserArray)
+      }
+    }
+  })
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -29,7 +48,6 @@ export default () => {
           })
       }
     })
-    // console.log('----posts:', posts);
     return () => {
       unsubscribe()
     }
@@ -51,8 +69,8 @@ export default () => {
         rightChevron={<img src={NextButtonIcon} alt='' />}
         outsideChevron
         chevronWidth={chevronWidth}>
-        {posts.length
-          ? posts.map(({ id, post }) => {
+        {uniqueUser.length
+          ? uniqueUser.map(({ id, post }) => {
               return (
                 <div style={{ height: 270, width: '100%', background: '#EEE' }}>
                   <SingleImage key={id} id={id} post={post} />
@@ -60,29 +78,6 @@ export default () => {
               )
             })
           : null}
-        {/* <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div>
-        <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div>
-        <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div>
-        <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div>
-        <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div>
-        <div style={{ height: 270, width: '100%', background: '#EEE' }}>
-          <img src={imageTest1} style={{ width: '100%', height: 270 }} alt='' />
-        </div> */}
-        {/* <div style={{ height: 200, background: '#EEE' }}></div>
-        <div style={{ height: 200, background: '#EEE' }}></div>
-        <div style={{ height: 200, background: '#EEE' }}> </div>
-        <div style={{ height: 200, background: '#EEE' }}> </div>
-        <div style={{ height: 200, background: '#EEE' }}> </div> */}
       </ItemsCarousel>
     </div>
   )

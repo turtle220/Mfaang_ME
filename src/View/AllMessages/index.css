@@ -34,13 +34,18 @@
   background: #8f8f8f;
   align-self: flex-end;
   justify-content: space-between;
-  border-radius: 6px;
+  border-radius: 5px;
+  font-weight: 600;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .received p {
   /* background: #e5e5ea; */
   color: #8f8f8f;
   justify-content: space-between;
-
+  font-weight: 600;
+  padding-left: 6px;
+  padding-right: 6px;
   /* float: left;
   padding-left: 3%; */
 }

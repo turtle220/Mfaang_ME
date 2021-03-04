@@ -93,7 +93,7 @@ export default function Photos({ user }) {
   }
 
   if (progress === 100) {
-    setTimeout(() => window.location.reload(), 1000)
+    setTimeout(() => window.location.reload(), 2000)
   }
   return (
     <div className='photos'>

@@ -51,7 +51,7 @@ function Account({ user }) {
     // console.log('-----accountUser:', firstName);
     if (
       firstName &&
-      middle &&
+      // middle &&
       lastName &&
       yourGender &&
       // months &&
@@ -59,8 +59,8 @@ function Account({ user }) {
       years &&
       emailAddress &&
       phone &&
-      address1 &&
-      address2 &&
+      // address1 &&
+      // address2 &&
       city &&
       state &&
       country &&

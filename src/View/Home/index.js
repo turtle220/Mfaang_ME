@@ -15,7 +15,7 @@ function Home() {
         <img src={MembersFrom} alt="" style={{paddingTop:'2%', width:'90%'}}/>
       </div>
 
-      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '5%', paddingBottom:'3%' }}>
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '3%', paddingBottom:'3%' }}>
         <div>
           <span style={{fontSize:'26px', fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>Say Hello to your tech fellows </span>
           <span style={{fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>  {'{'} requires company email to sign up {'}'}</span>
@@ -23,12 +23,12 @@ function Home() {
         <ImageGallery style={{maxWidth:'95%'}} />
       </div>
 
-      <img src={MainCode} style={{width:'100%', height:'600px', backgroundColor:'black'}} alt="" />
+      <img src={MainCode} style={{width:'100%', height:'520px', backgroundColor:'black'}} alt="" />
       
       <div>
         <button  style={{position:'absolute', zIndex: 9999, width: 100, height:40, left:'89%', marginTop:'-8%'}}><a href="/login" style={{textDecoration:'none'}}> Deploy </a> </button>
       </div>
-      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:310, paddingTop:'3%' }}>
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:365, paddingTop:'3%' }}>
         <div>
           <span style={{fontSize:'26px', fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>Why use Mfaang</span>
         </div>
