@@ -32,6 +32,22 @@ function Post({ id, post }) {
     }
   }, [userProfile])
 
+  useEffect(() => {
+    if (!isToggle) {
+      db.collection('UserProfile')
+        .doc(post.userEmail)
+        .collection('wholikesyou')
+        .get()
+        .then((doc) => {
+          if(doc.data().heart && doc.data().heart === true) {
+            setIsToggle(true);
+          }
+        })
+        .catch((err) => {
+          // console.log('getting username error!', err.message)
+        })
+    }
+  })
   const isLiked = async () => {
     const likeUserArray = []
     if (auth.currentUser.emailVerified && auth.currentUser && post.userEmail) {
@@ -59,7 +75,8 @@ function Post({ id, post }) {
             .doc(post.userEmail)
             .collection('wholikesyou')
             .add({
-              likeUserEmail: auth.currentUser.email
+              likeUserEmail: auth.currentUser.email,
+              heart: true
             })
             .catch((err) => {
               console.log(err)
@@ -75,15 +92,6 @@ function Post({ id, post }) {
               console.log(err)
             })
         } else {
-          // db.collection('UserProfile')
-          //   .doc(auth.currentUser.email)
-          //   .collection('wholikesyou')
-          //   .add({
-          //     likeUserEmail: auth.currentUser.email
-          //   })
-          //   .catch((err) => {
-          //     console.log(err)
-          //   })
         }
         console.log('----Updated')
       }
@@ -92,7 +100,8 @@ function Post({ id, post }) {
           .doc(post.userEmail)
           .collection('wholikesyou')
           .add({
-            likeUserEmail: auth.currentUser.email
+            likeUserEmail: auth.currentUser.email,
+            heart: true
           })
           .catch((err) => {
             console.log(err)
@@ -107,7 +116,6 @@ function Post({ id, post }) {
           .catch((err) => {
             console.log(err)
           })
-
         console.log('---------created')
       }
     }
@@ -130,7 +138,7 @@ function Post({ id, post }) {
           />
         </a>
       </div>
-      <div className='desc' style={{height:'93px'}}>
+      <div className='desc' style={{ height: '93px' }}>
         <div
           style={{
             display: 'flex',
@@ -190,9 +198,11 @@ function Post({ id, post }) {
               </div>
             </div>
           </div>
-          <div style={{ paddingLeft: '3%', display: 'flex', width: '30%' }}>
+          <div style={{ paddingLeft: '13.5%', display: 'flex', width: '32%' }}>
             <button
-              onClick={() => {setIsToggle(!isToggle); isLiked()}}
+              onClick={() => {
+                isLiked()
+              }}
               style={{
                 cursor: 'pointer',
                 outline: 'none',

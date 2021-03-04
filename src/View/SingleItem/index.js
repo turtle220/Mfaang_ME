@@ -407,7 +407,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
         </div>
         <div
           style={{
-            width: '60%',
+            width: '90%',
             paddingLeft: '10%',
             paddingTop: '2%',
             paddingBottom: '2%'

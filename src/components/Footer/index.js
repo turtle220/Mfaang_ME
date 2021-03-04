@@ -72,7 +72,7 @@ const FooterEx = () => (
       </Grid>
     </Grid>
     {/* <Divider style={{ margin: '18px auto' }} /> */}
-    <div style={{width:'81%', color:'#8f8f8f', paddingTop: '1%', textAlign:'center'}}><hr style={{borderColor:'#8f8f8f42'}}></hr></div>
+    <div style={{width:'81%', color:'#8f8f8f', paddingTop: '1%', textAlign:'center'}}><hr style={{borderRight:'none', borderLeft:'none', borderBottom:'none', borderTopColor:'#8f8f8f2b'}}></hr></div>
     <Typography variant='caption' align={'center'} style={{color:'#8F8F8F', fontSize:'16px', fontFamily:'system-ui', fontWeight:'100',  paddingLeft:'35%'}}>
       @ 2021 Mfaang.com All rights reserved
     </Typography>

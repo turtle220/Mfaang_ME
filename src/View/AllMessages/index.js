@@ -92,9 +92,15 @@ function AllMessages(id) {
               {likePersons.length ? (
                 likePersons.map((person, id) => {
                   if (person) {
+                    // if(window.location.href)
+                    let hightlight = '';
+                    // console.log(window.location.href.split('/')[4], person.email, '----href:')
+                    if(window.location.href.split('/')[4] === person.email || window.location.href.split('/')[3] === person.email) {
+                      hightlight = 'highlight';
+                    }
 
                     return (
-                      <a key={id} href={`/allmessages/${person.email}`} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
+                      <a key={id} href={`/allmessages/${person.email}`} className={hightlight} style={{ textDecoration:'none', display: 'flex', backgroundColor:'#DBDBDB', marginTop:'5%', borderRadius:'7px', height:'60px', cursor: 'pointer'}}>
                         <div style={{paddingLeft:'3%', paddingTop:'3%'}}>
                           <LikeUser email={person.email} />
                         </div>

@@ -2,19 +2,19 @@
   flex: 1;
   border: none;
   padding: 10px;
-  border-top: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
   height: 55px;
   outline: none;
-  width: 90%;
+  /* width: 90%; */
 }
 
 .post_button {
-  height: 45px;
-  width: 10%;
+  height: 55px;
+  /* width: 10%; */
   outline: none;
   background-color: white;
   border: none;
-  border-top: solid 1px lightgray;
+  /* border-top: solid 1px lightgray; */
   cursor: pointer;
 }
 
@@ -62,3 +62,13 @@
 /* .sent .messagecontent .receivedtext {
   padding-right: 2%;
 } */
+
+.highlight {
+  /* background-color: #fff2ac;
+  background-image: linear-gradient(to right, #ffe359 0%, #fff2ac 100%); */
+  border: solid 2px;
+  border-color: #8f8f8f;
+}
+a:active {
+  background-color: yellow;
+}

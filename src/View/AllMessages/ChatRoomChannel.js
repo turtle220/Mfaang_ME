@@ -21,9 +21,7 @@ function ChatRoomChannel(email) {
   const [user] = useAuthState(auth)
 
   return (
-    <div
-      className='App'
-      style={{ paddingTop: '2%', width: '100%' }}>
+    <div className='App' style={{ paddingTop: '2%', width: '100%' }}>
       <section>
         {/* <PerfectScrollbar> */}
         <ChatRoom email={email} />
@@ -71,7 +69,6 @@ function ChatRoom(email) {
     })
 
     setFormValue('')
-    // dummy.current.scrollIntoView({ behavior: 'smooth' })
   }
 
   //set messageId
@@ -156,7 +153,8 @@ function ChatRoom(email) {
     <>
       {
         <main>
-          <div style={{ overflowY: 'auto', height: '355px', paddingLeft:'1%' }}>
+          <div
+            style={{ overflowY: 'auto', height: '355px', paddingLeft: '1%' }}>
             <PerfectScrollbar>
               {messages &&
                 messages.map((msg) => {
@@ -175,16 +173,21 @@ function ChatRoom(email) {
       }
 
       <form onSubmit={sendMessage}>
-        <input
-          value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
-          placeholder='say something nice'
-          className='post_input'
-        />
-
-        <button type='submit' disabled={!formValue} className='post_button'>
-          <img src={PostButton} alt='' style={{ width: '22px' }} />
-        </button>
+        <div style={{display:'flex', outline: 'none', backgroundColor: 'white', border: 'none', borderTop: 'solid 1px lightgray'}}>
+          <div style={{width:'90%'}}>
+            <input
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder='say something nice'
+              className='post_input'
+            />
+          </div>
+          <div style={{width:'10%', textAlign:'center'}}>
+            <button type='submit' disabled={!formValue} className='post_button'>
+              <img src={PostButton} alt='' style={{ width: '23px' }} />
+            </button>
+          </div>
+        </div>
       </form>
     </>
   )
@@ -192,13 +195,10 @@ function ChatRoom(email) {
 
 function ChatMessage(props) {
   const { text, uid, photoURL, user, currentTime } = props.message
-  // console.log(props.message, '--m,')
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
-  // console.log(text, '----text:')
   return (
     <div>
       <div className={`message ${messageClass}`}>
-        {/* <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} /> */}
         <div className='messagecontent'>
           <p
             style={{
