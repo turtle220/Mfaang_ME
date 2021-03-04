@@ -40,36 +40,21 @@
   padding-right: 6px;
 }
 .received p {
-  /* background: #e5e5ea; */
   color: #8f8f8f;
   justify-content: space-between;
   font-weight: 600;
   padding-left: 6px;
   padding-right: 6px;
-  /* float: left;
-  padding-left: 3%; */
 }
 
 .received .messagecontent {
-  /* padding-left:2% !important; */
-  /* justify-content: none !important; */
   float: left;
   display: flex;
   padding-top: 1%;
   width: 100%;
 }
 
-/* .sent .messagecontent .receivedtext {
-  padding-right: 2%;
-} */
-
 .highlight {
-  /* background-color: #fff2ac;
-  background-image: linear-gradient(to right, #ffe359 0%, #fff2ac 100%); */
   border: solid 2px;
   border-color: #8f8f8f;
 }
-
-/* a:active {
-  background-color: yellow;
-} */

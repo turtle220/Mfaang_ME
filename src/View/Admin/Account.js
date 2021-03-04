@@ -108,13 +108,14 @@ function Account({ user }) {
           display: 'block',
           paddingTop: '5%'
         }}>
-        <div>
+        <div style={{paddingBottom:'2%'}}>
           <span
             style={{
               fontSize: '26px',
               fontFamily: 'system-ui',
               fontWeight: '500',
-              color: '#0000008a'
+              color: '#0000008a',
+              // paddingbottom:'2%'
             }}>
             Personal info{' '}
           </span>
