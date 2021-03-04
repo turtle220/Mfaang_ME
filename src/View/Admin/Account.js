@@ -136,7 +136,7 @@ function Account({ user }) {
         <div>
           <span
             style={{
-              fontSize: '30px',
+              fontSize: '26px',
               fontFamily: 'system-ui',
               fontWeight: '500',
               color: '#0000008a'
@@ -149,7 +149,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -217,7 +217,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -287,7 +287,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -430,7 +430,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -460,7 +460,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -490,7 +490,7 @@ function Account({ user }) {
             <div style={{ paddingBottom: '2%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'
@@ -622,7 +622,7 @@ function Account({ user }) {
             }}>
             <span
               style={{
-                fontSize: '26px',
+                fontSize: '24px',
                 fontFamily: 'system-ui',
                 fontWeight: '500',
                 color: '#0000008a'
@@ -633,7 +633,7 @@ function Account({ user }) {
             <div style={{ paddingTop: '5%' }}>
               <span
                 style={{
-                  fontSize: '26px',
+                  fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
                   color: '#0000008a'

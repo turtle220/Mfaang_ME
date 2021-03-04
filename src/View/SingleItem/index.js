@@ -170,7 +170,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
-              width: '50%'
+              width: '40%'
             }}>
             {/* <span
               style={{
@@ -186,7 +186,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              Company Name:{' '}
+              {/* Company Name:{' '} */}
               {userProfile &&
                 userProfile.emailAddress &&
                 userProfile.emailAddress.split('@')[1]}
@@ -204,7 +204,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              Gender: {userProfile && userProfile.gender}
+               {userProfile && userProfile.yourGender}
             </p>
             {/* </span> */}
             {/* <span
@@ -220,7 +220,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              Age: {userProfile && userProfile.years}
+              {userProfile && userProfile.years}
             </p>
             {/* </span> */}
             {/* <span
@@ -236,7 +236,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              City: {userProfile && userProfile.city}
+              {userProfile && userProfile.city}
             </p>
             {/* </span> */}
             {/* <span
@@ -252,7 +252,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 paddingTop: '1%',
                 whiteSpace: 'nowrap'
               }}>
-              State: {userProfile && userProfile.state}
+              {userProfile && userProfile.state}
             </p>
             {/* </span> */}
             {/* <span
@@ -269,7 +269,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
                 whiteSpace: 'nowrap'
                 // diplay: 'flex'
               }}>
-              Country: {userProfile && userProfile.country}
+              {userProfile && userProfile.country}
             </p>
             {/* </span> */}
           </div>
@@ -412,10 +412,12 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             paddingTop: '2%',
             paddingBottom: '2%'
           }}>
-          <hr></hr>
+          <hr style={{borderColor:'#8f8f8f42'}}></hr>
         </div>
         <div style={{ color: '#8F8F8F', paddingLeft: '10%', width: '90%' }}>
-          {userProfile ? userProfile.introduction : ''}
+          <div style={{border:'solid 1px #8f8f8f42', height: '150px'}}>
+            {userProfile ? userProfile.introduction : ''}
+          </div>
           {/* Item Introduction from owner: Lorem ipsum dolor sit amet, consetetur
           sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam

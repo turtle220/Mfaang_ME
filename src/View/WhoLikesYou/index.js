@@ -17,6 +17,7 @@ import imageTest1 from '../../images/test(1).jpg'
 import LikeUser from './LikeUser'
 import AllMEessage from '../AllMessages/index'
 
+let flag = false
 function WhoLikesYou() {
   const dispatch = useDispatch()
 
@@ -40,11 +41,10 @@ function WhoLikesYou() {
                   .doc(doc.data().likeUserEmail)
                   .get()
                   .then((doc) => {
-                    console.log(doc, '----wholikesyou:')
-                    userLikeArray.push({person: doc.data(), id: doc.id})
+                    // console.log(doc, '----wholikesyou:')
+                    userLikeArray.push({ person: doc.data(), id: doc.id })
                   })
               }
-
               setTimeout(() => {
                 setLikePersons(userLikeArray)
               }, 2000)
@@ -58,6 +58,7 @@ function WhoLikesYou() {
     }
   })
 
+  console.log(likePersons, '------likePersons:')
   return (
     <div>
       <Navbar />
@@ -66,9 +67,9 @@ function WhoLikesYou() {
         <div style={{ paddingLeft: '10%', width: '90%', paddingTop: '5%' }}>
           <span
             style={{
-              fontSize: '30px',
+              fontSize: '26px',
               fontFamily: 'system-ui',
-              fontWeight: '500',
+              fontWeight: '700',
               color: '#0000008a'
             }}>
             Who likes you{' '}
@@ -84,9 +85,8 @@ function WhoLikesYou() {
           <hr style={{ color: '#8f8f8f' }}></hr>
         </div>
         {likePersons.length ? (
-          likePersons.map(({person, id}) => {
+          likePersons.map(({ person, id }) => {
             // if (person) {
-              console.log(person, likePersons, '----person:')
             const onDelete = () => {
               alert('Are you sure you want to delete this user?')
               db.collection('UserProfile')
@@ -95,6 +95,7 @@ function WhoLikesYou() {
                 .get()
                 .then((snapshot) => {
                   snapshot.docs.map((doc) =>
+                    // console.log(doc.data().likeUserEmail, person, '-----shanpshot')
                     db
                       .collection('UserProfile')
                       .doc(auth.currentUser.email)
@@ -102,17 +103,40 @@ function WhoLikesYou() {
                       .doc(doc.id)
                       .get()
                       .then((doc) => {
-                        if (person.email === doc.data().likeUserEmail) {
+                        // remove the like user email on my profile
+                        if (
+                          person.email === doc.data().likeUserEmail ||
+                          person.emailAddress === doc.data().likeUserEmail
+                        ) {
                           db.collection('UserProfile')
                             .doc(auth.currentUser.email)
                             .collection('wholikesyou')
                             .doc(doc.id)
                             .delete()
                         }
+                        // remove the auth user email on likeuser profile
+                        db.collection('UserProfile')
+                          .doc(doc.data().likeUserEmail)
+                          .collection('wholikesyou')
+                          .get()
+                          .then((snapshot) => {
+                            snapshot.docs.map((doc) => {
+                              if(auth.currentUser.email === doc.data().likeUserEmail) {
+                                db.collection('UserProfile')
+                                .doc(doc.data().likeUserEmail)
+                                .collection('wholikesyou')
+                                .doc(doc.id)
+                                .delete()
+                              }
+                            })
+                          })
                       })
                   )
                 })
-              setTimeout(window.location.reload(), 90000)
+
+              setTimeout(() => {
+                window.location.reload()
+              }, 2000)
             }
 
             return (
@@ -127,7 +151,7 @@ function WhoLikesYou() {
                   paddingBottom: '5%'
                 }}>
                 <div style={{ width: '75%', display: 'flex' }}>
-                  <LikeUser email={person.email} id={id}/>
+                  <LikeUser email={person.email} id={id} />
                   <div
                     style={{
                       paddingTop: '5%',

@@ -72,9 +72,9 @@ function Meet() {
           <div>
             <span
               style={{
-                fontSize: '30px',
+                fontSize: '26px',
                 fontFamily: 'system-ui',
-                fontWeight: '500',
+                fontWeight: '700',
                 color: '#0000008a'
               }}>
               Members from

@@ -83,9 +83,9 @@ function AllMessages(id) {
         <div>
           <span
             style={{
-              fontSize: '30px',
+              fontSize: '26px',
               fontFamily: 'system-ui',
-              fontWeight: '500',
+              fontWeight: '700',
               color: '#0000008a'
             }}>
             All Messages{' '}
@@ -107,7 +107,7 @@ function AllMessages(id) {
               // paddingTop: '2%',
               paddingBottom: '3%',
               width: '40%',
-              height: '430px',
+              height: '433px',
               overflowY: 'auto',
               borderRight: 'solid',
               borderRightColor: '#DBDBDB',

@@ -140,7 +140,7 @@ function Post({ id, post }) {
             {userProfile ? userProfile.firstName : ''}
           </p>
           <p style={{ color: '#8F8F8F' }}>
-            {userProfile ? userProfile.gender : ''}
+            {userProfile ? userProfile.yourGender : ''}
           </p>
         </div>
         <div style={{ display: 'flex' }}>

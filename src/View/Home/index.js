@@ -11,14 +11,14 @@ function Home() {
   return (
     <div>
       <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '5%' }}>
-        <div><span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Members from</span></div>
+        <div><span style={{fontSize:'26px', fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>Members from</span></div>
         <img src={MembersFrom} alt="" style={{paddingTop:'2%', width:'90%'}}/>
       </div>
 
       <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', paddingTop: '5%', paddingBottom:'3%' }}>
         <div>
-          <span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Say Hello to your tech fellows </span>
-          <span style={{fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>  {'{'} requires company email to sign up {'}'}</span>
+          <span style={{fontSize:'26px', fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>Say Hello to your tech fellows </span>
+          <span style={{fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>  {'{'} requires company email to sign up {'}'}</span>
         </div>
         <ImageGallery style={{maxWidth:'95%'}} />
       </div>
@@ -28,9 +28,9 @@ function Home() {
       <div>
         <button  style={{position:'absolute', zIndex: 9999, width: 100, height:40, left:'89%', marginTop:'-8%'}}><a href="/login" style={{textDecoration:'none'}}> Deploy </a> </button>
       </div>
-      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:390, paddingTop:'3%' }}>
+      <div style={{ backgroundColor: 'white', paddingLeft: '10%', display:'block', height:310, paddingTop:'3%' }}>
         <div>
-          <span style={{fontSize:'30px', fontFamily:'system-ui', fontWeight:'500', color:'#0000008a'}}>Why use Mfaang</span>
+          <span style={{fontSize:'26px', fontFamily:'system-ui', fontWeight:'700', color:'#0000008a'}}>Why use Mfaang</span>
         </div>
         <img src={UseMffang} alt="" style={{width:'90%', paddingTop:'2%'}} />
       </div>

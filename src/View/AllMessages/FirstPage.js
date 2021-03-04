@@ -85,7 +85,7 @@ function FirstPage() {
         <div>
           <span
             style={{
-              fontSize: '30px',
+              fontSize: '26px',
               fontFamily: 'system-ui',
               fontWeight: '500',
               color: '#0000008a'
@@ -109,7 +109,7 @@ function FirstPage() {
               // paddingTop: '2%',
               paddingBottom: '3%',
               width: '40%',
-              height: '430px',
+              height: '433px',
               overflowY: 'auto',
               borderRight: 'solid',
               borderRightColor: '#DBDBDB',
