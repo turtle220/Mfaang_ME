@@ -82,9 +82,6 @@ function Routing() {
                     imageUrl: element.post.imageUrl,
                     imageName: element.post.imageName,
                     email: element.post.userEmail
-                    // username: element.post.username,
-                    // caption: element.post.caption,
-                    // count: element.post.count ? element.post.count : 0
                   })
                 }
               })

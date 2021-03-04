@@ -2,22 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Avatar, Button } from '@material-ui/core'
-import { Link, useHistory, useParams, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import './index.css'
 import { db, auth, storage } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
-import Post from '../Meet/post'
 import Pagination from '../../components/Pagination/index'
 import Delete from '../../images/button-delete.svg'
-// import BackButton from '../../images/button-boldback.svg';
-import imageTest1 from '../../images/test(1).jpg'
 import LikeUser from './LikeUser'
-import AllMEessage from '../AllMessages/index'
 
-let flag = false
 function WhoLikesYou() {
   const dispatch = useDispatch()
 
@@ -41,7 +35,6 @@ function WhoLikesYou() {
                   .doc(doc.data().likeUserEmail)
                   .get()
                   .then((doc) => {
-                    // console.log(doc, '----wholikesyou:')
                     userLikeArray.push({ person: doc.data(), id: doc.id })
                   })
               }
@@ -95,7 +88,6 @@ function WhoLikesYou() {
                 .get()
                 .then((snapshot) => {
                   snapshot.docs.map((doc) =>
-                    // console.log(doc.data().likeUserEmail, person, '-----shanpshot')
                     db
                       .collection('UserProfile')
                       .doc(auth.currentUser.email)
@@ -123,7 +115,6 @@ function WhoLikesYou() {
                         .get()
                         .then((snapshot) => {
                           snapshot.docs.map((doc) => {
-                              // console.log(doc.data().likeUserEmail, auth.currentUser.email,'----ondelete')
                               if(auth.currentUser.email === doc.data().likeUserEmail) {
                                 db.collection('UserProfile')
                                 .doc(likeUser)
@@ -181,7 +172,6 @@ function WhoLikesYou() {
                     color='secondary'
                     size='medium'
                     href={`/allmessages/${person.email}`}
-                    // onClick={toMessageChannel}
                     style={{
                       backgroundColor: '#F699CD',
                       minWidth: '200px',
@@ -193,7 +183,6 @@ function WhoLikesYou() {
                   </Button>
                   <div style={{ paddingTop: '1%' }}>
                     <a
-                      // href='/wholikesyou'
                       style={{ cursor: 'pointer' }}
                       onClick={onDelete}>
                       <img src={Delete} alt='' style={{ height: 40 }} />

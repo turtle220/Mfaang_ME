@@ -1,16 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './index.css'
-
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
-// import 'firebase/auth';
-// import 'firebase/analytics';
-
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
+import './index.css'
 import { db, auth, storage } from '../../firebase'
 import firebase from 'firebase'
 import PostButton from '../../images/button-post.svg'
@@ -32,7 +26,6 @@ function ChatRoomChannel(email) {
 }
 
 function ChatRoom(email) {
-  // const dummy = useRef()
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt')
 
@@ -70,84 +63,6 @@ function ChatRoom(email) {
 
     setFormValue('')
   }
-
-  //set messageId
-  // useEffect(() => {
-  //   if (!messagesId.length) {
-  //     db.collection('messages')
-  //       .orderBy('timestamp', 'desc')
-  //       .onSnapshot((snapshot) => {
-  //         setMessagesId(
-  //           snapshot.docs.map((doc) => ({
-  //             messageId: doc.id,
-  //             message: doc.data()
-  //           }))
-  //         )
-  //       })
-  //   }
-  // }, )
-  // send chattingUser
-  // useEffect(() => {
-  //   if (!sendChattingUser && messages) {
-  //     messages.map((message) => {
-  //       if (message.id && message.to && message.to.email) {
-  //         if (email.email.email === message.to.email) {
-  //           // db.collection('messages')
-  //           //   .doc(message.id)
-  //           //   .get()
-  //           //   .then((doc) => {
-  //           //     // console.log(doc.data(), 'sendChattingUserDOCDATA:')
-  //           //     setSendChattingUser(doc.data())
-  //           //   })
-  //         }
-  //       }
-  //     })
-  //   }
-  // })
-
-  // // get ChattingUser
-  // useEffect(() => {
-  //   if (!getChattingUser && messages) {
-  //     messages.map((message) => {
-  //       if (message.id && message.to && message.to.email && message.from) {
-  //         console.log(
-  //           email.email.email,
-  //           message.to.email,
-  //           message.from,
-  //           auth.currentUser.email,
-  //           '----messages:'
-  //         )
-
-  //         if (
-  //           email.email.email === message.to.email &&
-  //           message.from === auth.currentUser.email
-  //         ) {
-  //           db.collection('messages')
-  //             .doc(message.id)
-  //             // .orderBy('timestamp', 'desc')
-  //             .get()
-  //             .then((doc) => {
-  //               // if (
-  //               //   // auth.currentUser.email === messageId.message.from.email &&
-  //               //   messageId.message.from.email !== email.email.email
-  //               // ) {
-  //               // console.log(doc.data(), 'sendChattingUserDOCDATA:')
-  //               // }
-  //             })
-  //           setGetChattingUser(true)
-  //         }
-  //       }
-  //     })
-  //   }
-  // })
-
-  // if (getChattingUser)
-  //   console.log(
-  //     email.email.email,
-  //     // sendChattingUser,
-  //     getChattingUser,
-  //     '----getChattingUseremail:'
-  //   )
 
   return (
     <>

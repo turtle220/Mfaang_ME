@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-// import { Avatar, Button } from '@material-ui/core'
-// import firebase from 'firebase'
-// import { Provider, useSelector } from 'react-redux'
 
 import './index.css'
 import { db, auth, storage } from '../../firebase'
@@ -12,19 +9,10 @@ import Navbar from '../../components/Navbar/index'
 import Pagination from '../../components/Pagination/index'
 import ChatRoomChannel from './ChatRoomChannel'
 import LikeUser from './LikeUser'
-// import MembersFrom from '../../images/Home/MembersFrom.svg'
-// import imageTest1 from '../../images/test(1).jpg';
-// import Post from '../Meet/post'
-// import BackButton from '../../images/button-boldback.svg';
-// import AutoScroll from './AutoScroll'
-// import NewChatMessage from './NewChatMessage'
-// import { nodeName } from 'jquery'
+
 
 function FirstPage() {
-  console.log(window.location.href, '-----match:')
   const id = '';
-  // console.log(id, '-----id:')
-  // const [likeUserProfile, setLikeUserProfile] = useState(null)
   const [likePersons, setLikePersons] = useState([])
 
   useEffect(() => {
@@ -62,22 +50,6 @@ function FirstPage() {
     }
   })
 
-  // useEffect(() => {
-  //   if (id && !likeUserProfile) {
-  //     db.collection('UserProfile')
-  //       .doc(id.id)
-  //       .get()
-  //       .then((doc) => {
-  //         setLikeUserProfile(doc.data())
-  //         // setUsername(doc.data()['firstName'])
-  //         // console.log(doc.data(), '-------docData:')
-  //       })
-  //       .catch((err) => {
-  //         console.log('getting username error!', err.message)
-  //       })
-  //   }
-  // })
-  // console.log(likeUserProfile, '-----likeUserProfile')
   return (
     <div>
       <Navbar />
@@ -106,7 +78,6 @@ function FirstPage() {
               display: 'block',
               backgroundColor: 'white',
               paddingLeft: '1%',
-              // paddingTop: '2%',
               paddingBottom: '3%',
               width: '40%',
               height: '433px',
@@ -119,9 +90,6 @@ function FirstPage() {
               {likePersons.length ? (
                 likePersons.map((person, id) => {
                   if (person) {
-                    // const currentYear = new Date().getFullYear()
-                    // const currentAge = currentYear - person.years
-
                     return (
                       <a
                         key={id}
@@ -154,32 +122,9 @@ function FirstPage() {
               ) : (
                 <></>
               )}
-              {/* {likeUserProfile ? (
-                likeUserProfile.map((data) => {
 
-                  console.log(data, '--------data:')
-                  const currentYear = new Date().getFullYear
-                  const currentAge = currentYear - data.years
-
-                  return (
-                    <div style={{ display: 'block' }}>
-                      <p>{data.firstName}</p>
-                      <div style={{ display: 'flex' }}>
-                        <p>{data.yourGender}</p>
-                        <p>{currentAge}</p>
-                        <p>{data.city}</p>
-                        <p>{data.state}</p>
-                        <p>{data.country}</p>
-                      </div>
-                    </div>
-                  )
-                })
-              ) : (
-                <></>
-              )} */}
             </PerfectScrollbar>
           </div>
-          {/* {console.log(id, '------id:')} */}
           <ChatRoomChannel email={id.id} />
         </div>
         <div style={{ paddingTop: '3%', color: '#8f8f8f' }}>

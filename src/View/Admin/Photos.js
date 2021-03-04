@@ -6,7 +6,6 @@ import { db, auth, storage } from '../../firebase'
 import './index.css'
 import { LaptopWindowsOutlined } from '@material-ui/icons'
 
-// let flag = true
 let progress
 
 export default function Photos({ user }) {
@@ -202,28 +201,6 @@ export default function Photos({ user }) {
         </Button>
         <input type='file' id='image_files' style={{ display: 'none' }} />
       </div>
-
-      {/* <label htmlFor="upload-button">
-        {image.preview ? (
-          <img src={image.preview} alt="dummy" width="300" height="300" />
-        ) : (
-          <>
-            <span className="fa-stack fa-2x mt-3 mb-2">
-              <i className="fas fa-circle fa-stack-2x" />
-              <i className="fas fa-store fa-stack-1x fa-inverse" />
-            </span>
-            <h5 className="text-center">Upload your photo</h5>
-          </>
-        )}
-      </label>
-      <input
-        type="file"
-        id="upload-button"
-        style={{ display: "none" }}
-        onChange={handleChange}
-      />
-      <br />
-      <button onClick={handleUpload}>Upload</button> */}
     </div>
   )
 }
