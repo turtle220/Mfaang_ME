@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import Modal from '@material-ui/core/Modal'
-import { Avatar, Button } from '@material-ui/core'
-import $ from 'jquery'
-import firebase from 'firebase'
 
 import { db, auth, storage } from '../../firebase'
 import RedHeartButton from '../../images/Button-RedHeart.svg'
 import HeartButton from '../../images/Button-Heart.svg'
 
 function Post({ id, post }) {
-  // const dispatch = useDispatch();
-  // const [emailVerified, setEmailVerified] = useState('');
+
   const [userProfile, setUserProfile] = useState(null)
   const [age, setAge] = useState('')
   const [isToggle, setIsToggle] = useState(false)
@@ -33,15 +27,17 @@ function Post({ id, post }) {
   }, [userProfile])
 
   useEffect(() => {
-    if (!isToggle) {
+    if (post.userEmail && !isToggle) {
       db.collection('UserProfile')
-        .doc(post.userEmail)
-        .collection('wholikesyou')
-        .get()
-        .then((doc) => {
-          if(doc.data().heart && doc.data().heart === true) {
-            setIsToggle(true);
-          }
+      .doc(post.userEmail)
+      .collection('wholikesyou')
+      .get()
+      .then((snapshot) => {
+          snapshot.docs.map((doc) => {
+            if(doc.data().heart && doc.data().heart === true) {
+              setIsToggle(true);
+            }
+          })
         })
         .catch((err) => {
           // console.log('getting username error!', err.message)
@@ -119,6 +115,7 @@ function Post({ id, post }) {
         console.log('---------created')
       }
     }
+    setTimeout(()=>window.location.reload(), 1000)
   }
 
   return (
