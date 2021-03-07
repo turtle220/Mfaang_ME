@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import RedHeartButton from '../../images/Button-RedHeart.svg'
 import HeartButton from '../../images/Button-Heart.svg'
 
 function Post({ id, post }) {
-
   const [userProfile, setUserProfile] = useState(null)
-  const [age, setAge] = useState('')
   const [isToggle, setIsToggle] = useState(false)
 
   useEffect(() => {
@@ -29,13 +27,13 @@ function Post({ id, post }) {
   useEffect(() => {
     if (post.userEmail && !isToggle) {
       db.collection('UserProfile')
-      .doc(post.userEmail)
-      .collection('wholikesyou')
-      .get()
-      .then((snapshot) => {
+        .doc(post.userEmail)
+        .collection('wholikesyou')
+        .get()
+        .then((snapshot) => {
           snapshot.docs.map((doc) => {
-            if(doc.data().heart && doc.data().heart === true) {
-              setIsToggle(true);
+            if (doc.data().heart && doc.data().heart === true) {
+              setIsToggle(true)
             }
           })
         })
@@ -115,7 +113,7 @@ function Post({ id, post }) {
         console.log('---------created')
       }
     }
-    setTimeout(()=>window.location.reload(), 1000)
+    setTimeout(() => window.location.reload(), 1000)
   }
 
   return (
@@ -130,7 +128,7 @@ function Post({ id, post }) {
           <img
             key={id}
             src={post.imageUrl}
-            style={{ width: '100%', height: 200 }}
+            style={{ width: '100%', height: 200, objectFit:'cover' }}
             alt=''
           />
         </a>

@@ -34,22 +34,14 @@ function SingleImage({ id, post }) {
 
   return (
     <div >
-      {/* <div
-        style={{
-          height: 200,
-          width: '100%',
-          background: '#EEE'
-        }}> */}
         <a style={{ color: '#8F8F8F' }} href={`/singleitem/${id}`}>
           <img
             key={id}
             src={post.imageUrl}
-            style={{ width: '100%', height: 240 }}
+            style={{ width: '100%', height: 240, objectFit:'cover' }}
             alt=''
           />
         </a>
-      {/* </div> */}
-      {/* <div className='desc'> */}
         <div
           style={{
             display: 'flex',
@@ -59,7 +51,6 @@ function SingleImage({ id, post }) {
             {userProfile ? userProfile.firstName : ''}
           </p>
         </div>
-      {/* </div> */}
     </div>
   )
 }

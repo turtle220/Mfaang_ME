@@ -16,6 +16,7 @@ function WhoLikesYou() {
   const dispatch = useDispatch()
 
   const [likePersons, setLikePersons] = useState([])
+  const [uniqueUser, setUniqueUser] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -52,6 +53,25 @@ function WhoLikesYou() {
   })
 
   console.log(likePersons, '------likePersons:')
+  
+  //Unique Function
+  useEffect(() => {
+    if (!uniqueUser.length) {
+      if (likePersons.length) {
+        const likeUserEmailArray = []
+        const uniqueUserArray = []
+        for (let i = 0; i < likePersons.length; i++) {
+          const element = likePersons[i]
+          if (!likeUserEmailArray.includes(element.person.emailAddress) || !likeUserEmailArray.includes(element.person.emailAddress)) {
+            likeUserEmailArray.push(element.person.emailAddress)
+            uniqueUserArray.push(element)
+          }
+        }
+        setUniqueUser(uniqueUserArray)
+      }
+    }
+  })
+
   return (
     <div>
       <Navbar />
@@ -77,8 +97,8 @@ function WhoLikesYou() {
           }}>
           <hr style={{ color: '#8f8f8f' }}></hr>
         </div>
-        {likePersons.length ? (
-          likePersons.map(({ person, id }) => {
+        {uniqueUser.length ? (
+          uniqueUser.map(({ person, id }) => {
             // if (person) {
             const onDelete = () => {
               alert('Are you sure you want to delete this user?')
@@ -185,7 +205,7 @@ function WhoLikesYou() {
                     <a
                       style={{ cursor: 'pointer' }}
                       onClick={onDelete}>
-                      <img src={Delete} alt='' style={{ height: 40 }} />
+                      <img src={Delete} alt='' style={{ height: 40, objectFit:'cover' }} />
                     </a>
                   </div>
                 </div>

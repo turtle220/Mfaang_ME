@@ -12,7 +12,7 @@ function Account({ user }) {
     const middle = $('.middle').val()
     const lastName = $('.last_name').val()
     const yourGender = $('.yourgender').val()
-    const gender = $('.gender').val()
+    // const gender = $('.gender').val()
     const years = $('.year').val()
     const emailAddress = $('.email_address').val()
     const phone = $('.phone').val()
@@ -49,7 +49,7 @@ function Account({ user }) {
           middle,
           lastName,
           yourGender,
-          gender,
+          // gender,
           // months,
           // days,
           years,
@@ -75,7 +75,7 @@ function Account({ user }) {
               middle,
               lastName,
               yourGender,
-              gender,
+              // gender,
               // months,
               // days,
               years,
@@ -216,7 +216,7 @@ function Account({ user }) {
                 <option value='female'>Female</option>
               </datalist>
               <span style={{ width: '3%' }}></span>
-              <span
+              {/* <span
                 style={{
                   fontSize: '26px',
                   fontFamily: 'system-ui',
@@ -241,11 +241,11 @@ function Account({ user }) {
                   width: '50%',
                   margin: '0, auto',
                   outline: '#FF9100'
-                }}></input>
-              <datalist id='genders'>
+                }}></input> */}
+              {/* <datalist id='genders'>
                 <option value='male'>Male</option>
                 <option value='female'>Female</option>
-              </datalist>
+              </datalist> */}
             </div>
             {/* Date of Birth */}
             <div style={{ paddingBottom: '2%' }}>

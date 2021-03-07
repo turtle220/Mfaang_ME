@@ -5,7 +5,6 @@ import './index.css'
 import { db, auth, storage } from '../../firebase'
 
 function LikeUser({ email, id }) {
-
   const [image, setImage] = useState('')
   const [postId, setPostId] = useState('')
 
@@ -31,7 +30,8 @@ function LikeUser({ email, id }) {
               width: '100px',
               height: '100px',
               color: '#8f8f8f',
-              borderRadius: '10px'
+              borderRadius: '10px',
+              objectFit: 'cover'
             }}
           />
         </a>

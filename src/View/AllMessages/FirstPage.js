@@ -14,6 +14,7 @@ import LikeUser from './LikeUser'
 function FirstPage() {
   const id = '';
   const [likePersons, setLikePersons] = useState([])
+  const [uniqueUser, setUniqueUser] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -47,6 +48,23 @@ function FirstPage() {
 
     return () => {
       unsubscribe()
+    }
+  })
+
+  useEffect(() => {
+    if (!uniqueUser.length) {
+      if (likePersons.length) {
+        const likeUserEmailArray = []
+        const uniqueUserArray = []
+        for (let i = 0; i < likePersons.length; i++) {
+          const element = likePersons[i]
+          if (!likeUserEmailArray.includes(element.emailAddress) || !likeUserEmailArray.includes(element.emailAddress)) {
+            likeUserEmailArray.push(element.emailAddress)
+            uniqueUserArray.push(element)
+          }
+        }
+        setUniqueUser(uniqueUserArray)
+      }
     }
   })
 
@@ -87,8 +105,8 @@ function FirstPage() {
               paddingRight: '1%'
             }}>
             <PerfectScrollbar>
-              {likePersons.length ? (
-                likePersons.map((person, id) => {
+              {uniqueUser.length ? (
+                uniqueUser.map((person, id) => {
                   if (person) {
                     return (
                       <a

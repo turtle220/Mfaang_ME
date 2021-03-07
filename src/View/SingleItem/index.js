@@ -45,7 +45,6 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
         })
     }
   })
-  // console.log(userProfile, '---------UserProfileSingleItem:')
   const isLiked = async () => {
     const likeUserArray = []
     if (auth.currentUser.emailVerified && auth.currentUser && email) {
@@ -223,7 +222,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[0].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px' }}
+              style={{ width: '250px', height: '220px', objectFit:'cover' }}
             />
           ) : null}
           {/* second postUser Image */}
@@ -232,7 +231,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[1].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px' }}
+              style={{ width: '250px', height: '220px', objectFit:'cover' }}
             />
           ) : // </div>
           null}
@@ -242,7 +241,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[2].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px' }}
+              style={{ width: '250px', height: '220px', objectFit:'cover' }}
             />
           ) : // </div>
           null}
@@ -252,7 +251,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[3].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px' }}
+              style={{ width: '250px', height: '220px', objectFit:'cover' }}
             />
           ) : // </div>
           null}
