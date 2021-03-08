@@ -291,7 +291,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                value={auth.currentUser.email}
+                defaultValue={auth.currentUser.email}
                 placeholder='Email from back end when user signing up'
                 className='email_address'
                 style={{

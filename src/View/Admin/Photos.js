@@ -8,6 +8,7 @@ import { LaptopWindowsOutlined } from '@material-ui/icons'
 
 let progress
 let imgUrlArray = [{ url: '' }]
+let uploadedFile = {};
 
 export default function Photos({ user }) {
   const [posts, setPosts] = useState([])
@@ -18,8 +19,7 @@ export default function Photos({ user }) {
       if (!posts.length) {
         db.collection('post')
           .orderBy('timestamp', 'desc')
-          .get()
-          .then((snapshot) => {
+          .onSnapshot((snapshot) => {
             //every time a new post is added, it fires up onSnapshot
             setPosts(
               snapshot.docs.map((doc) => ({
@@ -41,17 +41,25 @@ export default function Photos({ user }) {
     // imgUrlArray = null;
     imgUrlArray = [{ url: '' }]
     console.log('----postImage')
+    document.getElementById('image_files').addEventListener("click", function(evt) {
+      evt.stopPropagation();
+    }, false);
+    document.getElementById('image_files').click()
     document
       .getElementById('image_files')
       .addEventListener('change', handleChangeImage, false)
-    document.getElementById('image_files').click()
   }
 
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
-      const files = e.target.files
-      console.log(files[0], '-----------Upload function:')
-      imageUpload(files[0])
+      const files = e.target.files;
+      // console.log(files[0], '-----------Upload function:');
+      if(uploadedFile.name === files[0].name && uploadedFile.lastModified === files[0].lastModified) return;
+      imageUpload(files[0]);
+      uploadedFile = {
+        name: files[0].name,
+        lastModified: files[0].lastModified
+      }
     }
   }
 
@@ -89,7 +97,7 @@ export default function Photos({ user }) {
               // setImgUrl(url)
               // imgUrl = url;
               // post image inside db
-
+              console.log("before addd")
               db.collection('post')
                 .add({
                   imageUrl: url,
@@ -97,14 +105,15 @@ export default function Photos({ user }) {
                   // imageName: image.name,
                   timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 })
-                .then((docRef) => {
-                  db.collection('post').doc(docRef.id).get()
-                    .then((doc) => {
-                      //every time a new post is added, it fires up onSnapshot
-                      setPosts([...posts, {id: doc.id, post: doc.data()}])
-                    })
-                })
-              // console.log('---------url:', url)
+                // .then((docRef) => {
+                //   db.collection('post').doc(docRef.id).get()
+                //     .then((doc) => {
+                //       //every time a new post is added, it fires up onSnapshot
+                //       setPosts([...posts, {id: doc.id, post: doc.data()}])
+                //     })
+                //   console.log('----------------------Here:')
+                // })
+              console.log('---------url:', url)
               // setImgUrl(url)
             })
         }
