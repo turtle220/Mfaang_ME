@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Avatar, Button, Input } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import firebase from 'firebase'
 
 import { db, auth, storage } from '../../firebase'
 import './index.css'
-import { LaptopWindowsOutlined } from '@material-ui/icons'
 
 let progress
-let imgUrlArray = [{ url: '' }]
 let uploadedFile = {};
 
 export default function Photos({ user }) {
   const [posts, setPosts] = useState([])
-  // const [imgUrl, setImgUrl] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -31,16 +28,12 @@ export default function Photos({ user }) {
       }
     })
 
-    // console.log('----posts:', posts);
     return () => {
       unsubscribe()
     }
   }, [posts])
 
   const postImage = () => {
-    // imgUrlArray = null;
-    imgUrlArray = [{ url: '' }]
-    console.log('----postImage')
     document.getElementById('image_files').addEventListener("click", function(evt) {
       evt.stopPropagation();
     }, false);
@@ -67,7 +60,6 @@ export default function Photos({ user }) {
     if (image) {
       // console.log(image, '------image:')
       const uploadTask = storage.ref(`images/${image.name}`).put(image)
-      // const imgUrlArray = [{}]
 
       uploadTask.on(
         'state_changed',
@@ -92,12 +84,6 @@ export default function Photos({ user }) {
             .child(image.name)
             .getDownloadURL()
             .then((url) => {
-              // imgUrlArray.push(url);
-              // imgUrlArray = url
-              // setImgUrl(url)
-              // imgUrl = url;
-              // post image inside db
-              console.log("before addd")
               db.collection('post')
                 .add({
                   imageUrl: url,
@@ -113,7 +99,6 @@ export default function Photos({ user }) {
                 //     })
                 //   console.log('----------------------Here:')
                 // })
-              console.log('---------url:', url)
               // setImgUrl(url)
             })
         }

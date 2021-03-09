@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import 'react-perfect-scrollbar/dist/css/styles.css'
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import { Avatar, Button } from '@material-ui/core'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { Button } from '@material-ui/core'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import Pagination from '../../components/Pagination/index'
@@ -13,34 +10,32 @@ import Delete from '../../images/button-delete.svg'
 import LikeUser from './LikeUser'
 
 function WhoLikesYou() {
-  const dispatch = useDispatch()
-
   const [likePersons, setLikePersons] = useState([])
-  const [uniqueUser, setUniqueUser] = useState('')
+  const [uniqueUser, setUniqueUser] = useState([])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         if (authUser.email && !likePersons.length) {
-          const userLikeArray = []
-
+          
           db.collection('UserProfile')
-            .doc(authUser.email)
-            .collection('wholikesyou')
-            .get()
-            .then((snapshot) => {
+          .doc(authUser.email)
+          .collection('wholikesyou')
+          .onSnapshot((snapshot) => {
+              const likeUserArray = []
               for (let i = 0; i < snapshot.docs.length; i++) {
                 const doc = snapshot.docs[i]
-
                 db.collection('UserProfile')
                   .doc(doc.data().likeUserEmail)
                   .get()
                   .then((doc) => {
-                    userLikeArray.push({ person: doc.data(), id: doc.id })
+                    likeUserArray.push({ person: doc.data(), id: doc.id })
                   })
               }
+              setUniqueUser([]);
               setTimeout(() => {
-                setLikePersons(userLikeArray)
+                console.log("setLikpersons")
+                setLikePersons(likeUserArray);
               }, 2000)
             })
         }
@@ -50,10 +45,8 @@ function WhoLikesYou() {
     return () => {
       unsubscribe()
     }
-  })
+  }, [likePersons])
 
-  console.log(likePersons, '------likePersons:')
-  
   //Unique Function
   useEffect(() => {
     if (!uniqueUser.length) {
@@ -62,15 +55,18 @@ function WhoLikesYou() {
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if (!likeUserEmailArray.includes(element.person.emailAddress) || !likeUserEmailArray.includes(element.person.emailAddress)) {
+          if (
+            !likeUserEmailArray.includes(element.person.emailAddress) ||
+            !likeUserEmailArray.includes(element.person.emailAddress)
+          ) {
             likeUserEmailArray.push(element.person.emailAddress)
             uniqueUserArray.push(element)
           }
         }
-        setUniqueUser(uniqueUserArray)
+        setUniqueUser(uniqueUserArray);
       }
     }
-  })
+  }, [likePersons])
 
   return (
     <div>
@@ -97,7 +93,7 @@ function WhoLikesYou() {
           }}>
           <hr style={{ color: '#8f8f8f' }}></hr>
         </div>
-        {uniqueUser.length ? (
+        { uniqueUser ? (
           uniqueUser.map(({ person, id }) => {
             // if (person) {
             const onDelete = () => {
@@ -105,8 +101,7 @@ function WhoLikesYou() {
               db.collection('UserProfile')
                 .doc(auth.currentUser.email)
                 .collection('wholikesyou')
-                .get()
-                .then((snapshot) => {
+                .get().then((snapshot) => {
                   snapshot.docs.map((doc) =>
                     db
                       .collection('UserProfile')
@@ -119,38 +114,85 @@ function WhoLikesYou() {
                         if (
                           person.email === doc.data().likeUserEmail ||
                           person.emailAddress === doc.data().likeUserEmail
-                        ) {
+                          ) {
                           db.collection('UserProfile')
                             .doc(auth.currentUser.email)
                             .collection('wholikesyou')
                             .doc(doc.id)
-                            .delete()
-                        }
-                        // remove the auth user email on likeuser profile
-                        const likeUser = doc.data().likeUserEmail;
-
-                        db.collection('UserProfile')
-                        .doc(likeUser)
-                        .collection('wholikesyou')
-                        .get()
-                        .then((snapshot) => {
-                          snapshot.docs.map((doc) => {
-                              if(auth.currentUser.email === doc.data().likeUserEmail) {
-                                db.collection('UserProfile')
+                            .delete().then(()=>{
+                              // remove the auth user email on likeuser profile
+                              const likeUser = doc.data().likeUserEmail
+                              db.collection('UserProfile')
                                 .doc(likeUser)
                                 .collection('wholikesyou')
-                                .doc(doc.id)
-                                .delete()
-                              }
+                                .get().then((snapshot) => {
+                                  snapshot.docs.map((doc) => {
+                                    if (
+                                      auth.currentUser.email ===
+                                      doc.data().likeUserEmail
+                                    ) {
+                                      db.collection('UserProfile')
+                                        .doc(likeUser)
+                                        .collection('wholikesyou')
+                                        .doc(doc.id)
+                                        .delete()
+                                    }
+                                  })
+                                })
                             })
-                          })
+                        }
+
+                        // const likeUserArray = []
+
+                        // db.collection('UserProfile')
+                        //   .doc(auth.currentUser.email)
+                        //   .collection('wholikesyou')
+                        //   .onSnapshot((snapshot) => {
+                        //     for (let i = 0; i < snapshot.docs.length; i++) {
+                        //       const doc = snapshot.docs[i]
+
+                        //       db.collection('UserProfile')
+                        //         .doc(doc.data().likeUserEmail)
+                        //         .get()
+                        //         .then((doc) => {
+                        //           likeUserArray.push({
+                        //             person: doc.data(),
+                        //             id: doc.id
+                        //           })
+                        //         })
+                        //     }
+                        //     setTimeout(() => {
+                        //       setLikePersons(likeUserArray)
+                        //     }, 2000)
+
+                            // const likeUserEmailArray = []
+                            // const uniqueUserArray = []
+                            // for (let i = 0; i < likeUserArray.length; i++) {
+                            //   const element = likeUserArray[i]
+                            //   if (
+                            //     !likeUserEmailArray.includes(
+                            //       element.person.emailAddress
+                            //     ) ||
+                            //     !likeUserEmailArray.includes(
+                            //       element.person.emailAddress
+                            //     )
+                            //   ) {
+                            //     likeUserEmailArray.push(
+                            //       element.person.emailAddress
+                            //     )
+                            //     uniqueUserArray.push(element)
+                            //   }
+                            // }
+                            // setUniqueUser(uniqueUserArray)
+                          // })
                       })
                   )
                 })
 
-              setTimeout(() => {
-                window.location.reload()
-              }, 5000)
+              // setLikePersons([])
+              // setTimeout(() => {
+              //   window.location.reload()
+              // }, 5000)
             }
 
             return (
@@ -202,10 +244,12 @@ function WhoLikesYou() {
                     MESSAGE
                   </Button>
                   <div style={{ paddingTop: '1%' }}>
-                    <a
-                      style={{ cursor: 'pointer' }}
-                      onClick={onDelete}>
-                      <img src={Delete} alt='' style={{ height: 40, objectFit:'cover' }} />
+                    <a style={{ cursor: 'pointer' }} onClick={onDelete}>
+                      <img
+                        src={Delete}
+                        alt=''
+                        style={{ height: 40, objectFit: 'cover' }}
+                      />
                     </a>
                   </div>
                 </div>
