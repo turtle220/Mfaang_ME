@@ -6,7 +6,7 @@ import HeartButton from '../../images/Button-Heart.svg'
 
 function Post({ id, post }) {
   const [userProfile, setUserProfile] = useState(null)
-  const [isToggle, setIsToggle] = useState(false)
+  const [isToggle, setIsToggle] = useState(true)
 
   useEffect(() => {
     if (post.userEmail && !post.length) {
@@ -25,32 +25,34 @@ function Post({ id, post }) {
   }, [userProfile])
 
   useEffect(() => {
-    if (post.userEmail && !isToggle) {
+    if (post.userEmail && isToggle) {
       db.collection('UserProfile')
         .doc(post.userEmail)
         .collection('wholikesyou')
-        .get()
-        .then((snapshot) => {
+        .onSnapshot((snapshot) => {
           snapshot.docs.map((doc) => {
-            if (doc.data().heart && doc.data().heart === true) {
-              setIsToggle(true)
+            if (
+              doc.data().heart &&
+              doc.data().heart === true &&
+              auth.currentUser.email === doc.data().likeUserEmail
+            ) {
+              setIsToggle(isToggle === false ? true : false)
             }
           })
         })
-        .catch((err) => {
-          // console.log('getting username error!', err.message)
-        })
     }
-  })
+  }, [isToggle])
   const isLiked = async () => {
-    const likeUserArray = []
+    
     if (auth.currentUser.emailVerified && auth.currentUser && post.userEmail) {
+      // setIsToggle(isToggle === false ? true : false)
       // email: post user email
       const snapshot = await db
-        .collection('UserProfile')
-        .doc(post.userEmail)
-        .collection('wholikesyou')
-        .get()
+      .collection('UserProfile')
+      .doc(post.userEmail)
+      .collection('wholikesyou')
+      .get()
+      const likeUserArray = []
 
       for (let i = 0; i < snapshot.docs.length; i++) {
         const doc = snapshot.docs[i]
@@ -58,7 +60,7 @@ function Post({ id, post }) {
       }
       let flag = false
 
-      if (likeUserArray) {
+      if (isToggle && likeUserArray) {
         likeUserArray.forEach((element) => {
           if (element.likeUserEmail === auth.currentUser.email) {
             flag = true
@@ -80,7 +82,8 @@ function Post({ id, post }) {
             .doc(auth.currentUser.email)
             .collection('wholikesyou')
             .add({
-              likeUserEmail: post.userEmail
+              likeUserEmail: post.userEmail,
+              heart: true
             })
             .catch((err) => {
               console.log(err)
@@ -89,7 +92,7 @@ function Post({ id, post }) {
         }
         console.log('----Updated')
       }
-      if (!likeUserArray) {
+      if (isToggle && !likeUserArray) {
         db.collection('UserProfile')
           .doc(post.userEmail)
           .collection('wholikesyou')
@@ -112,8 +115,47 @@ function Post({ id, post }) {
           })
         console.log('---------created')
       }
+      //remove heart
+      if (!isToggle && likeUserArray) {
+        db.collection('UserProfile')
+          .doc(post.userEmail)
+          .collection('wholikesyou')
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.map((doc) => {
+              db.collection('UserProfile')
+                .doc(post.userEmail)
+                .collection('wholikesyou')
+                .doc(doc.id)
+                .delete()
+                .then(setIsToggle(true))
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        db.collection('UserProfile')
+          .doc(auth.currentUser.email)
+          .collection('wholikesyou')
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.map((doc) => {
+              db.collection('UserProfile')
+                .doc(auth.currentUser.eamil)
+                .collection('wholikesyou')
+                .doc(doc.id)
+                .delete()
+                .then(setIsToggle(true))
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        console.log('---------removed')
+      }
     }
-    setTimeout(() => window.location.reload(), 1000)
+    // setTimeout(() => window.location.reload(), 1000)
   }
 
   return (
@@ -128,7 +170,7 @@ function Post({ id, post }) {
           <img
             key={id}
             src={post.imageUrl}
-            style={{ width: '100%', height: 200, objectFit:'cover' }}
+            style={{ width: '100%', height: 200, objectFit: 'cover' }}
             alt=''
           />
         </a>
@@ -204,7 +246,7 @@ function Post({ id, post }) {
                 border: 'none',
                 backgroundColor: 'transparent'
               }}>
-              {isToggle ? (
+              {!isToggle ? (
                 <img
                   src={RedHeartButton}
                   alt=''

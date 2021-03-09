@@ -3,7 +3,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import MembersFrom from '../../images/Home/MembersFrom.svg'
@@ -12,7 +12,6 @@ import Post from './post'
 function Meet() {
   const ps = useRef()
   const [posts, setPosts] = useState([])
-  const [userProfile, setUserProfile] = useState([])
   const [uniqueUser, setUniqueUser] = useState('')
 
   useEffect(() => {
