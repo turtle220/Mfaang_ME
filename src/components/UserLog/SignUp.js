@@ -187,6 +187,7 @@ export default function SignUp({ openLogin }) {
                         outline: 'none'
                       }}>
                       <option value='Google.com'> Google.com </option>
+                      <option value='Google.com'> Google.com </option>
                       <option value='Amazon.com'> Amazon.com </option>
                       <option value='Apple.com'> Apple.com </option>
                       <option value='Facebook.com'> Facebook.com </option>
