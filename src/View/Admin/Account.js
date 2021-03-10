@@ -9,6 +9,16 @@ import Pagination from '../../components/Pagination/index'
 function Account({ user }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [yourGender, setYourGender] = useState('')
+  const [age, setAge] = useState('')
+  const [phone, setPhone] = useState('')
+  const [address1, setAddress1] = useState('')
+  const [address2, setAddress2] = useState('')
+  const [city, setCity] = useState('')
+  const [state, setState] = useState('')
+  const [country, setCountry] = useState('')
+  const [zipCode, setZipCode] = useState('')
+  const [introduction, setIntroduction] = useState('')
 
   useEffect(() => {
     if(firstName === '' && lastName === '') {
@@ -18,6 +28,16 @@ function Account({ user }) {
         .then((doc) => {
           setFirstName(doc.data()['firstName'])
           setLastName(doc.data()['lastName'])
+          setYourGender(doc.data()['yourGender'])
+          setAge(doc.data()['years'])
+          setPhone(doc.data()['phone'])
+          setAddress1(doc.data()['address1'])
+          setAddress2(doc.data()['address2'])
+          setCity(doc.data()['city'])
+          setState(doc.data()['state'])
+          setCountry(doc.data()['country'])
+          setZipCode(doc.data()['zipCode'])
+          setIntroduction(doc.data()['introduction'])
         })
     }
   })
@@ -147,7 +167,8 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                value={firstName}
+                readOnly
+                defaultValue={firstName}
                 // onChange={(e) => setFirstName(e.target.value)}
                 placeholder='First Name'
                 className='first_name'
@@ -181,7 +202,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                value={lastName}
+                defaultValue={lastName}
                 placeholder='Last Name'
                 className='last_name'
                 style={{
@@ -210,6 +231,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={yourGender}
                 placeholder='Choose'
                 className='yourgender'
                 list='yourgender'
@@ -274,6 +296,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={age}
                 placeholder='Age *'
                 className='year'
                 style={{
@@ -331,7 +354,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                // value={phone}
+                defaultValue={phone}
                 // onChange={(e) => setPhone(e.target.value)}
                 placeholder='phone'
                 className='phone'
@@ -361,6 +384,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={address1}
                 placeholder='Address 1'
                 className='address1'
                 list='address1'
@@ -381,6 +405,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={address2}
                 placeholder='Address 2'
                 className='address2'
                 list='address2'
@@ -401,6 +426,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={city}
                 placeholder='City *'
                 className='city'
                 style={{
@@ -416,6 +442,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={state}
                 placeholder='State *'
                 className='state'
                 style={{
@@ -432,6 +459,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={country}
                 placeholder='Country *'
                 className='country'
                 style={{
@@ -447,6 +475,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                defaultValue={zipCode}
                 placeholder='Zip Code *'
                 className='zipcode'
                 style={{
@@ -489,7 +518,7 @@ function Account({ user }) {
               </span>
             </div>
             <div>
-              <textarea required autoFocus className='introduction'></textarea>
+              <textarea required autoFocus defaultValue={introduction} className='introduction'></textarea>
             </div>
             <div
               style={{
