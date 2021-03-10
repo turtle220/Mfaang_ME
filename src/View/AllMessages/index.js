@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { Avatar, Button } from '@material-ui/core'
-import firebase from 'firebase'
-import { Provider, useSelector } from 'react-redux'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import Pagination from '../../components/Pagination/index'
@@ -42,7 +39,7 @@ function AllMessages(id) {
 
               setTimeout(() => {
                 setLikePersons(userLikeArray)
-              }, 2000)
+              }, 3000)
             })
         }
       }
@@ -110,9 +107,7 @@ function AllMessages(id) {
               {uniqueUser.length ? (
                 uniqueUser.map((person, id) => {
                   if (person) {
-                    // if(window.location.href)
                     let hightlight = '';
-                    // console.log(window.location.href.split('/')[4], person.email, '----href:')
                     if(window.location.href.split('/')[4] === person.email || window.location.href.split('/')[3] === person.email) {
                       hightlight = 'highlight';
                     }

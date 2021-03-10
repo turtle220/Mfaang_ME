@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Avatar, Button } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { Avatar } from '@material-ui/core'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { storage } from '../../firebase'
 
 function LikeUser({ email }) {
   const [image, setImage] = useState('')
 
   useEffect(() => {
-    if (image == '') {
+    if (image === '') {
       storage
         .ref(`avatars/${email}-avatar.png`)
         .getDownloadURL()

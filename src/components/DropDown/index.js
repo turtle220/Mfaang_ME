@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { db, auth, storage } from '../../firebase';
+import { auth } from '../../firebase';
 import './index.css';
 
 export default function DropDownMenu({onLogOut}) {

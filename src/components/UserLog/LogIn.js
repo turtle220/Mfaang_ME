@@ -1,9 +1,8 @@
-import { Checkbox } from '@material-ui/core'
-import React, { useState, useEffect } from 'react'
-import { db, auth, storage } from '../../firebase'
-import { Link, useHistory, useParams, useLocation } from 'react-router-dom'
+import React from 'react'
+import { auth } from '../../firebase'
+import { useHistory } from 'react-router-dom'
 import $ from 'jquery'
-import { Avatar, Button, Input } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 import './index.css'
 import LogoLogin from '../../images/Logo-Login.svg'

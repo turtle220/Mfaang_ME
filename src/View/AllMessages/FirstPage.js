@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import Footer from '../../components/Footer/index'
 import Navbar from '../../components/Navbar/index'
 import Pagination from '../../components/Pagination/index'
 import ChatRoomChannel from './ChatRoomChannel'
 import LikeUser from './LikeUser'
-
 
 function FirstPage() {
   const id = '';
@@ -40,7 +39,7 @@ function FirstPage() {
 
               setTimeout(() => {
                 setLikePersons(userLikeArray)
-              }, 2000)
+              }, 3000)
             })
         }
       }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-import { db, auth, storage } from './firebase'
+import { db } from './firebase'
 import rootReducer from './reducer'
 import * as serviceWorker from './serviceWorker'
 
@@ -33,7 +33,6 @@ window.store = store
 
 function Routing() {
   const [posts, setPosts] = useState([])
-  const [userProfile, setUserProfile] = useState(null)
 
   useEffect(() => {
     if (!posts.length) {

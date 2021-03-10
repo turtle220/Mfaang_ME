@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import React, { useState } from 'react'
+// import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { auth } from '../../firebase'
 import firebase from 'firebase'
 import PostButton from '../../images/button-post.svg'
 
 const firestore = firebase.firestore()
 
 function ChatRoomChannel(email) {
-  const [user] = useAuthState(auth)
+  // const [user] = useAuthState(auth)
 
   return (
     <div className='App' style={{ paddingTop: '2%', width: '100%' }}>
@@ -32,9 +32,9 @@ function ChatRoom(email) {
   const [messages] = useCollectionData(query, { idField: 'id' })
 
   const [formValue, setFormValue] = useState('')
-  const [messagesId, setMessagesId] = useState([])
-  const [sendChattingUser, setSendChattingUser] = useState(null)
-  const [getChattingUser, setGetChattingUser] = useState(false)
+  // const [messagesId, setMessagesId] = useState([])
+  // const [sendChattingUser, setSendChattingUser] = useState(null)
+  // const [getChattingUser, setGetChattingUser] = useState(false)
 
   const sendMessage = async (e) => {
     e.preventDefault()

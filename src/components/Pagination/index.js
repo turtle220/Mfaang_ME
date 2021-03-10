@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import BackButton from '../../images/button-boldback.svg';
 
 export default function Pagination({location}) {

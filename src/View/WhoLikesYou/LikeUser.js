@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 
 import './index.css'
-import { db, auth, storage } from '../../firebase'
+import { storage } from '../../firebase'
 
 function LikeUser({ email, id }) {
   const [image, setImage] = useState('')
-  const [postId, setPostId] = useState('')
 
   useEffect(() => {
-    if (image == '') {
+    if (image === '') {
       storage
         .ref(`avatars/${email}-avatar.png`)
         .getDownloadURL()

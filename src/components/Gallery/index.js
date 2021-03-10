@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import ItemsCarousel from 'react-items-carousel'
 
-import imageTest1 from '../../images/test(1).jpg'
 import NextButtonIcon from '../../images/Home/NextButton.svg'
 import BackButtonIcon from '../../images/Home/BackButton.svg'
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import SingleImage from './SingleImage'
 
 export default () => {
   const [activeItemIndex, setActiveItemIndex] = useState(0)
   const chevronWidth = 20
   const [posts, setPosts] = useState([])
-  const [userProfile, setUserProfile] = useState([])
-  const [uniqueUser, setUniqueUser] = useState('')
+  const [uniqueUser, setUniqueUser] = useState([])
 
   //Unique Function
   useEffect(() => {
@@ -72,7 +70,7 @@ export default () => {
         {uniqueUser.length
           ? uniqueUser.map(({ id, post }) => {
               return (
-                <div style={{ height: 270, width: '100%', background: '#EEE' }}>
+                <div key={id} style={{ height: 270, width: '100%', background: '#EEE' }}>
                   <SingleImage key={id} id={id} post={post} />
                 </div>
               )

@@ -45,7 +45,6 @@ function Post({ id, post }) {
   const isLiked = async () => {
     
     if (auth.currentUser.emailVerified && auth.currentUser && post.userEmail) {
-      // setIsToggle(isToggle === false ? true : false)
       // email: post user email
       const snapshot = await db
       .collection('UserProfile')

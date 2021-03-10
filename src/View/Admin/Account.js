@@ -1,18 +1,31 @@
-import React from 'react'
-import { Avatar, Button } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import { Button } from '@material-ui/core'
 import $ from 'jquery'
 
-import { db, auth, storage } from '../../firebase'
+import { db, auth } from '../../firebase'
 import Photos from './Photos.js'
 import Pagination from '../../components/Pagination/index'
 
 function Account({ user }) {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+
+  useEffect(() => {
+    if(firstName === '' && lastName === '') {
+      db.collection('UserProfile')
+        .doc(auth.currentUser.email)
+        .get()
+        .then((doc) => {
+          setFirstName(doc.data()['firstName'])
+          setLastName(doc.data()['lastName'])
+        })
+    }
+  })
   const onSave = () => {
     const firstName = $('.first_name').val()
     const middle = $('.middle').val()
     const lastName = $('.last_name').val()
     const yourGender = $('.yourgender').val()
-    // const gender = $('.gender').val()
     const years = $('.year').val()
     const emailAddress = $('.email_address').val()
     const phone = $('.phone').val()
@@ -26,11 +39,8 @@ function Account({ user }) {
 
     if (
       firstName &&
-      // middle &&
       lastName &&
       yourGender &&
-      // months &&
-      // days &&
       years &&
       emailAddress &&
       phone &&
@@ -108,13 +118,13 @@ function Account({ user }) {
           display: 'block',
           paddingTop: '5%'
         }}>
-        <div style={{paddingBottom:'2%'}}>
+        <div style={{ paddingBottom: '2%' }}>
           <span
             style={{
               fontSize: '26px',
               fontFamily: 'system-ui',
               fontWeight: '500',
-              color: '#0000008a',
+              color: '#0000008a'
               // paddingbottom:'2%'
             }}>
             Personal info{' '}
@@ -137,7 +147,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                // value={firstName}
+                value={firstName}
                 // onChange={(e) => setFirstName(e.target.value)}
                 placeholder='First Name'
                 className='first_name'
@@ -171,6 +181,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
+                value={lastName}
                 placeholder='Last Name'
                 className='last_name'
                 style={{
@@ -478,18 +489,15 @@ function Account({ user }) {
               </span>
             </div>
             <div>
-              <textarea
-                required
-                autoFocus
-                className='introduction'></textarea>
+              <textarea required autoFocus className='introduction'></textarea>
             </div>
             <div
               style={{
                 display: 'flex',
                 paddingTop: '3%',
-                float: 'right',
+                float: 'right'
               }}>
-              <div style={{paddingRight:'5%'}}>
+              <div style={{ paddingRight: '5%' }}>
                 <Button
                   variant='contained'
                   color='secondary'
@@ -507,10 +515,8 @@ function Account({ user }) {
               <Button
                 variant='contained'
                 style={{
-        
                   color: '#8F8F8F'
-                }}
-              >
+                }}>
                 Cancel
               </Button>
             </div>

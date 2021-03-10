@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import Modal from '@material-ui/core/Modal'
-import { Avatar, Button } from '@material-ui/core'
-import $ from 'jquery'
-import firebase from 'firebase'
 
-import { db, auth, storage } from '../../firebase'
-import RedHeartButton from '../../images/Button-RedHeart.svg'
-import HeartButton from '../../images/Button-Heart.svg'
+import { db } from '../../firebase'
 
 function SingleImage({ id, post }) {
-  // const dispatch = useDispatch();
-  // const [emailVerified, setEmailVerified] = useState('');
+
   const [userProfile, setUserProfile] = useState(null)
-  const [age, setAge] = useState('')
-  const [isToggle, setIsToggle] = useState(false)
 
   useEffect(() => {
-    if (post.userEmail && !post.length) {
+    if (post.userEmail && post) {
       if (!userProfile) {
         db.collection('UserProfile')
           .doc(post.userEmail)

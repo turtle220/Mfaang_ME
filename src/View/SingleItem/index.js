@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import 'react-perfect-scrollbar/dist/css/styles.css'
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import React, { useState, useEffect } from 'react'
 import { Avatar, Button } from '@material-ui/core'
 
 import './index.css'
@@ -11,10 +9,8 @@ import Pagination from '../../components/Pagination/index'
 
 //email: postUser email
 function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
-  const ps = useRef()
   const [imageUrl, setImageUrl] = useState('')
   const [userProfile, setUserProfile] = useState(null)
-  const [likeUserEmail, setLikeUserEmail] = useState('')
 
   useEffect(() => {
     if (imageUrl === '') {
