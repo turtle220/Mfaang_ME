@@ -186,20 +186,13 @@ export default function SignUp({ openLogin }) {
                         margin: '0, auto',
                         outline: 'none'
                       }}>
-                      <option value='Google.com'> Google.com </option>
+                      <option value='Microsoft.com'> Microsoft.com </option>
                       <option value='Google.com'> Google.com </option>
                       <option value='Amazon.com'> Amazon.com </option>
                       <option value='Apple.com'> Apple.com </option>
                       <option value='Facebook.com'> Facebook.com </option>
                       <option value='Netflix.com'> Netflix.com </option>
                     </select>
-                    {/* <datalist id='emails'>
-                      <option value='google.com'>Google.com</option>
-                      <option value='amazon.com'>Amazon.com</option>
-                      <option value='apple.com'>Apple.com</option>
-                      <option value='facebook.com'>Facebook.com</option>
-                      <option value='netflix.com'>Netflix.com</option>
-                    </datalist> */}
                   </div>
                   <div style={{ height: '10px' }}></div>
                   <input
