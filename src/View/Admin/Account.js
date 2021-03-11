@@ -21,7 +21,7 @@ function Account({ user }) {
   const [introduction, setIntroduction] = useState('')
 
   useEffect(() => {
-    if(firstName === '' && lastName === '') {
+    if (firstName === '' && lastName === '') {
       db.collection('UserProfile')
         .doc(auth.currentUser.email)
         .get()
@@ -167,7 +167,6 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                readOnly
                 defaultValue={firstName}
                 // onChange={(e) => setFirstName(e.target.value)}
                 placeholder='First Name'
@@ -518,7 +517,11 @@ function Account({ user }) {
               </span>
             </div>
             <div>
-              <textarea required autoFocus defaultValue={introduction} className='introduction'></textarea>
+              <textarea
+                required
+                autoFocus
+                defaultValue={introduction}
+                className='introduction'></textarea>
             </div>
             <div
               style={{
