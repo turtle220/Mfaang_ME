@@ -11,6 +11,7 @@ function Account({ user }) {
   const [lastName, setLastName] = useState('')
   const [yourGender, setYourGender] = useState('')
   const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [address1, setAddress1] = useState('')
   const [address2, setAddress2] = useState('')
@@ -21,26 +22,36 @@ function Account({ user }) {
   const [introduction, setIntroduction] = useState('')
 
   useEffect(() => {
-    if (firstName === '' && lastName === '') {
+    if(firstName === '' && lastName === '') {
       db.collection('UserProfile')
         .doc(auth.currentUser.email)
         .get()
         .then((doc) => {
-          setFirstName(doc.data()['firstName'])
-          setLastName(doc.data()['lastName'])
-          setYourGender(doc.data()['yourGender'])
-          setAge(doc.data()['years'])
-          setPhone(doc.data()['phone'])
-          setAddress1(doc.data()['address1'])
-          setAddress2(doc.data()['address2'])
-          setCity(doc.data()['city'])
-          setState(doc.data()['state'])
-          setCountry(doc.data()['country'])
-          setZipCode(doc.data()['zipCode'])
-          setIntroduction(doc.data()['introduction'])
+          if($('.first_name').val()) {
+            setFirstName(doc.data()['firstName'])
+            setLastName(doc.data()['lastName'])
+            setYourGender(doc.data()['yourGender'])
+            setAge(doc.data()['years'])
+            setEmail(doc.data()['email'])
+            setPhone(doc.data()['phone'])
+            setAddress1(doc.data()['address1'])
+            setAddress2(doc.data()['address2'])
+            setCity(doc.data()['city'])
+            setState(doc.data()['state'])
+            setCountry(doc.data()['country'])
+            setZipCode(doc.data()['zipCode'])
+            setIntroduction(doc.data()['introduction'])
+          }
         })
     }
   })
+  const onDelete = () => {
+    alert('Do you want to delete your account?')
+    db.collection('UserProfile')
+      .doc(auth.currentUser.email)
+      .delete()
+  }
+
   const onSave = () => {
     const firstName = $('.first_name').val()
     const middle = $('.middle').val()
@@ -164,7 +175,7 @@ function Account({ user }) {
               </span>
             </div>
             <div style={{ display: 'flex', paddingBottom: '2%' }}>
-              <input
+             <input
                 required
                 autoFocus
                 defaultValue={firstName}
@@ -179,7 +190,7 @@ function Account({ user }) {
                   width: '100%',
                   margin: '0, auto',
                   outline: '#FF9100'
-                }}></input>
+                }}></input> 
               <span style={{ width: '5%' }}>{'   '}</span>
               <input
                 placeholder='Middle'
@@ -315,8 +326,8 @@ function Account({ user }) {
                   fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
-                  color: '#0000008a'
-                }}>
+                color: '#0000008a'
+              }}>
                 Email Address
               </span>
             </div>
@@ -324,7 +335,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                defaultValue={auth.currentUser.email}
+                defaultValue={email}
                 placeholder='Email from back end when user signing up'
                 className='email_address'
                 style={{
@@ -487,6 +498,25 @@ function Account({ user }) {
                   outline: '#FF9100'
                 }}></input>
             </div>
+            <div style={{ paddingRight: '5%' }}>
+              <Button
+                variant='contained'
+                color='secondary'
+                style={{
+                  backgroundColor: 'white',
+                  minWidth: '100px',
+                  maxWidth: '100%',
+                  width: '30%',
+                  color: '#0000008a',
+                  // borderColor: '#8f8f8f',
+                  fontWeight: '500',
+                  border: '2px solid #00000033'
+                }}
+                type='submit'
+                onClick={onDelete}>
+                Delete Account
+              </Button>
+            </div>
           </div>
           <div
             style={{
@@ -517,11 +547,7 @@ function Account({ user }) {
               </span>
             </div>
             <div>
-              <textarea
-                required
-                autoFocus
-                defaultValue={introduction}
-                className='introduction'></textarea>
+              <textarea required autoFocus defaultValue={introduction} className='introduction'></textarea>
             </div>
             <div
               style={{

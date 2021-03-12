@@ -218,7 +218,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[0].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px', objectFit:'cover' }}
+              style={{ width: '290px', height: '270px', objectFit:'cover', boxShadow:'12px 10px 10px #88888f', border: '19px solid #dbdbdb', borderBottom: '35px solid #dfdfdf' }}
             />
           ) : null}
           {/* second postUser Image */}
@@ -227,7 +227,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[1].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px', objectFit:'cover' }}
+              style={{ width: '290px', height: '270px', objectFit:'cover', boxShadow:'12px 10px 10px #88888f', border: '19px solid #dbdbdb', borderBottom: '35px solid #dfdfdf' }}
             />
           ) : // </div>
           null}
@@ -237,7 +237,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[2].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px', objectFit:'cover' }}
+              style={{ width: '290px', height: '270px', objectFit:'cover', boxShadow:'12px 10px 10px #88888f', border: '19px solid #dbdbdb', borderBottom: '35px solid #dfdfdf' }}
             />
           ) : // </div>
           null}
@@ -247,7 +247,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
             <img
               src={postImages[3].postUserImage}
               alt=''
-              style={{ width: '250px', height: '220px', objectFit:'cover' }}
+              style={{ width: '290px', height: '270px', objectFit:'cover', boxShadow:'12px 10px 10px #88888f', border: '19px solid #dbdbdb', borderBottom: '35px solid #dfdfdf' }}
             />
           ) : // </div>
           null}
@@ -274,7 +274,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
               Here is something about myself{' '}
             </p>
           </div>
-          <Button
+          {auth.currentUser && auth.currentUser.email && <Button
             variant='contained'
             color='secondary'
             size='medium'
@@ -285,7 +285,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
               maxWidth: '200px'
             }}>
             I like to know you
-          </Button>
+          </Button> }
         </div>
         <div
           style={{

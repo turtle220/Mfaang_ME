@@ -70,7 +70,7 @@ export default () => {
         {uniqueUser.length
           ? uniqueUser.map(({ id, post }) => {
               return (
-                <div key={id} style={{ height: 270, width: '100%', background: '#EEE' }}>
+                <div key={id} style={{ height: 255, width: '100%', background: 'transparent' }}>
                   <SingleImage key={id} id={id} post={post} />
                 </div>
               )
