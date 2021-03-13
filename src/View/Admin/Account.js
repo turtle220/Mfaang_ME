@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@material-ui/core'
 import $ from 'jquery'
+import { useHistory } from 'react-router-dom'
 
 import { db, auth } from '../../firebase'
 import Photos from './Photos.js'
@@ -20,14 +21,15 @@ function Account({ user }) {
   const [country, setCountry] = useState('')
   const [zipCode, setZipCode] = useState('')
   const [introduction, setIntroduction] = useState('')
+  const history = useHistory()
 
   useEffect(() => {
-    if(firstName === '' && lastName === '') {
+    if (firstName === '' && lastName === '') {
       db.collection('UserProfile')
         .doc(auth.currentUser.email)
         .get()
         .then((doc) => {
-          if($('.first_name').val()) {
+          if ($('.first_name').val()) {
             setFirstName(doc.data()['firstName'])
             setLastName(doc.data()['lastName'])
             setYourGender(doc.data()['yourGender'])
@@ -47,9 +49,9 @@ function Account({ user }) {
   })
   const onDelete = () => {
     alert('Do you want to delete your account?')
-    db.collection('UserProfile')
-      .doc(auth.currentUser.email)
-      .delete()
+    db.collection('UserProfile').doc(auth.currentUser.email).delete()
+    auth.signOut()
+    history.push('/')
   }
 
   const onSave = () => {
@@ -175,7 +177,7 @@ function Account({ user }) {
               </span>
             </div>
             <div style={{ display: 'flex', paddingBottom: '2%' }}>
-             <input
+              <input
                 required
                 autoFocus
                 defaultValue={firstName}
@@ -190,7 +192,7 @@ function Account({ user }) {
                   width: '100%',
                   margin: '0, auto',
                   outline: '#FF9100'
-                }}></input> 
+                }}></input>
               <span style={{ width: '5%' }}>{'   '}</span>
               <input
                 placeholder='Middle'
@@ -326,8 +328,8 @@ function Account({ user }) {
                   fontSize: '24px',
                   fontFamily: 'system-ui',
                   fontWeight: '500',
-                color: '#0000008a'
-              }}>
+                  color: '#0000008a'
+                }}>
                 Email Address
               </span>
             </div>
@@ -366,7 +368,7 @@ function Account({ user }) {
                 autoFocus
                 defaultValue={phone}
                 // onChange={(e) => setPhone(e.target.value)}
-                placeholder='phone'
+                placeholder='Phone(Optional)'
                 className='phone'
                 style={{
                   borderRadius: '5px',
@@ -387,10 +389,10 @@ function Account({ user }) {
                   fontWeight: '500',
                   color: '#0000008a'
                 }}>
-                Address
+                Location
               </span>
             </div>
-            <div style={{ paddingBottom: '2%' }}>
+            {/* <div style={{ paddingBottom: '2%' }}>
               <input
                 required
                 autoFocus
@@ -431,7 +433,7 @@ function Account({ user }) {
               <datalist id='address2'>
                 <option value=' '></option>
               </datalist>
-            </div>
+            </div> */}
             <div style={{ paddingBottom: '2%' }}>
               <input
                 required
@@ -547,7 +549,11 @@ function Account({ user }) {
               </span>
             </div>
             <div>
-              <textarea required autoFocus defaultValue={introduction} className='introduction'></textarea>
+              <textarea
+                required
+                autoFocus
+                defaultValue={introduction}
+                className='introduction'></textarea>
             </div>
             <div
               style={{
