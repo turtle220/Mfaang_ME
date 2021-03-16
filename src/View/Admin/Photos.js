@@ -65,7 +65,7 @@ export default function Photos({ user }) {
         'state_changed',
         (snapshot) => {
           progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          console.log(`Progress: ${progress}%`)
+          // console.log(`Progress: ${progress}%`)
           if (snapshot.state === firebase.storage.TaskState.RUNNING) {
             //  alert('file uploading...')
           }

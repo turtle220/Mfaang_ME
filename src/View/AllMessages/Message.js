@@ -16,7 +16,7 @@ export default function receiveMessage() {
   // - the user clicks on an app notification created by a service worker
   //   `messaging.onBackgroundMessage` handler.
   messaging.onMessage((payload) => {
-    console.log('Message received. ', payload)
+    // console.log('Message received. ', payload)
     // ...
   })
   // [END messaging_receive_message]

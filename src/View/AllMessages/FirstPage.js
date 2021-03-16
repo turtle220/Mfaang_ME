@@ -14,6 +14,7 @@ function FirstPage() {
   const id = '';
   const [likePersons, setLikePersons] = useState([])
   const [uniqueUser, setUniqueUser] = useState('')
+  const [selectUser, setSelectUser] = useState('')
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -67,6 +68,9 @@ function FirstPage() {
     }
   })
 
+  // const selectUser = (email) => {
+  //   console.log(email, '----jselectUserEmail:')
+  // }
   return (
     <div>
       <Navbar />
@@ -108,9 +112,10 @@ function FirstPage() {
                 uniqueUser.map((person, id) => {
                   if (person) {
                     return (
-                      <a
+                      <button
                         key={id}
-                        href={`/allmessages/${person.emailAddress}`}
+                        // href={`/allmessages/${person.emailAddress}`}
+                        onClick={()=>{setSelectUser(person.emailAddress)}}
                         style={{
                           textDecoration: 'none',
                           display: 'flex',
@@ -118,12 +123,17 @@ function FirstPage() {
                           marginTop: '5%',
                           borderRadius: '7px',
                           height: '60px',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          // outlineborder: 'solid 2px',
+                          outlineColor: '#8f8f8f',
+                          borderColor: 'transparent',
+                          width: '310px',
+                          textAlign: 'left'
                         }}>
                         <div style={{ paddingLeft: '3%', paddingTop: '3%' }}>
                           <LikeUser email={person.emailAddress} />
                         </div>
-                        <div style={{ display: 'block', paddingLeft: '3%' }}>
+                        <div style={{ display: 'block', paddingLeft: '3%', paddingTop: '4%' }}>
                           <div style={{ fontWeight: 'bold', color: '#707070' }}>
                             {person.firstName}
                           </div>
@@ -132,7 +142,7 @@ function FirstPage() {
                             {person.state}, {person.country}
                           </div>
                         </div>
-                      </a>
+                      </button>
                     )
                   }
                 })
@@ -142,7 +152,7 @@ function FirstPage() {
 
             </PerfectScrollbar>
           </div>
-          <ChatRoomChannel email={id.id} />
+          <ChatRoomChannel email={selectUser} />
         </div>
         <div style={{ paddingTop: '3%', color: '#8f8f8f' }}>
           <hr style={{ color: '#DBDBDB' }}></hr>
