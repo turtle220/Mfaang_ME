@@ -58,7 +58,7 @@ function FirstPage() {
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if (!likeUserEmailArray.includes(element.emailAddress) || !likeUserEmailArray.includes(element.emailAddress)) {
+          if (!likeUserEmailArray.includes(element.emailAddress) || !likeUserEmailArray.includes(element.email)) {
             likeUserEmailArray.push(element.emailAddress)
             uniqueUserArray.push(element)
           }
