@@ -232,7 +232,7 @@ function WhoLikesYou() {
                     variant='contained'
                     color='secondary'
                     size='medium'
-                    href={`/allmessages/${person.email}`}
+                    href={`/all`}
                     style={{
                       backgroundColor: '#F699CD',
                       minWidth: '200px',
