@@ -115,7 +115,7 @@ function FirstPage() {
                       <button
                         key={id}
                         // href={`/allmessages/${person.emailAddress}`}
-                        onClick={()=>{setSelectUser(person.emailAddress)}}
+                        onClick={()=>{setSelectUser(person.email)}}
                         style={{
                           textDecoration: 'none',
                           display: 'flex',
