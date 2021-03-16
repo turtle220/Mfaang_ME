@@ -56,5 +56,5 @@
 
 .highlight {
   border: solid 2px;
-  border-color: #8f8f8f;
+  border-color: #8f8f8f !important;
 }

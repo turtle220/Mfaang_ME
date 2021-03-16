@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, createRef } from 'react'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
@@ -11,10 +11,11 @@ import ChatRoomChannel from './ChatRoomChannel'
 import LikeUser from './LikeUser'
 
 function FirstPage() {
-  const id = '';
   const [likePersons, setLikePersons] = useState([])
-  const [uniqueUser, setUniqueUser] = useState('')
+  const [uniqueUser, setUniqueUser] = useState([])
   const [selectUser, setSelectUser] = useState('')
+  let elementsRef
+  const ref = useRef({})
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -53,24 +54,27 @@ function FirstPage() {
 
   useEffect(() => {
     if (!uniqueUser.length) {
-      if (likePersons.length) {
+      if (likePersons.length && likePersons) {
         const likeUserEmailArray = []
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if (!likeUserEmailArray.includes(element.emailAddress) || !likeUserEmailArray.includes(element.email)) {
-            likeUserEmailArray.push(element.email)
-            uniqueUserArray.push(element)
+          if (element) {
+            if (
+              !likeUserEmailArray.includes(element.emailAddress) ||
+              !likeUserEmailArray.includes(element.email)
+            ) {
+              likeUserEmailArray.push(element.email)
+              uniqueUserArray.push(element)
+            }
           }
         }
+        // elementsRef = useRef(uniqueUserArray.map(() => createRef()))
         setUniqueUser(uniqueUserArray)
       }
     }
   })
 
-  // const selectUser = (email) => {
-  //   console.log(email, '----jselectUserEmail:')
-  // }
   return (
     <div>
       <Navbar />
@@ -95,6 +99,7 @@ function FirstPage() {
             height: '400px'
           }}>
           <div
+            className="scrollDiv"
             style={{
               display: 'block',
               backgroundColor: 'white',
@@ -109,13 +114,19 @@ function FirstPage() {
             }}>
             <PerfectScrollbar>
               {uniqueUser.length ? (
-                uniqueUser.map((person, id) => {
+                uniqueUser.map((person, index) => {
                   if (person) {
                     return (
                       <button
-                        key={id}
-                        // href={`/allmessages/${person.emailAddress}`}
-                        onClick={()=>{setSelectUser(person.email)}}
+                        ref={(element) => (ref.current[index] = element)}
+                        key={index}
+                        onClick={(event) => {
+                          setSelectUser(person.email)
+                          document.querySelectorAll('.highlight').forEach((item, key) => {
+                            item.classList.remove("highlight");
+                          })
+                          ref.current[index].className = 'highlight'
+                        }}
                         style={{
                           textDecoration: 'none',
                           display: 'flex',
@@ -131,9 +142,14 @@ function FirstPage() {
                           textAlign: 'left'
                         }}>
                         <div style={{ paddingLeft: '3%', paddingTop: '3%' }}>
-                          <LikeUser email={person.emailAddress} />
+                          <LikeUser email={person.email} />
                         </div>
-                        <div style={{ display: 'block', paddingLeft: '3%', paddingTop: '4%' }}>
+                        <div
+                          style={{
+                            display: 'block',
+                            paddingLeft: '3%',
+                            paddingTop: '4%'
+                          }}>
                           <div style={{ fontWeight: 'bold', color: '#707070' }}>
                             {person.firstName}
                           </div>
@@ -149,7 +165,6 @@ function FirstPage() {
               ) : (
                 <></>
               )}
-
             </PerfectScrollbar>
           </div>
           <ChatRoomChannel email={selectUser} />
@@ -159,7 +174,7 @@ function FirstPage() {
         </div>
       </div>
       <div>
-        <Pagination location='/wholikesyou'/>
+        <Pagination location='/wholikesyou' />
       </div>
       <Footer />
     </div>
