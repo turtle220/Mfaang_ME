@@ -59,7 +59,7 @@ function FirstPage() {
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
           if (!likeUserEmailArray.includes(element.emailAddress) || !likeUserEmailArray.includes(element.email)) {
-            likeUserEmailArray.push(element.emailAddress)
+            likeUserEmailArray.push(element.email)
             uniqueUserArray.push(element)
           }
         }

@@ -17,11 +17,10 @@ function WhoLikesYou() {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         if (authUser.email && !likePersons.length) {
-          
           db.collection('UserProfile')
-          .doc(authUser.email)
-          .collection('wholikesyou')
-          .onSnapshot((snapshot) => {
+            .doc(authUser.email)
+            .collection('wholikesyou')
+            .onSnapshot((snapshot) => {
               const likeUserArray = []
               for (let i = 0; i < snapshot.docs.length; i++) {
                 const doc = snapshot.docs[i]
@@ -32,10 +31,10 @@ function WhoLikesYou() {
                     likeUserArray.push({ person: doc.data(), id: doc.id })
                   })
               }
-              setUniqueUser([]);
+              setUniqueUser([])
               setTimeout(() => {
                 // console.log("setLikpersons")
-                setLikePersons(likeUserArray);
+                setLikePersons(likeUserArray)
               }, 2000)
             })
         }
@@ -55,21 +54,12 @@ function WhoLikesYou() {
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if (
-            !likeUserEmailArray.includes(element.person.emailAddress)
-          ) {
-            likeUserEmailArray.push(element.person.emailAddress)
-            uniqueUserArray.push(element)
-          }
-          
-          if (
-            !likeUserEmailArray.includes(element.person.email)
-          ) {
+          if (!likeUserEmailArray.includes(element.person.emailAddress) || !likeUserEmailArray.includes(element.person.email)) {
             likeUserEmailArray.push(element.person.email)
             uniqueUserArray.push(element)
           }
         }
-        setUniqueUser(uniqueUserArray);
+        setUniqueUser(uniqueUserArray)
       }
     }
   }, [likePersons])
@@ -99,7 +89,7 @@ function WhoLikesYou() {
           }}>
           <hr style={{ color: '#8f8f8f' }}></hr>
         </div>
-        { uniqueUser ? (
+        {uniqueUser ? (
           uniqueUser.map(({ person, id }) => {
             // if (person) {
             const onDelete = () => {
@@ -107,7 +97,8 @@ function WhoLikesYou() {
               db.collection('UserProfile')
                 .doc(auth.currentUser.email)
                 .collection('wholikesyou')
-                .get().then((snapshot) => {
+                .get()
+                .then((snapshot) => {
                   snapshot.docs.map((doc) =>
                     db
                       .collection('UserProfile')
@@ -120,18 +111,20 @@ function WhoLikesYou() {
                         if (
                           person.email === doc.data().likeUserEmail ||
                           person.emailAddress === doc.data().likeUserEmail
-                          ) {
+                        ) {
                           db.collection('UserProfile')
                             .doc(auth.currentUser.email)
                             .collection('wholikesyou')
                             .doc(doc.id)
-                            .delete().then(()=>{
+                            .delete()
+                            .then(() => {
                               // remove the auth user email on likeuser profile
                               const likeUser = doc.data().likeUserEmail
                               db.collection('UserProfile')
                                 .doc(likeUser)
                                 .collection('wholikesyou')
-                                .get().then((snapshot) => {
+                                .get()
+                                .then((snapshot) => {
                                   snapshot.docs.map((doc) => {
                                     if (
                                       auth.currentUser.email ===
@@ -171,26 +164,26 @@ function WhoLikesYou() {
                         //       setLikePersons(likeUserArray)
                         //     }, 2000)
 
-                            // const likeUserEmailArray = []
-                            // const uniqueUserArray = []
-                            // for (let i = 0; i < likeUserArray.length; i++) {
-                            //   const element = likeUserArray[i]
-                            //   if (
-                            //     !likeUserEmailArray.includes(
-                            //       element.person.emailAddress
-                            //     ) ||
-                            //     !likeUserEmailArray.includes(
-                            //       element.person.emailAddress
-                            //     )
-                            //   ) {
-                            //     likeUserEmailArray.push(
-                            //       element.person.emailAddress
-                            //     )
-                            //     uniqueUserArray.push(element)
-                            //   }
-                            // }
-                            // setUniqueUser(uniqueUserArray)
-                          // })
+                        // const likeUserEmailArray = []
+                        // const uniqueUserArray = []
+                        // for (let i = 0; i < likeUserArray.length; i++) {
+                        //   const element = likeUserArray[i]
+                        //   if (
+                        //     !likeUserEmailArray.includes(
+                        //       element.person.emailAddress
+                        //     ) ||
+                        //     !likeUserEmailArray.includes(
+                        //       element.person.emailAddress
+                        //     )
+                        //   ) {
+                        //     likeUserEmailArray.push(
+                        //       element.person.emailAddress
+                        //     )
+                        //     uniqueUserArray.push(element)
+                        //   }
+                        // }
+                        // setUniqueUser(uniqueUserArray)
+                        // })
                       })
                   )
                 })
