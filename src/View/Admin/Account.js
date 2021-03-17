@@ -36,8 +36,8 @@ function Account({ user }) {
             setAge(doc.data()['years'])
             setEmail(doc.data()['email'])
             setPhone(doc.data()['phone'])
-            setAddress1(doc.data()['address1'])
-            setAddress2(doc.data()['address2'])
+            // setAddress1(doc.data()['address1'])
+            // setAddress2(doc.data()['address2'])
             setCity(doc.data()['city'])
             setState(doc.data()['state'])
             setCountry(doc.data()['country'])
@@ -49,9 +49,10 @@ function Account({ user }) {
   })
   const onDelete = () => {
     alert('Do you want to delete your account?')
-    db.collection('UserProfile').doc(auth.currentUser.email).delete()
-    auth.signOut()
-    history.push('/')
+    db.collection('UserProfile').doc(auth.currentUser.email).delete().then(
+        // auth.signOut(),
+        history.push('/')
+    )
   }
 
   const onSave = () => {
@@ -98,8 +99,8 @@ function Account({ user }) {
           years,
           emailAddress,
           phone,
-          address1,
-          address2,
+          // address1,
+          // address2,
           city,
           state,
           country,
@@ -124,8 +125,8 @@ function Account({ user }) {
               years,
               emailAddress,
               phone,
-              address1,
-              address2,
+              // address1,
+              // address2,
               city,
               state,
               country,
@@ -337,7 +338,7 @@ function Account({ user }) {
               <input
                 required
                 autoFocus
-                defaultValue={email}
+                defaultValue={auth.currentUser.email}
                 placeholder='Email from back end when user signing up'
                 className='email_address'
                 style={{
