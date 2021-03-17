@@ -53,14 +53,16 @@ function WhoLikesYou() {
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if(element && element.person) {
-            if (!likeUserEmailArray.includes(element.person.emailAddress) || !likeUserEmailArray.includes(element.person.email)) {
+          if (element && element.person && element.person.emailAddress) {
+            if (!likeUserEmailArray.includes(element.person.emailAddress)) {
               likeUserEmailArray.push(element.person.email)
               uniqueUserArray.push(element)
             }
           }
         }
-        setUniqueUser(uniqueUserArray)
+        if (uniqueUserArray.length) {
+          setUniqueUser(uniqueUserArray)
+        }
       }
     }
   }, [likePersons])

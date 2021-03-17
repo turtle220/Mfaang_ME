@@ -51,15 +51,14 @@ function FirstPage() {
       unsubscribe()
     }
   })
-
   useEffect(() => {
     if (!uniqueUser.length) {
-      if (likePersons.length && likePersons) {
+      if (likePersons.length) {
         const likeUserEmailArray = []
         const uniqueUserArray = []
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
-          if (element) {
+          if (element && element.emailAddress) {
             if (
               !likeUserEmailArray.includes(element.emailAddress) ||
               !likeUserEmailArray.includes(element.email)
@@ -70,7 +69,9 @@ function FirstPage() {
           }
         }
         // elementsRef = useRef(uniqueUserArray.map(() => createRef()))
-        setUniqueUser(uniqueUserArray)
+        if(uniqueUserArray.length) {
+          setUniqueUser(uniqueUserArray)
+        }
       }
     }
   })
