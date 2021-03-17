@@ -29,7 +29,7 @@ function Account({ user }) {
         .doc(auth.currentUser.email)
         .get()
         .then((doc) => {
-          if ($('.first_name').val()) {
+          if (doc.data()) {
             setFirstName(doc.data()['firstName'])
             setLastName(doc.data()['lastName'])
             setYourGender(doc.data()['yourGender'])

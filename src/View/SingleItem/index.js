@@ -274,7 +274,7 @@ function SingleItem({ posts, imgUrl, imageName, email, postId, postImages }) {
               Here is something about myself{' '}
             </p>
           </div>
-          {auth.currentUser && auth.currentUser.email && <Button
+          {auth.currentUser && auth.currentUser.email && auth.currentUser.emailVerified && <Button
             variant='contained'
             color='secondary'
             size='medium'

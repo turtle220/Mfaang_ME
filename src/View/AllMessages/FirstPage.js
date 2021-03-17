@@ -138,7 +138,7 @@ function FirstPage() {
                           // outlineborder: 'solid 2px',
                           outlineColor: '#8f8f8f',
                           borderColor: 'transparent',
-                          width: '310px',
+                          width: '100%',
                           textAlign: 'left'
                         }}>
                         <div style={{ paddingLeft: '3%', paddingTop: '3%' }}>
