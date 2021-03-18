@@ -13,7 +13,6 @@ const firestore = firebase.firestore()
 
 function ChatRoomChannel(email) {
   // const [user] = useAuthState(auth)
-
   return (
     <div className='App' style={{ paddingTop: '2%', width: '100%' }}>
       <section>
@@ -49,19 +48,17 @@ function ChatRoom(email) {
     hours = hours ? hours : 12
     minutes = minutes < 10 ? '0' + minutes : minutes
     let getCurrentTime = hours + ':' + minutes + ' ' + newformat
-
-    await messagesRef.add({
-      user: displayName,
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL,
-      to: email.email,
-      from: auth.currentUser.email,
-      currentTime: getCurrentTime
-    })
-
-    setFormValue('')
+      await messagesRef.add({
+        user: displayName,
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL,
+        to: email.email,
+        from: auth.currentUser.email,
+        currentTime: getCurrentTime
+      })
+      setFormValue('')
   }
 
   return (

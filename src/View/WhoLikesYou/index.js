@@ -32,10 +32,11 @@ function WhoLikesYou() {
                   })
               }
               setUniqueUser([])
-              setTimeout(() => {
-                // console.log("setLikpersons")
-                setLikePersons(likeUserArray)
-              }, 2000)
+              if(likeUserArray) {
+                setTimeout(() => {
+                  setLikePersons(likeUserArray)
+                }, 1000)
+              }
             })
         }
       }
@@ -80,7 +81,7 @@ function WhoLikesYou() {
               fontWeight: '700',
               color: '#0000008a'
             }}>
-            Who likes you{' '}
+            Who likes you
           </span>
         </div>
         <div

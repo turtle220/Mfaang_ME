@@ -14,8 +14,8 @@ function Account({ user }) {
   const [age, setAge] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [address1, setAddress1] = useState('')
-  const [address2, setAddress2] = useState('')
+  // const [address1, setAddress1] = useState('')
+  // const [address2, setAddress2] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [country, setCountry] = useState('')
@@ -50,8 +50,7 @@ function Account({ user }) {
   const onDelete = () => {
     alert('Do you want to delete your account?')
     db.collection('UserProfile').doc(auth.currentUser.email).delete().then(
-        // auth.signOut(),
-        history.push('/')
+      history.push('/')
     )
   }
 
@@ -63,8 +62,8 @@ function Account({ user }) {
     const years = $('.year').val()
     const emailAddress = $('.email_address').val()
     const phone = $('.phone').val()
-    const address1 = $('.address1').val()
-    const address2 = $('.address2').val()
+    // const address1 = $('.address1').val()
+    // const address2 = $('.address2').val()
     const city = $('.city').val()
     const state = $('.state').val()
     const country = $('.country').val()

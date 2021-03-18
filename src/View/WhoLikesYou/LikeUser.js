@@ -9,15 +9,24 @@ function LikeUser({ email, id }) {
 
   useEffect(() => {
     if (image === '') {
-      storage
-        .ref(`avatars/${email}-avatar.png`)
+      if(email) {
+        storage
+          .ref(`avatars/${email}-avatar.png`)
+          .getDownloadURL()
+          .then((url) => {
+            setImage(url)
+          })
+      } else {
+        storage
+        .ref(`avatars/${id}-avatar.png`)
         .getDownloadURL()
         .then((url) => {
           setImage(url)
         })
+      }
     }
   })
-
+console.log(email, id, '-----email:')
   return (
     <>
       {image ? (

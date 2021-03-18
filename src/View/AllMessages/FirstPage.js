@@ -13,7 +13,7 @@ import LikeUser from './LikeUser'
 function FirstPage() {
   const [likePersons, setLikePersons] = useState([])
   const [uniqueUser, setUniqueUser] = useState([])
-  const [selectUser, setSelectUser] = useState('')
+  const [selectUser, setSelectUser] = useState(null)
   let elementsRef
   const ref = useRef({})
 
@@ -38,10 +38,11 @@ function FirstPage() {
                     userLikeArray.push(doc.data())
                   })
               }
-
-              setTimeout(() => {
-                setLikePersons(userLikeArray)
-              }, 3000)
+              if(userLikeArray) {
+                setTimeout(() => {
+                  setLikePersons(userLikeArray)
+                }, 1000)
+              }
             })
         }
       }
@@ -69,7 +70,7 @@ function FirstPage() {
           }
         }
         // elementsRef = useRef(uniqueUserArray.map(() => createRef()))
-        if(uniqueUserArray.length) {
+        if(uniqueUserArray) {
           setUniqueUser(uniqueUserArray)
         }
       }
@@ -121,8 +122,8 @@ function FirstPage() {
                       <button
                         ref={(element) => (ref.current[index] = element)}
                         key={index}
-                        onClick={(event) => {
-                          setSelectUser(person.email)
+                        onClick={() => {
+                          setSelectUser(person.emailAddress)
                           document.querySelectorAll('.highlight').forEach((item, key) => {
                             item.classList.remove("highlight");
                           })
