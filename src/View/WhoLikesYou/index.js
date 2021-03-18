@@ -35,7 +35,7 @@ function WhoLikesYou() {
               if(likeUserArray) {
                 setTimeout(() => {
                   setLikePersons(likeUserArray)
-                }, 1000)
+                }, 500)
               }
             })
         }

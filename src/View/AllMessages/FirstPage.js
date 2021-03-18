@@ -41,7 +41,7 @@ function FirstPage() {
               if(userLikeArray) {
                 setTimeout(() => {
                   setLikePersons(userLikeArray)
-                }, 1000)
+                }, 500)
               }
             })
         }
@@ -70,7 +70,7 @@ function FirstPage() {
           }
         }
         // elementsRef = useRef(uniqueUserArray.map(() => createRef()))
-        if(uniqueUserArray) {
+        if(uniqueUserArray.length) {
           setUniqueUser(uniqueUserArray)
         }
       }
