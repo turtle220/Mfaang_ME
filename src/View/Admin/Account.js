@@ -301,7 +301,7 @@ function Account({ user }) {
                   fontWeight: '500',
                   color: '#0000008a'
                 }}>
-                Date of birth
+                Age
               </span>
             </div>
             <div style={{ paddingBottom: '2%' }}>
