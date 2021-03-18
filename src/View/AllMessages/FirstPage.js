@@ -144,7 +144,7 @@ function FirstPage() {
                           textAlign: 'left'
                         }}>
                         <div style={{ paddingLeft: '3%', paddingTop: '3%' }}>
-                          <LikeUser email={person.email} />
+                          <LikeUser email={person.emailAddress} />
                         </div>
                         <div
                           style={{
