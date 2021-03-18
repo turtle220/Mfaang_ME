@@ -17,7 +17,6 @@ export default function SignUp({ openLogin }) {
     const email = $('.email_address_name').val() + '@' + emails
 
     const password = $('.signup_password').val()
-
     if (username && email && password) {
       auth
         .createUserWithEmailAndPassword(email, password)
