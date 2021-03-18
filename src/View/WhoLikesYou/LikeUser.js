@@ -26,7 +26,6 @@ function LikeUser({ email, id }) {
       }
     }
   })
-// console.log(email, id, '-----email:')
   return (
     <>
       {image ? (

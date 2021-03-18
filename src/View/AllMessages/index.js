@@ -49,7 +49,6 @@ function AllMessages(id) {
       unsubscribe()
     }
   })
-  // console.log(likePersons, '----likePersons:')
   useEffect(() => {
     if (!uniqueUser.length) {
       if (likePersons.length) {

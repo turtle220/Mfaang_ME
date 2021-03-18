@@ -56,7 +56,7 @@ function WhoLikesYou() {
           const element = likePersons[i]
           if (element && element.person && element.person.emailAddress) {
             if (!likeUserEmailArray.includes(element.person.emailAddress)) {
-              likeUserEmailArray.push(element.person.email)
+              likeUserEmailArray.push(element.person.emailAddress)
               uniqueUserArray.push(element)
             }
           }
@@ -67,7 +67,6 @@ function WhoLikesYou() {
       }
     }
   }, [likePersons])
-
   return (
     <div>
       <Navbar />
@@ -144,58 +143,9 @@ function WhoLikesYou() {
                                 })
                             })
                         }
-
-                        // const likeUserArray = []
-
-                        // db.collection('UserProfile')
-                        //   .doc(auth.currentUser.email)
-                        //   .collection('wholikesyou')
-                        //   .onSnapshot((snapshot) => {
-                        //     for (let i = 0; i < snapshot.docs.length; i++) {
-                        //       const doc = snapshot.docs[i]
-
-                        //       db.collection('UserProfile')
-                        //         .doc(doc.data().likeUserEmail)
-                        //         .get()
-                        //         .then((doc) => {
-                        //           likeUserArray.push({
-                        //             person: doc.data(),
-                        //             id: doc.id
-                        //           })
-                        //         })
-                        //     }
-                        //     setTimeout(() => {
-                        //       setLikePersons(likeUserArray)
-                        //     }, 2000)
-
-                        // const likeUserEmailArray = []
-                        // const uniqueUserArray = []
-                        // for (let i = 0; i < likeUserArray.length; i++) {
-                        //   const element = likeUserArray[i]
-                        //   if (
-                        //     !likeUserEmailArray.includes(
-                        //       element.person.emailAddress
-                        //     ) ||
-                        //     !likeUserEmailArray.includes(
-                        //       element.person.emailAddress
-                        //     )
-                        //   ) {
-                        //     likeUserEmailArray.push(
-                        //       element.person.emailAddress
-                        //     )
-                        //     uniqueUserArray.push(element)
-                        //   }
-                        // }
-                        // setUniqueUser(uniqueUserArray)
-                        // })
                       })
                   )
                 })
-
-              // setLikePersons([])
-              // setTimeout(() => {
-              //   window.location.reload()
-              // }, 5000)
             }
 
             return (

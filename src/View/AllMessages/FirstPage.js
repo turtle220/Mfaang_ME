@@ -38,7 +38,7 @@ function FirstPage() {
                     userLikeArray.push(doc.data())
                   })
               }
-              if(userLikeArray) {
+              if (userLikeArray) {
                 setTimeout(() => {
                   setLikePersons(userLikeArray)
                 }, 500)
@@ -60,17 +60,14 @@ function FirstPage() {
         for (let i = 0; i < likePersons.length; i++) {
           const element = likePersons[i]
           if (element && element.emailAddress) {
-            if (
-              !likeUserEmailArray.includes(element.emailAddress) ||
-              !likeUserEmailArray.includes(element.email)
-            ) {
-              likeUserEmailArray.push(element.email)
+            if (!likeUserEmailArray.includes(element.emailAddress)) {
+              likeUserEmailArray.push(element.emailAddress)
               uniqueUserArray.push(element)
             }
           }
         }
         // elementsRef = useRef(uniqueUserArray.map(() => createRef()))
-        if(uniqueUserArray.length) {
+        if (uniqueUserArray.length) {
           setUniqueUser(uniqueUserArray)
         }
       }
@@ -101,7 +98,7 @@ function FirstPage() {
             height: '400px'
           }}>
           <div
-            className="scrollDiv"
+            className='scrollDiv'
             style={{
               display: 'block',
               backgroundColor: 'white',
@@ -124,9 +121,11 @@ function FirstPage() {
                         key={index}
                         onClick={() => {
                           setSelectUser(person.emailAddress)
-                          document.querySelectorAll('.highlight').forEach((item, key) => {
-                            item.classList.remove("highlight");
-                          })
+                          document
+                            .querySelectorAll('.highlight')
+                            .forEach((item, key) => {
+                              item.classList.remove('highlight')
+                            })
                           ref.current[index].className = 'highlight'
                         }}
                         style={{

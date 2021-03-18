@@ -12,8 +12,8 @@ function Account({ user }) {
   const [lastName, setLastName] = useState('')
   const [yourGender, setYourGender] = useState('')
   const [age, setAge] = useState('')
-  // const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  // const [email, setEmail] = useState('')
   // const [address1, setAddress1] = useState('')
   // const [address2, setAddress2] = useState('')
   const [city, setCity] = useState('')
@@ -34,15 +34,15 @@ function Account({ user }) {
             setLastName(doc.data()['lastName'])
             setYourGender(doc.data()['yourGender'])
             setAge(doc.data()['years'])
-            // setEmail(doc.data()['email'])
             setPhone(doc.data()['phone'])
-            // setAddress1(doc.data()['address1'])
-            // setAddress2(doc.data()['address2'])
             setCity(doc.data()['city'])
             setState(doc.data()['state'])
             setCountry(doc.data()['country'])
             setZipCode(doc.data()['zipCode'])
             setIntroduction(doc.data()['introduction'])
+            // setEmail(doc.data()['email'])
+            // setAddress1(doc.data()['address1'])
+            // setAddress2(doc.data()['address2'])
           }
         })
     }
@@ -62,13 +62,13 @@ function Account({ user }) {
     const years = $('.year').val()
     const emailAddress = $('.email_address').val()
     const phone = $('.phone').val()
-    // const address1 = $('.address1').val()
-    // const address2 = $('.address2').val()
     const city = $('.city').val()
     const state = $('.state').val()
     const country = $('.country').val()
     const zipCode = $('.zipcode').val()
     const introduction = $('.introduction').val()
+    // const address1 = $('.address1').val()
+    // const address2 = $('.address2').val()
 
     if (
       firstName &&
@@ -77,13 +77,13 @@ function Account({ user }) {
       years &&
       emailAddress &&
       phone &&
-      // address1 &&
-      // address2 &&
       city &&
       state &&
       country &&
       zipCode &&
       introduction
+      // address1 &&
+      // address2 &&
     ) {
       db.collection('UserProfile')
         .doc(user.email)
@@ -92,19 +92,19 @@ function Account({ user }) {
           middle,
           lastName,
           yourGender,
-          // gender,
-          // months,
-          // days,
           years,
           emailAddress,
           phone,
-          // address1,
-          // address2,
           city,
           state,
           country,
           zipCode,
           introduction
+          // gender,
+          // months,
+          // days,
+          // address1,
+          // address2,
         })
         .then(() => {
           console.log('updated successfully!')
@@ -118,19 +118,19 @@ function Account({ user }) {
               middle,
               lastName,
               yourGender,
-              // gender,
-              // months,
-              // days,
               years,
               emailAddress,
               phone,
-              // address1,
-              // address2,
               city,
               state,
               country,
               zipCode,
               introduction
+              // months,
+              // days,
+              // address1,
+              // gender,
+              // address2,
             })
             .then(() => {
               console.log('created new profile successfully!')
