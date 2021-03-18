@@ -41,7 +41,7 @@ export default function SignUp({ openLogin }) {
         .catch(async function (error) {
           console.log('SignUp error', error)
           alert(
-            'This email address already exists'
+            'This email already exists, please log in'
           )
         })
     } else {
