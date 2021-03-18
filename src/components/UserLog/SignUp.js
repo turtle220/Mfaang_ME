@@ -22,10 +22,10 @@ export default function SignUp({ openLogin }) {
         .createUserWithEmailAndPassword(email, password)
         .then(async () => {
           await auth.currentUser
-            .sendEmailVerification({ url: 'https://www.mfaang.com/' })
+            .sendEmailVerification({ url: 'https://mfaang.com/' })
             .then(function () {
               //Email sent
-              // console.log('-----email sent:');
+              console.log('-----email sent:');
             })
           await db.collection('UserProfile').doc(email.toLowerCase()).set({
             username,
