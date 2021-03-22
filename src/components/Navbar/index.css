@@ -43,3 +43,13 @@
   margin-left: 1%;
   margin-top: 0.5%;
 }
+
+.header_console {
+  margin-left: -20%
+}
+
+@media screen and (min-width: 480px) {
+  .header_console {
+    margin-left: 0%
+  }
+}
