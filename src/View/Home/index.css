@@ -1,5 +1,23 @@
 .app_container {
-    background-color: #FFFFFF;
-    padding-left:10%;
-    padding-right:10%;
+  background-color: #ffffff;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.WhyUseMfaang {
+  background-color: white;
+  padding-left: 10%;
+  display: block;
+  height: 365px;
+  padding-top: 3%;
+}
+
+@media screen and (min-width: 420px) {
+  .WhyUseMfaang {
+    background-color: white;
+    padding-left: 10%;
+    display: block;
+    height: 465px;
+    padding-top: 3%;
+  }
 }

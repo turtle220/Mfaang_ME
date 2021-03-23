@@ -121,7 +121,7 @@ export default function Navbar() {
           
         />
       </a>
-      <img src={HeaderConsoleCode} alt='' style={{ marginLeft: '-20%' }} />
+      <img src={HeaderConsoleCode} alt='' className='header_console' />
       {emailVerified ? (
         <div className='info_avatar'>
             <Avatar
